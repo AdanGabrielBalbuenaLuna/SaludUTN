@@ -1,4 +1,4 @@
-package com.example.saludutn;
+package com.gabrielbalbuena.saludutn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
