@@ -18,4 +18,59 @@
     <!-- Activity Salud Mental -->
     <string name="txt_diario_de_emociones">Datos Personales</string>
     <string name="todo">TODO</string>
+
+
+    <!-- Activity Datos Personales -->
+    <!-- Label for name category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="matricula_dp">Matricula:</string>
+
+    <!-- Label for name category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="name_dp">Nombres:</string>
+
+    <!-- Label for last name category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="last_name_dp">Apellidos:</string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="contact_dp">Contacto:</string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="characteristics_dp">Metricas:</string>
+
+    <!-- Units for weight of the student (kilograms) [CHAR LIMIT=5] -->
+    <string name="unit_weight_dp">kg</string>
+
+    <!-- Units for height of the student (centimeters) [CHAR LIMIT=5] -->
+    <string name="unit_height_dp">cm</string>
+
+    <!-- Label for NSS category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="nss_dp">NSS:</string>
+
+
+
+    <!-- Text hint for matricula field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_matricula_dp">Matricula</string>
+
+    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_name_dp">Nombres</string>
+
+    <!-- Text hint for last name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_last_dp">Apellidos</string>
+
+    <!-- Text hint for contact name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_contact_name_dp">Nombre contacto</string>
+
+    <!-- Text hint for contact last name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_contact_phone_dp">Telefono contacto</string>
+
+    <!-- Text hint for contact last name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_weight_dp">Peso</string>
+
+    <!-- Text hint for contact last name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_height_dp">Altura</string>
+
+    <!-- Text hint for matricula field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_nss_dp">Numero de Seguridad Social</string>
+
+
+
 </resources>
