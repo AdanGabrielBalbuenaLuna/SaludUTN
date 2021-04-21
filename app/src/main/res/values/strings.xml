@@ -20,7 +20,7 @@
     <string name="todo">TODO</string>
 
 
-    <!-- Activity Datos Personales -->
+    <!-- Activity                                                              Datos Personales -->
     <!-- Label for name category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="matricula_dp">Matricula:</string>
 
@@ -71,6 +71,18 @@
     <!-- Text hint for matricula field in the editor [CHAR LIMIT=30] -->
     <string name="hint_nss_dp">Numero de Seguridad Social</string>
 
+    <!-- Menu catalog                                                          Datos Personales -->
+    <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
 
+    <!-- Label for overflow menu option that deletes all pet data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">Delete All Pets</string>
+
+    <!-- Menu editor                                                           Datos Personales -->
+    <!-- Label for editor menu option to save pet and leave editor [CHAR LIMIT=20] -->
+    <string name="action_save">Saves</string>
+
+    <!-- Label for editor overflow menu option that deletes the current pet [CHAR LIMIT=20] -->
+    <string name="action_delete">Delete</string>
 
 </resources>
