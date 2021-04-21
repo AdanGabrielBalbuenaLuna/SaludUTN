@@ -8,11 +8,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SaludUTN">
-        <activity   android:name="com.gabrielbalbuena.saludutn.SaludMental"
-                    android:label="@string/title_salud_mental"></activity>
-        <activity   android:name="com.gabrielbalbuena.saludutn.SaludFisica"
-                    android:label="@string/title_salud_fisica"/>
-        <activity android:name="com.gabrielbalbuena.saludutn.MainActivity">
+        <activity android:name=".DatosPersonales"></activity>
+        <activity
+            android:name=".SaludMental"
+            android:label="@string/title_salud_mental" />
+        <activity
+            android:name=".SaludFisica"
+            android:label="@string/title_salud_fisica" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
