@@ -132,7 +132,7 @@
 
             <!-- Phone contact field -->
             <EditText
-                android:id="@+id/edit_pet_breed"
+                android:id="@+id/edit_contact_phone_dp"
                 android:hint="@string/hint_contact_phone_dp"
                 android:inputType="number"
                 style="@style/EditorFieldStyle" />
