@@ -255,17 +255,63 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
         return true;
     }
 
+    /*
+
+     */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        EditText matriculaEditText = (EditText)findViewById(R.id.edit_matricula_dp);
+        String matricula  =  matriculaEditText.getText().toString();
+
+        EditText nameEditText = (EditText)findViewById(R.id.edit_name_dp);
+        String name  =  nameEditText.getText().toString();
+
+        EditText lastNameEditText = (EditText)findViewById(R.id.edit_last_name_db);
+        String lastName  =  lastNameEditText.getText().toString();
+
+        EditText contactNameEditText = (EditText)findViewById(R.id.edit_contact_name_dp);
+        String contactName  =  contactNameEditText.getText().toString();
+
+        EditText contactPhoneEditText = (EditText)findViewById(R.id.edit_contact_phone_dp);
+        String contactPhone  =  contactPhoneEditText.getText().toString();
+
+        EditText weightEditText = (EditText)findViewById(R.id.edit_weight_db);
+        String weight  =  weightEditText.getText().toString();
+
+        EditText heightEditText = (EditText)findViewById(R.id.edit_height_db);
+        String height  =  heightEditText.getText().toString();
+
+        EditText nssEditText = (EditText)findViewById(R.id.edit_nss_dp);
+        String nss  =  nssEditText.getText().toString();
+
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                // Save pet to database
-                //insertPet();
-                saveDatosPersonales();
-                // Exit activity
-                finish();
+                if (TextUtils.isEmpty(matricula)){
+                    Toast.makeText(this, "Necesitas añadir tu matricula", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(name)){
+                    Toast.makeText(this, "Necesitas añadir tu nombre", Toast.LENGTH_SHORT).show();
+                }  else if (TextUtils.isEmpty(lastName)){
+                    Toast.makeText(this, "Necesitas añadir tus apellidos", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(contactName)){
+                    Toast.makeText(this, "Necesitas añadir tu nombre de contacto", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(contactPhone)){
+                    Toast.makeText(this, "Necesitas añadir el telefono de tu contacto", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(weight)){
+                    Toast.makeText(this, "Necesitas añadir tu peso", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(height)){
+                    Toast.makeText(this, "Necesitas añadir tu altura", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(nss)){
+                    Toast.makeText(this, "Necesitas añadir tu numero de seguridad social", Toast.LENGTH_LONG).show();
+                }else {
+                    // Save student to database
+                    saveDatosPersonales();
+                    // Exit activity
+                    finish();
+                    return true;
+                }
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
