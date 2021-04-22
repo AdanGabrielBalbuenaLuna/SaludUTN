@@ -43,7 +43,8 @@
             <EditText
                 android:id="@+id/edit_matricula_dp"
                 android:hint="@string/hint_matricula_dp"
-                android:inputType="textCapWords"
+                android:inputType="number"
+                android:maxLength="10"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
@@ -72,6 +73,7 @@
                 android:id="@+id/edit_name_dp"
                 android:hint="@string/hint_name_dp"
                 android:inputType="textCapWords"
+                android:maxLength="20"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
@@ -100,6 +102,7 @@
                 android:id="@+id/edit_last_name_db"
                 android:hint="@string/hint_last_dp"
                 android:inputType="textCapWords"
+                android:maxLength="25"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
@@ -128,6 +131,7 @@
                 android:id="@+id/edit_contact_name_dp"
                 android:hint="@string/hint_contact_name_dp"
                 android:inputType="textCapWords"
+                android:maxLength="50"
                 style="@style/EditorFieldStyle" />
 
             <!-- Phone contact field -->
@@ -135,6 +139,7 @@
                 android:id="@+id/edit_contact_phone_dp"
                 android:hint="@string/hint_contact_phone_dp"
                 android:inputType="number"
+                android:maxLength="10"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
@@ -163,6 +168,7 @@
                 android:id="@+id/edit_weight_db"
                 android:hint="@string/hint_weight_dp"
                 android:inputType="number"
+                android:maxLength="3"
                 style="@style/EditorFieldStyle" />
 
             <!-- Units for weight (kg) -->
@@ -184,6 +190,7 @@
                 android:id="@+id/edit_height_db"
                 android:hint="@string/hint_height_dp"
                 android:inputType="number"
+                android:maxLength="3"
                 style="@style/EditorFieldStyle" />
 
             <!-- Units for height (kg) -->
@@ -217,7 +224,8 @@
             <EditText
                 android:id="@+id/edit_nss_dp"
                 android:hint="@string/hint_nss_dp"
-                android:inputType="textCapWords"
+                android:inputType="number"
+                android:maxLength="11"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
