@@ -5,25 +5,20 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_margin">
 
-    <!-- Matricula category -->
+    <!-- Nombres category -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_school_24"/>
         <!-- Label -->
         <TextView
             android:text="@string/matricula_dp"
             style="@style/CategoryStyle" />
-
-        <!-- Matricula field -->
-        <TextView
-            android:id="@+id/matricula"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#2B3D4D" />
 
         <!-- Input fields -->
         <LinearLayout
@@ -33,9 +28,16 @@
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
-
+            <TextView
+                android:id="@+id/matricula"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD" />
         </LinearLayout>
     </LinearLayout>
+
 
     <!-- Nombres category -->
     <LinearLayout
