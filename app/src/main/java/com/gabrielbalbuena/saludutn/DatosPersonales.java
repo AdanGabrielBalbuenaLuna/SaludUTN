@@ -8,20 +8,13 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;//4
-import android.database.sqlite.SQLiteDatabase;//2
 import android.net.Uri;
-import android.os.Bundle;
-
-import  com.gabrielbalbuena.data.SaludUtnContract;//3
-import com.gabrielbalbuena.data.SaludUtnHelper;//1
 
 
-import com.gabrielbalbuena.data.SaludUtnProvider;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
@@ -32,10 +25,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;//5
-import android.widget.Toast;
 
-import  com.gabrielbalbuena.data.SaludUtnContract.DatosPersonalesEntry;//6
+import  com.gabrielbalbuena.saludutn.data.SaludUtnContract.DatosPersonalesEntry;//6
 
 public class DatosPersonales extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 

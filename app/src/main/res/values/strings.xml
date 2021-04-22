@@ -122,12 +122,6 @@
 
 
 
-
-
-
-
-
-
     <!-- Menu catalog                                                          Datos Personales -->
     <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
     <string name="action_insert_dummy_data">Insert Dummy Data</string>

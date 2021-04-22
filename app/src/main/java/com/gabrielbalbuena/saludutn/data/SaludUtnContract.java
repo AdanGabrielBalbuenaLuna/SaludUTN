@@ -1,4 +1,4 @@
-package com.gabrielbalbuena.data;
+package com.gabrielbalbuena.saludutn.data;
 
 import android.content.ContentResolver;
 import android.net.Uri;

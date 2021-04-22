@@ -1,7 +1,6 @@
-package com.gabrielbalbuena.data;
+package com.gabrielbalbuena.saludutn.data;
 
 import android.content.ContentProvider;
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
@@ -14,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-import com.gabrielbalbuena.data.SaludUtnContract.DatosPersonalesEntry;//
-import com.gabrielbalbuena.data.SaludUtnContract;//
+import com.gabrielbalbuena.saludutn.data.SaludUtnContract.DatosPersonalesEntry;//
+
 
 public class SaludUtnProvider extends ContentProvider {
 
