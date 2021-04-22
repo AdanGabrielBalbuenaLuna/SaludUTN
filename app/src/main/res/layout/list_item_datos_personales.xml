@@ -5,70 +5,241 @@
     android:orientation="vertical"
     android:padding="@dimen/activity_margin">
 
-    <TextView
-        android:id="@+id/matricula"
-        android:layout_width="wrap_content"
+    <!-- Matricula category -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#2B3D4D" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/nombres"
-        android:layout_width="wrap_content"
+        <!-- Label -->
+        <TextView
+            android:text="@string/matricula_dp"
+            style="@style/CategoryStyle" />
+
+        <!-- Matricula field -->
+        <TextView
+            android:id="@+id/matricula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#2B3D4D" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Nombres category -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD" />
+        android:orientation="horizontal">
 
+        <!-- Label -->
+        <TextView
+            android:text="@string/name_dp"
+            style="@style/CategoryStyle" />
 
-    <TextView
-        android:id="@+id/apellidos"
-        android:layout_width="wrap_content"
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nombres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Apellidos category -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/contactonombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD" />
+        <!-- Label -->
+        <TextView
+            android:text="@string/last_name_dp"
+            style="@style/CategoryStyle" />
 
-    <TextView
-        android:id="@+id/contactoapellido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD" />
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/peso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD" />
+            <!-- Last name field -->
+            <TextView
+                android:id="@+id/apellidos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD" />
+        </LinearLayout>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/altura"
-        android:layout_width="wrap_content"
+    <!-- Contacto category -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/nss"
-        android:layout_width="wrap_content"
+        <!-- Label -->
+        <TextView
+            android:text="@string/contact_dp"
+            style="@style/CategoryStyle" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Name field -->
+            <TextView
+                android:id="@+id/contactonombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD" />
+
+            <!-- Phone contact field -->
+            <TextView
+                android:id="@+id/contactoapellido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Peso category -->
+    <LinearLayout
+        android:id="@+id/container_measurement"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD" />
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/characteristics_dp"
+            style="@style/CategoryStyle" />
+
+        <!-- Input fields -->
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp">
+
+            <!-- Weight field -->
+            <TextView
+                android:id="@+id/peso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD" />
+
+            <!-- Units for weight (kg) -->
+            <TextView
+                android:id="@+id/label_weight_units"
+                android:text="@string/unit_weight_dp"
+                style="@style/EditorUnitsStyle"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Altura category -->
+    <LinearLayout
+        android:id="@+id/container_measurement_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/characteristics_dp"
+            style="@style/CategoryStyle" />
+
+        <!-- Input fields -->
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp">
+
+            <!-- height field -->
+            <TextView
+                android:id="@+id/altura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD" />
+
+            <!-- Units for height (cm) -->
+            <TextView
+                android:id="@+id/label_height_units"
+                android:text="@string/unit_height_dp"
+                style="@style/EditorUnitsStyle"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+    <!-- NSS category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/nss_dp"
+            style="@style/CategoryStyle" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Matricula field -->
+            <TextView
+                android:id="@+id/nss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD" />
+        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
