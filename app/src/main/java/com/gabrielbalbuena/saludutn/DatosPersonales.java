@@ -185,7 +185,12 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
                 DatosPersonalesEntry._ID,
                 DatosPersonalesEntry.COLUMN_MATRICULA,
                 DatosPersonalesEntry.COLUMN_NOMBRES,
-                DatosPersonalesEntry.COLUMN_APELLIDOS };
+                DatosPersonalesEntry.COLUMN_APELLIDOS,
+                DatosPersonalesEntry.COLUMN_CONTACT_NAME,
+                DatosPersonalesEntry.COLUMN_CONTACT_PHONE,
+                DatosPersonalesEntry.COLUMN_STUDENT_WEIGHT,
+                DatosPersonalesEntry.COLUMN_STUDENT_HEIGHT,
+                DatosPersonalesEntry.COLUMN_NSS};
 
         //This loader will execute the ContentProvider´s query method on a background thread
         return new CursorLoader(this,   //Parent activity context
