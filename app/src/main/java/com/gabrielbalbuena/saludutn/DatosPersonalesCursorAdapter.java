@@ -54,19 +54,19 @@ public class DatosPersonalesCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
-        TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        TextView summaryTextView = (TextView) view.findViewById(R.id.summary);
+        TextView matriculaTextView = (TextView) view.findViewById(R.id.matricula);
+        TextView nombreTextView = (TextView) view.findViewById(R.id.nombres);
 
         // Find the columns of pet attributes that we're interested in
-        int nameColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_CONTACT_NAME);
-        int breedColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_APELLIDOS);
+        int nameColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_MATRICULA);
+        int breedColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_NOMBRES);
 
         // Read the pet attributes from the Cursor for the current pet
-        String petName = cursor.getString(nameColumnIndex);
-        String petBreed = cursor.getString(breedColumnIndex);
+        String name = cursor.getString(nameColumnIndex);
+        String matricula = cursor.getString(breedColumnIndex);
 
         // Update the TextViews with the attributes for the current pet
-        nameTextView.setText(petName);
-        summaryTextView.setText(petBreed);
+        matriculaTextView.setText(name);
+        nombreTextView.setText(matricula);
     }
 }

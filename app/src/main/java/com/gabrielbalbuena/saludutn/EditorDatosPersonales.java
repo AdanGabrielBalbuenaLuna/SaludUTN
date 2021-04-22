@@ -137,7 +137,7 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
      * Get user input from editor and save pet into database.
      */
     //private void insertPet()
-    private void savePet() {
+    private void saveDatosPersonales() {
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
         String matriculaString = mMatriculaEditText.getText().toString().trim();
@@ -184,11 +184,11 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
         }
         values.put(DatosPersonalesEntry.COLUMN_STUDENT_WEIGHT, weight);
 
-        // If the weight is not provided by the user, don't try to parse the string into an
+        // If the height is not provided by the user, don't try to parse the string into an
         // integer value. Use 0 by default.
         int height = 0;
-        if (!TextUtils.isEmpty(weightString)) {
-            height = Integer.parseInt(weightString);
+        if (!TextUtils.isEmpty(heightString)) {
+            height = Integer.parseInt(heightString);
         }
         values.put(DatosPersonalesEntry.COLUMN_STUDENT_HEIGHT, height);
 
@@ -263,7 +263,7 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
             case R.id.action_save:
                 // Save pet to database
                 //insertPet();
-                savePet();
+                saveDatosPersonales();
                 // Exit activity
                 finish();
                 return true;
