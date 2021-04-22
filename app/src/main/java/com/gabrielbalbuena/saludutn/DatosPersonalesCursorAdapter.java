@@ -58,7 +58,7 @@ public class DatosPersonalesCursorAdapter extends CursorAdapter {
         TextView nombreTextView = (TextView) view.findViewById(R.id.nombres);
         TextView apellidosTextView = (TextView) view.findViewById(R.id.apellidos);
         TextView contactoNombreTextView = (TextView) view.findViewById(R.id.contactonombre);
-        TextView contactoTelefonoTextView = (TextView) view.findViewById(R.id.contactoapellido);
+        TextView contactoTelefonoTextView = (TextView) view.findViewById(R.id.contactotelefono);
         TextView pesoTextView = (TextView) view.findViewById(R.id.peso);
         TextView alturaTextView = (TextView) view.findViewById(R.id.altura);
         TextView nssTextView = (TextView) view.findViewById(R.id.nss);

@@ -11,33 +11,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Icon -->
         <ImageView
-            android:layout_width="80dp"
             android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
             android:src="@drawable/baseline_school_24"/>
+
         <!-- Label -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:text="@string/matricula_dp"
             style="@style/CategoryStyle" />
 
-        <!-- Input fields -->
-        <LinearLayout
+        <!-- TV -->
+        <TextView
+            android:id="@+id/matricula"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/matricula"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD" />
-        </LinearLayout>
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
     </LinearLayout>
-
 
     <!-- Nombres category -->
     <LinearLayout
@@ -45,28 +44,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_school_24"/>
+
         <!-- Label -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:text="@string/name_dp"
             style="@style/CategoryStyle" />
-
-        <!-- Input fields -->
-        <LinearLayout
+        <!-- TV -->
+        <TextView
+            android:id="@+id/nombres"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/nombres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD" />
-        </LinearLayout>
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
     </LinearLayout>
+
 
     <!-- Apellidos category -->
     <LinearLayout
@@ -74,28 +77,31 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_school_24"/>
+
         <!-- Label -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:text="@string/last_name_dp"
             style="@style/CategoryStyle" />
 
-        <!-- Input fields -->
-        <LinearLayout
+        <!-- TV -->
+        <TextView
+            android:id="@+id/apellidos"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
-
-            <!-- Last name field -->
-            <TextView
-                android:id="@+id/apellidos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD" />
-        </LinearLayout>
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
     </LinearLayout>
 
     <!-- Contacto category -->
@@ -104,38 +110,64 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_school_24"/>
+
         <!-- Label -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:text="@string/contact_dp"
             style="@style/CategoryStyle" />
 
-        <!-- Input fields -->
-        <LinearLayout
+        <!-- TV -->
+        <TextView
+            android:id="@+id/contactonombre"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
+    </LinearLayout>
 
-            <!-- Name field -->
-            <TextView
-                android:id="@+id/contactonombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD" />
+    <!-- Contacto category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-            <!-- Phone contact field -->
-            <TextView
-                android:id="@+id/contactoapellido"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD" />
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_school_24"/>
 
-        </LinearLayout>
+        <!-- Label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/contact_phone_dp"
+            style="@style/CategoryStyle" />
+
+        <!-- TV -->
+        <TextView
+            android:id="@+id/contactotelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
     </LinearLayout>
 
     <!-- Peso category -->
@@ -145,33 +177,39 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_school_24"/>
+
         <!-- Label -->
         <TextView
-            android:text="@string/characteristics_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/characteristics_peso_dp"
             style="@style/CategoryStyle" />
 
-        <!-- Input fields -->
-        <RelativeLayout
+        <!-- Weight field -->
+        <TextView
+            android:id="@+id/peso"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp">
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
 
-            <!-- Weight field -->
-            <TextView
-                android:id="@+id/peso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD" />
-
-            <!-- Units for weight (kg) -->
-            <TextView
-                android:id="@+id/label_weight_units"
-                android:text="@string/unit_weight_dp"
-                style="@style/EditorUnitsStyle"/>
-        </RelativeLayout>
+        <!-- Units for weight (kg) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:id="@+id/label_weight_units"
+            android:text="@string/unit_weight_dp"
+            style="@style/EditorUnitsStyle"/>
     </LinearLayout>
 
     <!-- Altura category -->
@@ -181,37 +219,40 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_school_24"/>
+
         <!-- Label -->
         <TextView
-            android:text="@string/characteristics_dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/characteristics_altura_dp"
             style="@style/CategoryStyle" />
 
-        <!-- Input fields -->
-        <RelativeLayout
+        <!-- height field -->
+        <TextView
+            android:id="@+id/altura"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp">
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
 
-            <!-- height field -->
-            <TextView
-                android:id="@+id/altura"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD" />
-
-            <!-- Units for height (cm) -->
-            <TextView
-                android:id="@+id/label_height_units"
-                android:text="@string/unit_height_dp"
-                style="@style/EditorUnitsStyle"/>
-        </RelativeLayout>
+        <!-- Units for height (cm) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:id="@+id/label_height_units"
+            android:text="@string/unit_height_dp"
+            style="@style/EditorUnitsStyle"/>
     </LinearLayout>
-
-
-
 
     <!-- NSS category -->
     <LinearLayout
@@ -219,28 +260,31 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_school_24"/>
+
         <!-- Label -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:text="@string/nss_dp"
             style="@style/CategoryStyle" />
 
-        <!-- Input fields -->
-        <LinearLayout
+        <!-- TV -->
+        <TextView
+            android:id="@+id/nss"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
-
-            <!-- Matricula field -->
-            <TextView
-                android:id="@+id/nss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD" />
-        </LinearLayout>
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
     </LinearLayout>
 
 
