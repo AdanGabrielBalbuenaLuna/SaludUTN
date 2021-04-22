@@ -120,11 +120,11 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
         values.put(DatosPersonalesEntry.COLUMN_MATRICULA, "193111040");
         values.put(DatosPersonalesEntry.COLUMN_NOMBRES, "Adan Gabriel");
         values.put(DatosPersonalesEntry.COLUMN_APELLIDOS, "Balbuena Luna");
-        values.put(DatosPersonalesEntry.COLUMN_CONTACT_NAME, "Niguno");
-        values.put(DatosPersonalesEntry.COLUMN_CONTACT_NAME, "5546401399");
+        values.put(DatosPersonalesEntry.COLUMN_CONTACT_NAME, "Ninguno");
+        values.put(DatosPersonalesEntry.COLUMN_CONTACT_PHONE, "5546401399");
         values.put(DatosPersonalesEntry.COLUMN_STUDENT_WEIGHT, 67);
         values.put(DatosPersonalesEntry.COLUMN_STUDENT_HEIGHT, 171);
-        values.put(DatosPersonalesEntry.COLUMN_CONTACT_NAME, "BALA890622HMCLND05");
+        values.put(DatosPersonalesEntry.COLUMN_NSS, "BALA890622HMCLND05");
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
         // The first argument for db.insert() is the pets table name.
@@ -184,7 +184,8 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
         String[] projection = {
                 DatosPersonalesEntry._ID,
                 DatosPersonalesEntry.COLUMN_MATRICULA,
-                DatosPersonalesEntry.COLUMN_NOMBRES };
+                DatosPersonalesEntry.COLUMN_NOMBRES,
+                DatosPersonalesEntry.COLUMN_APELLIDOS };
 
         //This loader will execute the ContentProvider´s query method on a background thread
         return new CursorLoader(this,   //Parent activity context

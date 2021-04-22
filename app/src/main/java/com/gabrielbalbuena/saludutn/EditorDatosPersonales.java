@@ -147,7 +147,7 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
         String contactPhoneString = mContactPhoneEditText.getText().toString().trim();
         String weightString = mWeightEditText.getText().toString().trim();
         String heightString = mHeightEditText.getText().toString().trim();
-        String nssString = mContactPhoneEditText.getText().toString().trim();
+        String nssString = mNssEditText.getText().toString().trim();
         //int weight = Integer.parseInt(weightString);
 
         // Check if this is supposed to be a new pet

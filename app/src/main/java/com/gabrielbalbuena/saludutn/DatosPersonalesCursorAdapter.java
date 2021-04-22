@@ -56,17 +56,42 @@ public class DatosPersonalesCursorAdapter extends CursorAdapter {
         // Find individual views that we want to modify in the list item layout
         TextView matriculaTextView = (TextView) view.findViewById(R.id.matricula);
         TextView nombreTextView = (TextView) view.findViewById(R.id.nombres);
+        TextView apellidosTextView = (TextView) view.findViewById(R.id.apellidos);
+        /*TextView contactoNombreTextView = (TextView) view.findViewById(R.id.contactonombre);
+        TextView contactoTelefonoTextView = (TextView) view.findViewById(R.id.contactoapellido);
+        TextView pesoTextView = (TextView) view.findViewById(R.id.peso);
+        TextView alturaTextView = (TextView) view.findViewById(R.id.altura);
+        TextView nssTextView = (TextView) view.findViewById(R.id.nss);*/
+
 
         // Find the columns of pet attributes that we're interested in
-        int nameColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_MATRICULA);
-        int breedColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_NOMBRES);
+        int matriculaColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_MATRICULA);
+        int nameColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_NOMBRES);
+        int lastNameColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_APELLIDOS);
+        /*int contactNameColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_CONTACT_NAME);
+        int conctactPhoneColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_CONTACT_PHONE);
+        int weightColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_STUDENT_WEIGHT);
+        int heightColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_STUDENT_HEIGHT);
+        int nssColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_NSS);*/
 
         // Read the pet attributes from the Cursor for the current pet
+        String matricula = cursor.getString(matriculaColumnIndex);
         String name = cursor.getString(nameColumnIndex);
-        String matricula = cursor.getString(breedColumnIndex);
+        String lastName = cursor.getString(lastNameColumnIndex);
+        /*String nameContact = cursor.getString(contactNameColumnIndex);
+        String phoneContact = cursor.getString(conctactPhoneColumnIndex);
+        String weight = cursor.getString(weightColumnIndex);
+        String height = cursor.getString(heightColumnIndex);
+        String nss = cursor.getString(nssColumnIndex);*/
 
         // Update the TextViews with the attributes for the current pet
         matriculaTextView.setText(name);
         nombreTextView.setText(matricula);
+        apellidosTextView.setText(lastName);
+        /*contactoNombreTextView.setText(nameContact);
+        contactoTelefonoTextView.setText(phoneContact);
+        pesoTextView.setText(weight);
+        alturaTextView.setText(height);
+        nssTextView.setText(nss);*/
     }
 }
