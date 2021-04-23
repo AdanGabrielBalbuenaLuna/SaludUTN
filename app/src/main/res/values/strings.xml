@@ -80,7 +80,7 @@
     <string name="hint_nss_dp">Numero de Seguridad Social</string>
 
     <!-- Title for the activity to add a new datopersonal [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_new_datospersonal">Anade Datos Personales</string>
+    <string name="editor_activity_title_new_datospersonal">Datos Personales</string>
 
     <!-- Title for the activity to add a new datopersonal [CHAR LIMIT=20] -->
     <string name="editor_activity_title_edit_datospersonal">Edita Datos Personales</string>

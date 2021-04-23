@@ -8,20 +8,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SaludUTN">
-        <activity android:name=".EditorDiarioEmociones"></activity>
+        <activity android:name=".EditorDiarioEmociones" />
         <activity android:name=".DiarioEmociones" />
+
+
+
         <activity android:name=".EditorDatosPersonales" />
-        <activity android:name=".DatosPersonales" />
+        <activity android:name=".DatosPersonales"
+            android:label="@string/editor_activity_title_new_datospersonal"/>
+
+
         <activity
             android:name=".SaludMental"
             android:label="@string/title_salud_mental" />
         <activity
             android:name=".SaludFisica"
             android:label="@string/title_salud_fisica" />
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
