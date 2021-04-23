@@ -105,7 +105,7 @@
                 android:inputType="textCapWords"
                 android:maxLength="25"
                 style="@style/EditorFieldStyle"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+                android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -135,7 +135,7 @@
                 android:inputType="textCapWords"
                 android:maxLength="50"
                 style="@style/EditorFieldStyle"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+                android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
             <!-- Phone contact field -->
             <EditText

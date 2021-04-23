@@ -17,6 +17,7 @@ import android.net.Uri;
 import androidx.core.app.NavUtils;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -277,12 +278,16 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
         String contactPhone  =  contactPhoneEditText.getText().toString();
 
         EditText weightEditText = (EditText)findViewById(R.id.edit_weight_db);
-        String weight = weightEditText.getText().toString(); //this will get a string
+        Integer peso = Integer.valueOf(weightEditText.getText().toString());
+        //String weight = weightEditText.getText().toString(); //this will get a string
         //int peso=Integer.parseInt(weight); //this will get a no from the string
+        Log.d("Numero", "peso "+ peso + " weight: " + peso.toString());
 
         EditText heightEditText = (EditText)findViewById(R.id.edit_height_db);
-        String height = heightEditText.getText().toString(); //this will get a string
+        Integer altura = Integer.valueOf(heightEditText.getText().toString());
+        //String height = heightEditText.getText().toString(); //this will get a string
         //int altura =Integer.parseInt(height); //this will get a no from the string
+        Log.d("Numero", "altura "+ altura + " height: " + altura.toString());
 
         EditText nssEditText = (EditText)findViewById(R.id.edit_nss_dp);
         String nss  =  nssEditText.getText().toString();
@@ -311,13 +316,17 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
                     Toast.makeText(this, "Necesitas añadir el telefono de tu contacto", Toast.LENGTH_SHORT).show();
                 } else if (contactPhone.length()<8){
                     Toast.makeText(this, "El numero del contacto no puede ser menor a 8 digitos", Toast.LENGTH_SHORT).show();
-                } /*else if (peso<30||peso>150){
-                    Toast.makeText(this, "Necesitas añadir un peso valido minimo 30 kg maximo 150kg", Toast.LENGTH_LONG).show();
-                } */else if (TextUtils.isEmpty(weight)){
+                } else if (peso<30 ){
+                    Toast.makeText(this, "Necesitas añadir un peso valido, minimo 30 kg maximo 150kg", Toast.LENGTH_LONG).show();
+                } else if (peso>150){
+                    Toast.makeText(this, "Necesitas añadir un peso valido, maximo 150kg", Toast.LENGTH_LONG).show();
+                } else if (peso==null){
                     Toast.makeText(this, "Necesitas añadir tu peso", Toast.LENGTH_SHORT).show();
-                } /*else if (altura<30||altura>230){
-                    Toast.makeText(this, "Necesitas añadir una altura valido minimo 30 cm maximo 230cm", Toast.LENGTH_LONG).show();
-                } */else if (TextUtils.isEmpty(height)){
+                } else if (altura<30){
+                    Toast.makeText(this, "Necesitas añadir una altura valido, minimo 30 cm", Toast.LENGTH_LONG).show();
+                } else if (altura>230){
+                    Toast.makeText(this, "Necesitas añadir una altura valido, maximo 230 cm", Toast.LENGTH_LONG).show();
+                } else if (altura==null){
                     Toast.makeText(this, "Necesitas añadir tu altura", Toast.LENGTH_SHORT).show();
                 } else if (nss.length()<11){
                     Toast.makeText(this, "La NSS es de 11 digitos", Toast.LENGTH_SHORT).show();
