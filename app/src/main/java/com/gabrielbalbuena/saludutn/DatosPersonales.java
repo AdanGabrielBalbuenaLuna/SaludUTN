@@ -24,11 +24,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import  com.gabrielbalbuena.saludutn.data.SaludUtnContract.DatosPersonalesEntry;//6
 
 public class DatosPersonales extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    //**
+    FloatingActionButton fab = null;
 
     private static final int DATOS_PERSONALES_LOADER = 0;
 
@@ -42,7 +47,8 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
         setContentView(R.layout.activity_datos_personales);
 
         // Setup FAB to open EditorActivity
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //**FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +63,7 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
         datosPersonalesListView.setEmptyView(emptyView);
+
 
         //Setup an Adapter to create a list item for each row of DatosPersonales data in the Cursor.
         //There is no DatosPersonales data yet (until the loader finishes) so pass in null for the Cursor.
@@ -94,6 +101,7 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
                 startActivity(intent);
             }
         });
+
 
     }
 
@@ -205,6 +213,12 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         //Update {@link DatosPersonalesCursorAdapter} with this new cursor containing updated datospersonales data
         mCursorAdapter.swapCursor(data);
+
+        if (mCursorAdapter.getCount()>0){
+            fab.setVisibility(View.GONE);
+        } else{
+            fab.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

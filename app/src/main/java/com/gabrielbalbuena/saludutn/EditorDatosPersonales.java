@@ -291,6 +291,8 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
             case R.id.action_save:
                 if (TextUtils.isEmpty(matricula)){
                     Toast.makeText(this, "Necesitas añadir tu matricula", Toast.LENGTH_SHORT).show();
+                } else if (matricula.length()<8){
+                    Toast.makeText(this, "La matricula es de 10 digitos", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(name)){
                     Toast.makeText(this, "Necesitas añadir tu nombre", Toast.LENGTH_SHORT).show();
                 }  else if (TextUtils.isEmpty(lastName)){
@@ -303,7 +305,9 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
                     Toast.makeText(this, "Necesitas añadir tu peso", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(height)){
                     Toast.makeText(this, "Necesitas añadir tu altura", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(nss)){
+                }else if (nss.length()<11){
+                    Toast.makeText(this, "La NSS es de 11 digitos", Toast.LENGTH_SHORT).show();
+                }else if (TextUtils.isEmpty(nss)){
                     Toast.makeText(this, "Necesitas añadir tu numero de seguridad social", Toast.LENGTH_LONG).show();
                 }else {
                     // Save student to database

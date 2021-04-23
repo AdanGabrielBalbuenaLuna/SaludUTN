@@ -62,6 +62,5 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-
         android:src="@drawable/baseline_add_circle_outline_24"/>
 </RelativeLayout>
