@@ -12,8 +12,8 @@ import  com.gabrielbalbuena.saludutn.data.SaludUtnContract.DatosPersonalesEntry;
 
 /**
  * {@link DatosPersonalesCursorAdapter} is an adapter for a list or grid view
- * that uses a {@link Cursor} of pet data as its data source. This adapter knows
- * how to create list items for each row of pet data in the {@link Cursor}.
+ * that uses a {@link Cursor} of datospersonal data as its data source. This adapter knows
+ * how to create list items for each row of datospersonal data in the {@link Cursor}.
  */
 public class DatosPersonalesCursorAdapter extends CursorAdapter {
     /**
@@ -42,8 +42,8 @@ public class DatosPersonalesCursorAdapter extends CursorAdapter {
     }
 
     /**
-     * This method binds the pet data (in the current row pointed to by cursor) to the given
-     * list item layout. For example, the name for the current pet can be set on the name TextView
+     * This method binds the datospersonal data (in the current row pointed to by cursor) to the given
+     * list item layout. For example, the name for the current datospersonal can be set on the name TextView
      * in the list item layout.
      *
      * @param view    Existing view, returned earlier by newView() method
@@ -64,7 +64,7 @@ public class DatosPersonalesCursorAdapter extends CursorAdapter {
         TextView nssTextView = (TextView) view.findViewById(R.id.nss);
 
 
-        // Find the columns of pet attributes that we're interested in
+        // Find the columns of datospersonal attributes that we're interested in
         int matriculaColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_MATRICULA);
         int nameColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_NOMBRES);
         int lastNameColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_APELLIDOS);
@@ -74,7 +74,7 @@ public class DatosPersonalesCursorAdapter extends CursorAdapter {
         int heightColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_STUDENT_HEIGHT);
         int nssColumnIndex = cursor.getColumnIndex(DatosPersonalesEntry.COLUMN_NSS);
 
-        // Read the pet attributes from the Cursor for the current pet
+        // Read the datospersonal attributes from the Cursor for the current datospersonal
         String matricula = cursor.getString(matriculaColumnIndex);
         String name = cursor.getString(nameColumnIndex);
         String lastName = cursor.getString(lastNameColumnIndex);
@@ -84,7 +84,7 @@ public class DatosPersonalesCursorAdapter extends CursorAdapter {
         String height = cursor.getString(heightColumnIndex);
         String nss = cursor.getString(nssColumnIndex);
 
-        // Update the TextViews with the attributes for the current pet
+        // Update the TextViews with the attributes for the current datospersonal
         matriculaTextView.setText(matricula);
         nombreTextView.setText(name);
         apellidosTextView.setText(lastName);

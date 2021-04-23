@@ -80,23 +80,23 @@
     <!-- Text hint for matricula field in the editor [CHAR LIMIT=30] -->
     <string name="hint_nss_dp">Numero de Seguridad Social</string>
 
-    <!-- Title for the activity to add a new pet [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_new_pet">Anade Datos Personales</string>
+    <!-- Title for the activity to add a new datopersonal [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_new_datospersonal">Anade Datos Personales</string>
 
-    <!-- Title for the activity to add a new pet [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_edit_pet">Edita Datos Personales</string>
+    <!-- Title for the activity to add a new datopersonal [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_edit_datospersonal">Edita Datos Personales</string>
 
-    <!-- Toast message in editor when new pet has failed to be inserted [CHAR LIMIT=NONE] -->
-    <string name="editor_insert_pet_failed">Error guardando Datos Personales</string>
+    <!-- Toast message in editor when new datopersonal has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_datospersonal_failed">Error guardando Datos Personales</string>
 
-    <!-- Toast message in editor when new pet has been successfully inserted [CHAR LIMIT=NONE] -->
-    <string name="editor_insert_pet_successful">Datos personales guardados</string>
+    <!-- Toast message in editor when new datopersonal has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_datospersonal_successful">Datos personales guardados</string>
 
-    <!-- Toast message in editor when current pet has failed to be updated [CHAR LIMIT=NONE] -->
-    <string name="editor_update_pet_failed">Error con la actualizacion de Datos personales</string>
+    <!-- Toast message in editor when current datopersonal has failed to be updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_datospersonal_failed">Error con la actualizacion de Datos personales</string>
 
-    <!-- Toast message in editor when current pet was successfully updated [CHAR LIMIT=NONE] -->
-    <string name="editor_update_pet_successful">Datos Personales Actualizados</string>
+    <!-- Toast message in editor when current datopersonal was successfully updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_datospersonal_successful">Datos Personales Actualizados</string>
 
     <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
     <string name="unsaved_changes_dialog_msg">Descartar tus cambios y dejar de editar?</string>
@@ -104,48 +104,45 @@
     <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
     <string name="discard">Descartar</string>
 
-    <!-- Dialog button text for the option to keep editing the current pet [CHAR LIMIT=20] -->
+    <!-- Dialog button text for the option to keep editing the current datopersonal [CHAR LIMIT=20] -->
     <string name="keep_editing">Seguir Editando</string>
 
-    <!-- Dialog message to ask the user to confirm deleting the current pet [CHAR LIMIT=NONE] -->
+    <!-- Dialog message to ask the user to confirm deleting the current datopersonal [CHAR LIMIT=NONE] -->
     <string name="delete_dialog_msg">Eliminar este Usuario?</string>
 
-    <!-- Dialog button text for the option to confirm deleting the current pet [CHAR LIMIT=20] -->
+    <!-- Dialog button text for the option to confirm deleting the current datopersonal [CHAR LIMIT=20] -->
     <string name="delete">Eliminar</string>
 
-    <!-- Dialog button text for the option to cancel deletion of the current pet [CHAR LIMIT=20] -->
+    <!-- Dialog button text for the option to cancel deletion of the current datopersonal [CHAR LIMIT=20] -->
     <string name="cancel">Cancelar</string>
 
-    <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
-    <string name="editor_delete_pet_failed">Error al eliminar datos personales</string>
+    <!-- Toast message in editor when current datopersonal has failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_datospersonal_failed">Error al eliminar datos personales</string>
 
-    <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
-    <string name="editor_delete_pet_successful">Datos Personales Eliminados</string>
+    <!-- Toast message in editor when current datopersonal was successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_datospersonal_successful">Datos Personales Eliminados</string>
 
     <!-- Title text for the empty view, which describes the empty dog house image [CHAR LIMIT=50] -->
-    <string name="empty_view_title_text">It\'s a bit lonely here...</string>
+    <string name="empty_view_title_text">Nada registrado aun...</string>
 
-    <!-- Subtitle text for the empty view that prompts the user to add a pet [CHAR LIMIT=50] -->
+    <!-- Subtitle text for the empty view that prompts the user to add a datopersonal [CHAR LIMIT=50] -->
     <string name="empty_view_subtitle_text">Empieza por ingresar tu informacion</string>
 
 
 
 
     <!-- Menu catalog                                                          Datos Personales -->
-    <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
+    <!-- Label for overflow menu option that inserts fake datopersonal data into the app [CHAR LIMIT=20] -->
     <string name="action_insert_dummy_data">Insert Dummy Data</string>
 
-    <!-- Label for overflow menu option that deletes all pet data in the app [CHAR LIMIT=20] -->
+    <!-- Label for overflow menu option that deletes all datopersonal data in the app [CHAR LIMIT=20] -->
     <string name="action_delete_all_entries">Borrar datos personales</string>
 
     <!-- Menu editor                                                           Datos Personales -->
-    <!-- Label for editor menu option to save pet and leave editor [CHAR LIMIT=20] -->
+    <!-- Label for editor menu option to save datopersonal and leave editor [CHAR LIMIT=20] -->
     <string name="action_save">Saves</string>
 
-    <!-- Label for editor overflow menu option that deletes the current pet [CHAR LIMIT=20] -->
+    <!-- Label for editor overflow menu option that deletes the current datopersonal [CHAR LIMIT=20] -->
     <string name="action_delete">Delete</string>
-
-
-
 
 </resources>

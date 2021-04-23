@@ -21,9 +21,9 @@ public class SaludUtnProvider extends ContentProvider {
     /** Tag for the log messages */
     public static final String LOG_TAG = SaludUtnProvider.class.getSimpleName();
 
-    /** URI matcher code for the content URI for the pets table */
+    /** URI matcher code for the content URI for the datospersonales table */
     private static final int DATOS_PERSONALES = 100;
-    /** URI matcher code for the content URI for a single pet in the pets table */
+    /** URI matcher code for the content URI for a single datospersonal in the datospersonales table */
     private static final int DATOS_PERSONALES_ID = 101;
 
 
@@ -40,17 +40,17 @@ public class SaludUtnProvider extends ContentProvider {
         // The calls to addURI() go here, for all of the content URI patterns that the provider
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
-        // The content URI of the form "content://com.example.android.pets/pets" will map to the
-        // integer code {@link #PETS}. This URI is used to provide access to MULTIPLE rows
-        // of the pets table.
+        // The content URI of the form "com.gabrielbalbuena.saludutn/datospersonales" will map to the
+        // integer code {@link #DATOSPERSONALES}. This URI is used to provide access to MULTIPLE rows
+        // of the datospersonales table.
         sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DATOS_PERSONALES, DATOS_PERSONALES);
-        // The content URI of the form "content://com.example.android.pets/pets/#" will map to the
-        // integer code {@link #PET_ID}. This URI is used to provide access to ONE single row
-        // of the pets table.
+        // The content URI of the form "content://com.gabrielbalbuena.saludutn/datospersonales/#" will map to the
+        // integer code {@link #DATOSPERSONALES_ID}. This URI is used to provide access to ONE single row
+        // of the datospersonales table.
         //
         // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
-        // For example, "content://com.example.android.pets/pets/3" matches, but
-        // "content://com.example.android.pets/pets" (without a number at the end) doesn't match.
+        // For example, "content://com.gabrielbalbuena.saludutn/datospersonales/3" matches, but
+        // "content://com.gabrielbalbuena.saludutn/datospersonales" (without a number at the end) doesn't match.
         sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DATOS_PERSONALES + "/#", DATOS_PERSONALES_ID);
     }
 
@@ -63,7 +63,7 @@ public class SaludUtnProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
-        // TODO: Create and initialize a PetDbHelper object to gain access to the pets database. Line 17
+        // TODO: Create and initialize a SaludUtnDbHelper object to gain access to the datospersonales database. Line 17
         // Make sure the variable is a global variable, so it can be referenced from other
         // ContentProvider methods.
         mDbHelper = new SaludUtnHelper(getContext());
@@ -88,16 +88,16 @@ public class SaludUtnProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match) {
             case DATOS_PERSONALES:
-                // For the PETS code, query the pets table directly with the given
+                // For the DATOSPERSONALES code, query the datospersonales table directly with the given
                 // projection, selection, selection arguments, and sort order. The cursor
-                // could contain multiple rows of the pets table.
-                // TODO: Perform database query on pets table
+                // could contain multiple rows of the datospersonales table.
+                // TODO: Perform database query on datospersonales table
                 cursor = database.query(DatosPersonalesEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case DATOS_PERSONALES_ID:
-                // For the PET_ID code, extract out the ID from the URI.
-                // For an example URI such as "content://com.example.android.pets/pets/3",
+                // For the DATOSPERSONALES_ID code, extract out the ID from the URI.
+                // For an example URI such as "content://com.gabrielbalbuena.saludutn/datospersonales/3",
                 // the selection will be "_id=?" and the selection argument will be a
                 // String array containing the actual ID of 3 in this case.
                 //
@@ -107,7 +107,7 @@ public class SaludUtnProvider extends ContentProvider {
                 selection = DatosPersonalesEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
 
-                // This will perform a query on the pets table where the _id equals 3 to return a
+                // This will perform a query on the datospersonales table where the _id equals 3 to return a
                 // Cursor containing that row of the table.
                 cursor = database.query(DatosPersonalesEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
@@ -158,7 +158,7 @@ public class SaludUtnProvider extends ContentProvider {
     }
 
     /**
-     * Insert a pet into the database with the given content values. Return the new content URI
+     * Insert a datospersonales into the database with the given content values. Return the new content URI
      * for that specific row in the database.
      */
     private Uri insertDatosPersonales(Uri uri, ContentValues values) {
@@ -223,7 +223,7 @@ public class SaludUtnProvider extends ContentProvider {
 
         // No need to check the breed, any value is valid (including null).
 
-        // Insert the new pet with the given values
+        // Insert the new datospersonal with the given values
         long id = database.insert(DatosPersonalesEntry.TABLE_NAME, null, values);
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
@@ -231,27 +231,27 @@ public class SaludUtnProvider extends ContentProvider {
             return null;
         }
 
-        // Notify all listeners that the data has changed for the pet content URI
+        // Notify all listeners that the data has changed for the datospersonal content URI
         getContext().getContentResolver().notifyChange(uri, null);
 
         // Return the new URI with the ID (of the newly inserted row) appended at the end
         return ContentUris.withAppendedId(uri, id);
 
 
-        /*// TODO: Insert a new pet into the pets database table with the given ContentValues
+        /*// TODO: Insert a new datospersonal into the datospersonales database table with the given ContentValues
 
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the pets table name.
+        // The first argument for db.insert() is the datospersonales table name.
         // The second argument provides the name of a column in which the framework
         // can insert NULL in the event that the ContentValues is empty (if
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Toto
-        // Insert the new pet with the given values
-        long id = database.insert(PetEntry.TABLE_NAME, null, values);
+        // Insert the new datospersonal with the given values
+        long id = database.insert(DatosPersonalesEntry.TABLE_NAME, null, values);
 
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
@@ -278,14 +278,14 @@ public class SaludUtnProvider extends ContentProvider {
         switch (match) {
             case DATOS_PERSONALES:
                 // Delete all rows that match the selection and selection args
-                //return database.delete(PetEntry.TABLE_NAME, selection, selectionArgs);
+                //return database.delete(DatosPersonalesEntry.TABLE_NAME, selection, selectionArgs);
                 rowsDeleted = database.delete(DatosPersonalesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             case DATOS_PERSONALES_ID:
                 // Delete a single row given by the ID in the URI
                 selection = DatosPersonalesEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
-                //return database.delete(PetEntry.TABLE_NAME, selection, selectionArgs);
+                //return database.delete(DatosPersonalesEntry.TABLE_NAME, selection, selectionArgs);
                 rowsDeleted = database.delete(DatosPersonalesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             default:
@@ -311,7 +311,7 @@ public class SaludUtnProvider extends ContentProvider {
             case DATOS_PERSONALES:
                 return updateDatosPersonales(uri, contentValues, selection, selectionArgs);
             case DATOS_PERSONALES_ID:
-                // For the PET_ID code, extract out the ID from the URI,
+                // For the DATOSPERSONALES_ID code, extract out the ID from the URI,
                 // so we know which row to update. Selection will be "_id=?" and selection
                 // arguments will be a String array containing the actual ID.
                 selection = DatosPersonalesEntry._ID + "=?";
@@ -323,8 +323,8 @@ public class SaludUtnProvider extends ContentProvider {
     }
 
     /**
-     * Update pets in the database with the given content values. Apply the changes to the rows
-     * specified in the selection and selection arguments (which could be 0 or 1 or more pets).
+     * Update datospersonales in the database with the given content values. Apply the changes to the rows
+     * specified in the selection and selection arguments (which could be 0 or 1 or more datospersonales).
      * Return the number of rows that were successfully updated.
      */
     private int updateDatosPersonales(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
@@ -413,7 +413,7 @@ public class SaludUtnProvider extends ContentProvider {
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Returns the number of database rows affected by the update statement
-        //return database.update(PetEntry.TABLE_NAME, values, selection, selectionArgs);
+        //return database.update(DatosPersonalesEntry.TABLE_NAME, values, selection, selectionArgs);
 
         // Perform the update on the database and get the number of rows affected
         int rowsUpdated = database.update(DatosPersonalesEntry.TABLE_NAME, values, selection, selectionArgs);

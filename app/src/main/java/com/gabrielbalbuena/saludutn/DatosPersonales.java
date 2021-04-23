@@ -30,12 +30,11 @@ import  com.gabrielbalbuena.saludutn.data.SaludUtnContract.DatosPersonalesEntry;
 
 public class DatosPersonales extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final int PET_LOADER = 0;
+    private static final int DATOS_PERSONALES_LOADER = 0;
 
     DatosPersonalesCursorAdapter mCursorAdapter;
 
     /** Database helper that will provide us access to the database */
-    //private PetDbHelper mDbHelper; Finish
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,46 +51,46 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
             }
         });
 
-        // Find the ListView which will be populated with the pet data
-        ListView petListView = (ListView) findViewById(R.id.list);
+        // Find the ListView which will be populated with the DatosPersonales data
+        ListView datosPersonalesListView = (ListView) findViewById(R.id.list);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
-        petListView.setEmptyView(emptyView);
+        datosPersonalesListView.setEmptyView(emptyView);
 
-        //Setup an Adapter to create a list item for each row of pet data in the Cursor.
-        //There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        //Setup an Adapter to create a list item for each row of DatosPersonales data in the Cursor.
+        //There is no DatosPersonales data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter= new DatosPersonalesCursorAdapter(this,null);
-        petListView.setAdapter(mCursorAdapter);
+        datosPersonalesListView.setAdapter(mCursorAdapter);
 
         //Kick off the loader
-        //getLoaderManager().initLoader(PET_LOADER, null, this);
-        getSupportLoaderManager().initLoader(PET_LOADER, null, this);
+        //getLoaderManager().initLoader(DATOS_PERSONALES_LOADER, null, this);
+        getSupportLoaderManager().initLoader(DATOS_PERSONALES_LOADER, null, this);
 
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
-        //mDbHelper = new PetDbHelper(this);
+        //mDbHelper = new SaludUtnDbHelper(this);
 
         //displayDatabaseInfo();
 
         //Setup item click listener
-        petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        datosPersonalesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //Create new intent to go to {@link EditorActivity}
                 Intent intent = new Intent(DatosPersonales.this, EditorDatosPersonales.class);
 
-                //Form the content URI that represents the specific pet that was clicked on,
+                //Form the content URI that represents the specific DatosPersonales that was clicked on,
                 //by appending the "id" (passed as input to this method) onto the
-                //{@link PetEntry#CONTENT_URI}.
-                //For example, the URI would be "content://com.example.android.pets/pets/2"
-                //if the pet with ID 2 was clicked on.
-                Uri currentPetUri = ContentUris.withAppendedId(DatosPersonalesEntry.CONTENT_URI, id);
+                //{@link DatosPersonalesEntry#CONTENT_URI}.
+                //For example, the URI would be "content://ccom.gabrielbalbuena.saludutn/datospersonales/2"
+                //if the DatosPersonales with ID 2 was clicked on.
+                Uri currentDatosPersonalesUri = ContentUris.withAppendedId(DatosPersonalesEntry.CONTENT_URI, id);
 
                 //Set the URI on the data field of the intent
-                intent.setData(currentPetUri);
+                intent.setData(currentDatosPersonalesUri);
 
-                //Launch the{@link EditorActivity} to display the data for the current pet.
+                //Launch the{@link EditorActivity} to display the data for the current datospersonales.
                 startActivity(intent);
             }
         });
@@ -108,14 +107,14 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
 
 
     /**
-     * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
+     * Helper method to insert hardcoded datospersonales data into the database. For debugging purposes only.
      */
     private void insertDatosPersonales() {
         // Gets the database in write mode
         //SQLiteDatabase db = mDbHelper.getWritableDatabase(); //Code Comment BAD PRACTICE
 
         // Create a ContentValues object where column names are the keys,
-        // and Toto's pet attributes are the values.
+        // and Toto's datospersonales attributes are the values.
         ContentValues values = new ContentValues();
         values.put(DatosPersonalesEntry.COLUMN_MATRICULA, "193111040");
         values.put(DatosPersonalesEntry.COLUMN_NOMBRES, "Adan Gabriel");
@@ -127,16 +126,16 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
         values.put(DatosPersonalesEntry.COLUMN_NSS, "BALA890622HMCLND05");
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the pets table name.
+        // The first argument for db.insert() is the datospersonales table name.
         // The second argument provides the name of a column in which the framework
         // can insert NULL in the event that the ContentValues is empty (if
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Toto
-        //long newRowId = db.insert(PetEntry.TABLE_NAME, null, values); //Code Comment BAD PRACTICE
+        //long newRowId = db.insert(DatosPersonalesEntry.TABLE_NAME, null, values); //Code Comment BAD PRACTICE
         // Insert a new row for Toto into the provider using the ContentResolver.
-        // Use the {@link PetEntry#CONTENT_URI} to indicate that we want to insert
-        // into the pets database table.
+        // Use the {@link DatosPersonalesEntry#CONTENT_URI} to indicate that we want to insert
+        // into the datospersonales database table.
         // Receive the new content URI that will allow us to access Toto's data in the future.
         Uri newUri = getContentResolver().insert(DatosPersonalesEntry.CONTENT_URI, values);
 
@@ -144,11 +143,11 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
     }
 
     /**
-     * Helper method to delete all pets in the database.
+     * Helper method to delete all datospersonales in the database.
      */
-    private void deleteAllPets() {
+    private void deleteAllDatosPersonales() {
         int rowsDeleted = getContentResolver().delete(DatosPersonalesEntry.CONTENT_URI, null, null);
-        Log.v("CatalogActivity", rowsDeleted + " rows deleted from pet database");
+        Log.v("CatalogActivity", rowsDeleted + " rows deleted from datospersonales database");
     }
 
     @Override
@@ -172,7 +171,7 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
                 // Do nothing for now
-                deleteAllPets();
+                deleteAllDatosPersonales();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -204,7 +203,7 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        //Update {@link PetCursorAdapter} with this new cursor containing updated pet data
+        //Update {@link DatosPersonalesCursorAdapter} with this new cursor containing updated datospersonales data
         mCursorAdapter.swapCursor(data);
     }
 
