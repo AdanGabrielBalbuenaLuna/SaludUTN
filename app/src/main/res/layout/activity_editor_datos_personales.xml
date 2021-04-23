@@ -74,7 +74,8 @@
                 android:hint="@string/hint_name_dp"
                 android:inputType="textCapWords"
                 android:maxLength="20"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -103,7 +104,8 @@
                 android:hint="@string/hint_last_dp"
                 android:inputType="textCapWords"
                 android:maxLength="25"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -132,7 +134,8 @@
                 android:hint="@string/hint_contact_name_dp"
                 android:inputType="textCapWords"
                 android:maxLength="50"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
             <!-- Phone contact field -->
             <EditText

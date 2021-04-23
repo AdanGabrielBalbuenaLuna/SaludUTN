@@ -277,10 +277,12 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
         String contactPhone  =  contactPhoneEditText.getText().toString();
 
         EditText weightEditText = (EditText)findViewById(R.id.edit_weight_db);
-        String weight  =  weightEditText.getText().toString();
+        String weight = weightEditText.getText().toString(); //this will get a string
+        //int peso=Integer.parseInt(weight); //this will get a no from the string
 
         EditText heightEditText = (EditText)findViewById(R.id.edit_height_db);
-        String height  =  heightEditText.getText().toString();
+        String height = heightEditText.getText().toString(); //this will get a string
+        //int altura =Integer.parseInt(height); //this will get a no from the string
 
         EditText nssEditText = (EditText)findViewById(R.id.edit_nss_dp);
         String nss  =  nssEditText.getText().toString();
@@ -289,27 +291,39 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                if (TextUtils.isEmpty(matricula)){
+                if (matricula.length()<8){
+                Toast.makeText(this, "La matricula es de 10 digitos", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(matricula)){
                     Toast.makeText(this, "Necesitas añadir tu matricula", Toast.LENGTH_SHORT).show();
-                } else if (matricula.length()<8){
-                    Toast.makeText(this, "La matricula es de 10 digitos", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(name)){
                     Toast.makeText(this, "Necesitas añadir tu nombre", Toast.LENGTH_SHORT).show();
-                }  else if (TextUtils.isEmpty(lastName)){
+                } else if (name.length()<3){
+                    Toast.makeText(this, "El nombre no puede ser menor a 3 letras", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(lastName)){
                     Toast.makeText(this, "Necesitas añadir tus apellidos", Toast.LENGTH_SHORT).show();
+                } else if (lastName.length()<3){
+                    Toast.makeText(this, "El apellido no puede ser menor a 3 letras", Toast.LENGTH_SHORT).show();
+                } else if (contactName.length()<3){
+                    Toast.makeText(this, "El nombre del contacto no puede ser menor a 3 letras", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(contactName)){
                     Toast.makeText(this, "Necesitas añadir tu nombre de contacto", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(contactPhone)){
+                }  else if (TextUtils.isEmpty(contactPhone)){
                     Toast.makeText(this, "Necesitas añadir el telefono de tu contacto", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(weight)){
+                } else if (contactPhone.length()<8){
+                    Toast.makeText(this, "El numero del contacto no puede ser menor a 8 digitos", Toast.LENGTH_SHORT).show();
+                } /*else if (peso<30||peso>150){
+                    Toast.makeText(this, "Necesitas añadir un peso valido minimo 30 kg maximo 150kg", Toast.LENGTH_LONG).show();
+                } */else if (TextUtils.isEmpty(weight)){
                     Toast.makeText(this, "Necesitas añadir tu peso", Toast.LENGTH_SHORT).show();
-                } else if (TextUtils.isEmpty(height)){
+                } /*else if (altura<30||altura>230){
+                    Toast.makeText(this, "Necesitas añadir una altura valido minimo 30 cm maximo 230cm", Toast.LENGTH_LONG).show();
+                } */else if (TextUtils.isEmpty(height)){
                     Toast.makeText(this, "Necesitas añadir tu altura", Toast.LENGTH_SHORT).show();
-                }else if (nss.length()<11){
+                } else if (nss.length()<11){
                     Toast.makeText(this, "La NSS es de 11 digitos", Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(nss)){
+                } else if (TextUtils.isEmpty(nss)){
                     Toast.makeText(this, "Necesitas añadir tu numero de seguridad social", Toast.LENGTH_LONG).show();
-                }else {
+                } else {
                     // Save student to database
                     saveDatosPersonales();
                     // Exit activity
