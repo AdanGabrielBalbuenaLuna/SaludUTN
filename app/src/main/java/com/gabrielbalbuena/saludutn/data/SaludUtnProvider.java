@@ -27,7 +27,12 @@ public class SaludUtnProvider extends ContentProvider {
     private static final int DATOS_PERSONALES_ID = 101;
 
 
-    //s because is static
+    /** URI matcher code for the content URI for the pets table */
+    private static final int DIARIO_EMOCIONES = 200;
+    /** URI matcher code for the content URI for a single pet in the pets table */
+    private static final int DIARIO_EMOCIONES_ID = 201;
+
+        //s because is static
     /**
      * UriMatcher object to match a content URI to a corresponding code.
      * The input passed into the constructor represents the code to return for the root URI.
@@ -52,13 +57,29 @@ public class SaludUtnProvider extends ContentProvider {
         // For example, "content://com.gabrielbalbuena.saludutn/datospersonales/3" matches, but
         // "content://com.gabrielbalbuena.saludutn/datospersonales" (without a number at the end) doesn't match.
         sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DATOS_PERSONALES + "/#", DATOS_PERSONALES_ID);
+
+        // The calls to addURI() go here, for all of the content URI patterns that the provider
+        // should recognize. All paths added to the UriMatcher have a corresponding code to return
+        // when a match is found.
+        // The content URI of the form "content://com.example.android.pets/pets" will map to the
+        // integer code {@link #PETS}. This URI is used to provide access to MULTIPLE rows
+        // of the pets table.
+        sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DIARIO_EMOCIONES, DIARIO_EMOCIONES);
+        // The content URI of the form "content://com.example.android.pets/pets/#" will map to the
+        // integer code {@link #PET_ID}. This URI is used to provide access to ONE single row
+        // of the pets table.
+        //
+        // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
+        // For example, "content://com.example.android.pets/pets/3" matches, but
+        // "content://com.example.android.pets/pets" (without a number at the end) doesn't match.
+        sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DIARIO_EMOCIONES + "/#", DIARIO_EMOCIONES_ID);
+
     }
 
 
     //DataBase helper object
     private SaludUtnHelper mDbHelper;
-
-    /**
+        /**
      * Initialize the provider and the database helper object.
      */
     @Override

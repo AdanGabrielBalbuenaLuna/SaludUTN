@@ -55,7 +55,6 @@
     <string name="nss_dp">NSS:</string>
 
 
-
     <!-- Text hint for matricula field in the editor [CHAR LIMIT=30] -->
     <string name="hint_matricula_dp">Matricula</string>
 
@@ -127,8 +126,6 @@
 
     <!-- Subtitle text for the empty view that prompts the user to add a datopersonal [CHAR LIMIT=50] -->
     <string name="empty_view_subtitle_text">Empieza por ingresar tu informacion</string>
-
-
 
 
     <!-- Menu catalog                                                          Datos Personales -->
