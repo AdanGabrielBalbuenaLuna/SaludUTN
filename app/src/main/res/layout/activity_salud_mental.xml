@@ -12,7 +12,7 @@
         android:layout_height="88dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="619dp"
-        android:background="#F13435"
+        android:background="#36CC96"
         android:gravity="center"
         android:text="@string/txt_diario_de_emociones"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

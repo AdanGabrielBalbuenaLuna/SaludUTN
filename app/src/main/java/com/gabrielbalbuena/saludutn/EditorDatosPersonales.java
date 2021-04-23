@@ -26,6 +26,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.DatosPersonalesEntry;
+
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Allows user to create a new datospersonal or edit an existing one.
  */
@@ -278,16 +281,19 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
         String contactPhone  =  contactPhoneEditText.getText().toString();
 
         EditText weightEditText = (EditText)findViewById(R.id.edit_weight_db);
-        Integer peso = Integer.valueOf(weightEditText.getText().toString());
-        //String weight = weightEditText.getText().toString(); //this will get a string
-        //int peso=Integer.parseInt(weight); //this will get a no from the string
-        Log.d("Numero", "peso "+ peso + " weight: " + peso.toString());
+        int peso = 0; //para inicializar con un valor por defecto
+        String weight = weightEditText.getText().toString();
+        if(StringUtils.isNotBlank(weight)){
+            peso = Integer.parseInt(weight);
+        }
 
         EditText heightEditText = (EditText)findViewById(R.id.edit_height_db);
-        Integer altura = Integer.valueOf(heightEditText.getText().toString());
-        //String height = heightEditText.getText().toString(); //this will get a string
-        //int altura =Integer.parseInt(height); //this will get a no from the string
-        Log.d("Numero", "altura "+ altura + " height: " + altura.toString());
+        int altura = 0; //para inicializar con un valor por defecto
+        String height = heightEditText.getText().toString();
+        if(StringUtils.isNotBlank(height)){
+            altura = Integer.parseInt(height);
+        }
+        //Log.d("Numero", "altura "+ altura + " height: " + altura.toString());
 
         EditText nssEditText = (EditText)findViewById(R.id.edit_nss_dp);
         String nss  =  nssEditText.getText().toString();
@@ -317,16 +323,16 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
                 } else if (contactPhone.length()<8){
                     Toast.makeText(this, "El numero del contacto no puede ser menor a 8 digitos", Toast.LENGTH_SHORT).show();
                 } else if (peso<30 ){
-                    Toast.makeText(this, "Necesitas añadir un peso valido, minimo 30 kg maximo 150kg", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Necesitas añadir un peso valido, minimo 30 kg", Toast.LENGTH_LONG).show();
                 } else if (peso>150){
                     Toast.makeText(this, "Necesitas añadir un peso valido, maximo 150kg", Toast.LENGTH_LONG).show();
-                } else if (peso==null){
+                } else if (weight.equals("")){
                     Toast.makeText(this, "Necesitas añadir tu peso", Toast.LENGTH_SHORT).show();
                 } else if (altura<30){
                     Toast.makeText(this, "Necesitas añadir una altura valido, minimo 30 cm", Toast.LENGTH_LONG).show();
                 } else if (altura>230){
                     Toast.makeText(this, "Necesitas añadir una altura valido, maximo 230 cm", Toast.LENGTH_LONG).show();
-                } else if (altura==null){
+                } else if (height.equals("")){
                     Toast.makeText(this, "Necesitas añadir tu altura", Toast.LENGTH_SHORT).show();
                 } else if (nss.length()<11){
                     Toast.makeText(this, "La NSS es de 11 digitos", Toast.LENGTH_SHORT).show();
