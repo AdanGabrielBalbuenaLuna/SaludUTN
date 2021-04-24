@@ -39,9 +39,9 @@ public class SaludUtnHelper extends SQLiteOpenHelper {
         String SQL_CREATE_DIARIOEMOCIONES_TABLE = " CREATE TABLE " + SaludUtnContract.DiarioEmocionesEntry.TABLE_NAME + " (" +
                 SaludUtnContract.DiarioEmocionesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA + " TEXT NOT NULL, " +
-                SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SENTIMIENTO + " TEXT NOT NULL," +
-                SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE + "  TEXT NOT NULL, " +
-                SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO + "  TEXT NOT NULL);";
+                SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION + " TEXT NOT NULL," +
+                SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE + "  TEXT, " +
+                SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO + "  TEXT );";
         sqLiteDatabase.execSQL(SQL_CREATE_DIARIOEMOCIONES_TABLE);
     }
 

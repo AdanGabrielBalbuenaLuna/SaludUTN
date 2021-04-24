@@ -81,14 +81,14 @@ public class SaludUtnContract {
          *
          * Type: TEXT
          */
-        public final static String COLUMN_CONTACT_NAME ="nombrecontacto";
+        public final static String COLUMN_CONTACT_NAME ="nombre_contacto";
 
         /**
          * Phone of the contact of the student.
          *
          * Type: TEXT
          */
-        public final static String COLUMN_CONTACT_PHONE ="telefonocontacto";
+        public final static String COLUMN_CONTACT_PHONE ="telefono_contacto";
 
         /**
          * Weight of the student.
@@ -163,7 +163,7 @@ public class SaludUtnContract {
          *
          * Type: INTEGER
          */
-        public final static String COLUMN_DIARIOEMOCIONES_SENTIMIENTO= "sentimiento";
+        public final static String COLUMN_DIARIOEMOCIONES_EMOCION= "nombre_emocion";
 
         /**
          * Breed of the pet.
@@ -190,8 +190,8 @@ public class SaludUtnContract {
          * Returns whether or not the given gender is {@link #SENTIMIENTO_UNKNOWN}, {@link #SENTIMIENTO_MALO},
          * or {@link #SENTIMIENTO_BUENO}.
          */
-        public static boolean isValidSentimiento(int sentimiento) {
-            if (sentimiento == SENTIMIENTO_UNKNOWN || sentimiento == SENTIMIENTO_MALO || sentimiento == SENTIMIENTO_BUENO) {
+        public static boolean isValidEmocion(int emocion) {
+            if (emocion == SENTIMIENTO_UNKNOWN || emocion == SENTIMIENTO_MALO || emocion == SENTIMIENTO_BUENO) {
                 return true;
             }
             return false;

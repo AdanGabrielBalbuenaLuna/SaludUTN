@@ -335,11 +335,12 @@ public class SaludUtnProvider extends ContentProvider {
         }
 
         // Check that the gender is valid
-        Integer feeling = values.getAsInteger(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SENTIMIENTO);
-        if (feeling == null || !DiarioEmocionesEntry.isValidSentimiento(feeling)) {
+        Integer emotion = values.getAsInteger(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION);
+        if (emotion == null || !DiarioEmocionesEntry.isValidEmocion(emotion)) {
             throw new IllegalArgumentException("Pet requires valid gender");
         }
 
+        /* No need to check the breed, any value is valid (including null).
         // Check that the name is not null
         String feel = values.getAsString(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE);
         //name==null || name.isEmpty()
@@ -352,7 +353,7 @@ public class SaludUtnProvider extends ContentProvider {
         //name==null || name.isEmpty()
         if (tought.equals("")) {
             throw new IllegalArgumentException("Pet requires a name");
-        }
+        }*/
 
 
         // No need to check the breed, any value is valid (including null).
@@ -601,13 +602,14 @@ public class SaludUtnProvider extends ContentProvider {
 
         // If the {@link PetEntry#COLUMN_PET_GENDER} key is present,
         // check that the gender value is valid.
-        if (values.containsKey(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SENTIMIENTO)) {
-            Integer feeling = values.getAsInteger(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SENTIMIENTO);
-            if (feeling == null || !DiarioEmocionesEntry.isValidSentimiento(feeling)) {
+        if (values.containsKey(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION)) {
+            Integer emotion = values.getAsInteger(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION);
+            if (emotion == null || !DiarioEmocionesEntry.isValidEmocion(emotion)) {
                 throw new IllegalArgumentException("Pet requires valid gender");
             }
         }
 
+        /* No need to check the breed, any value is valid (including null).
         // If the {@link PetEntry#COLUMN_PET_NAME} key is present,
         // check that the name value is not null.
         if (values.containsKey(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE)) {
@@ -624,7 +626,7 @@ public class SaludUtnProvider extends ContentProvider {
             if (tought == null) {
                 throw new IllegalArgumentException("Pet requires a name");
             }
-        }
+        }*/
 
 
         // No need to check the breed, any value is valid (including null).
