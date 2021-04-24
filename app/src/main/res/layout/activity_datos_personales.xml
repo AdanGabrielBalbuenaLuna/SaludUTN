@@ -19,7 +19,7 @@
     tools:context=".DatosPersonales">
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/list_datos_personales"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

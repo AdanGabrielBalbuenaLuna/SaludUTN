@@ -58,7 +58,7 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
         });
 
         // Find the ListView which will be populated with the DatosPersonales data
-        ListView datosPersonalesListView = (ListView) findViewById(R.id.list);
+        ListView datosPersonalesListView = (ListView) findViewById(R.id.list_datos_personales);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);

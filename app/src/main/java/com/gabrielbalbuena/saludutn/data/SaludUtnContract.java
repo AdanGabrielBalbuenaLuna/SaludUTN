@@ -182,16 +182,16 @@ public class SaludUtnContract {
         /**
          * Possible values for the gender of the pet.
          */
-        public static final int SENTIMIENTO_UNKNOWN = 0;
-        public static final int SENTIMIENTO_MALO = 1;
-        public static final int SENTIMIENTO_BUENO = 2;
+        public static final int EMOCION_UNKNOWN = 0;
+        public static final int EMOCION_MALO = 1;
+        public static final int EMOCION_BUENO = 2;
 
         /**
-         * Returns whether or not the given gender is {@link #SENTIMIENTO_UNKNOWN}, {@link #SENTIMIENTO_MALO},
-         * or {@link #SENTIMIENTO_BUENO}.
+         * Returns whether or not the given gender is {@link #EMOCION_UNKNOWN}, {@link #EMOCION_MALO},
+         * or {@link #EMOCION_BUENO}.
          */
         public static boolean isValidEmocion(int emocion) {
-            if (emocion == SENTIMIENTO_UNKNOWN || emocion == SENTIMIENTO_MALO || emocion == SENTIMIENTO_BUENO) {
+            if (emocion == EMOCION_UNKNOWN || emocion == EMOCION_MALO || emocion == EMOCION_BUENO) {
                 return true;
             }
             return false;

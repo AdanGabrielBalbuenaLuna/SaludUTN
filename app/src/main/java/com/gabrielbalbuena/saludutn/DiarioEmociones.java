@@ -42,9 +42,9 @@ import com.gabrielbalbuena.saludutn.data.SaludUtnContract.DiarioEmocionesEntry;
  */
 public class DiarioEmociones extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final int PET_LOADER = 0;
+    private static final int DIARIOEMOCIONES_LOADER = 0;
 
-    PetCursorAdapter mCursorAdapter;
+    DiarioEmocionesCursorAdapter mCursorAdapter;
 
     /** Database helper that will provide us access to the database */
     //private PetDbHelper mDbHelper; Finish
@@ -52,33 +52,33 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalog);
+        setContentView(R.layout.activity_diario_emociones);
 
         // Setup FAB to open EditorActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+                Intent intent = new Intent(DiarioEmociones.this, EditorDiarioEmociones.class);
                 startActivity(intent);
             }
         });
 
         // Find the ListView which will be populated with the pet data
-        ListView petListView = (ListView) findViewById(R.id.list);
+        ListView diarioEmocionesListView = (ListView) findViewById(R.id.list_diario_emociones);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
-        petListView.setEmptyView(emptyView);
+        diarioEmocionesListView.setEmptyView(emptyView);
 
         //Setup an Adapter to create a list item for each row of pet data in the Cursor.
         //There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
-        mCursorAdapter= new PetCursorAdapter(this,null);
-        petListView.setAdapter(mCursorAdapter);
+        mCursorAdapter= new DiarioEmocionesCursorAdapter(this,null);
+        diarioEmocionesListView.setAdapter(mCursorAdapter);
 
         //Kick off the loader
         //getLoaderManager().initLoader(PET_LOADER, null, this);
-        getSupportLoaderManager().initLoader(PET_LOADER, null, this);
+        getSupportLoaderManager().initLoader(DIARIOEMOCIONES_LOADER, null, this);
 
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
@@ -87,21 +87,21 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
         //displayDatabaseInfo();
 
         //Setup item click listener
-        petListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        diarioEmocionesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //Create new intent to go to {@link EditorActivity}
-                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+                Intent intent = new Intent(DiarioEmociones.this, EditorDiarioEmociones.class);
 
                 //Form the content URI that represents the specific pet that was clicked on,
                 //by appending the "id" (passed as input to this method) onto the
                 //{@link PetEntry#CONTENT_URI}.
                 //For example, the URI would be "content://com.example.android.pets/pets/2"
                 //if the pet with ID 2 was clicked on.
-                Uri currentPetUri = ContentUris.withAppendedId(PetEntry.CONTENT_URI, id);
+                Uri currentDiarioEmocionesUri = ContentUris.withAppendedId(DiarioEmocionesEntry.CONTENT_URI, id);
 
                 //Set the URI on the data field of the intent
-                intent.setData(currentPetUri);
+                intent.setData(currentDiarioEmocionesUri);
 
                 //Launch the{@link EditorActivity} to display the data for the current pet.
                 startActivity(intent);
@@ -122,17 +122,17 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
     /**
      * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
      */
-    private void insertPet() {
+    private void insertDiarioEociones() {
         // Gets the database in write mode
         //SQLiteDatabase db = mDbHelper.getWritableDatabase(); //Code Comment BAD PRACTICE
 
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(PetEntry.COLUMN_PET_NAME, "Toto");
-        values.put(PetEntry.COLUMN_PET_BREED, "Terrier");
-        values.put(PetEntry.COLUMN_PET_GENDER, PetEntry.GENDER_MALE);
-        values.put(PetEntry.COLUMN_PET_WEIGHT, 7);
+        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA, "24042021");
+        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION, DiarioEmocionesEntry.EMOCION_MALO);
+        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE, "Me siento estresado");
+        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO, 7);
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
         // The first argument for db.insert() is the pets table name.
@@ -146,7 +146,7 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
         // Use the {@link PetEntry#CONTENT_URI} to indicate that we want to insert
         // into the pets database table.
         // Receive the new content URI that will allow us to access Toto's data in the future.
-        Uri newUri = getContentResolver().insert(PetEntry.CONTENT_URI, values);
+        Uri newUri = getContentResolver().insert(DiarioEmocionesEntry.CONTENT_URI, values);
 
         //Log.v("CatalogActivity", "New Row ID: " + newRowId);
     }
@@ -154,8 +154,8 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
     /**
      * Helper method to delete all pets in the database.
      */
-    private void deleteAllPets() {
-        int rowsDeleted = getContentResolver().delete(PetEntry.CONTENT_URI, null, null);
+    private void deleteAllDiarioEmociones() {
+        int rowsDeleted = getContentResolver().delete(DiarioEmocionesEntry.CONTENT_URI, null, null);
         Log.v("CatalogActivity", rowsDeleted + " rows deleted from pet database");
     }
 
@@ -163,7 +163,7 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
         // This adds menu items to the app bar.
-        getMenuInflater().inflate(R.menu.menu_catalog, menu);
+        getMenuInflater().inflate(R.menu.menu_catalog_diario_emociones, menu);
         return true;
     }
 
@@ -173,13 +173,13 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                insertPet();
+                insertDiarioEociones();
                 //displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
                 // Do nothing for now
-                deleteAllPets();
+                deleteAllDiarioEmociones();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -190,13 +190,15 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
         //Define a projection that specifies the columns from the table we care about
         String[] projection = {
-                PetEntry._ID,
-                PetEntry.COLUMN_PET_NAME,
-                PetEntry.COLUMN_PET_BREED };
+                DiarioEmocionesEntry._ID,
+                DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA,
+                DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION,
+                DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE,
+                DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO };
 
         //This loader will execute the ContentProvider´s query method on a background thread
         return new CursorLoader(this,   //Parent activity context
-                PetEntry.CONTENT_URI,           //Provider content URI to query
+                DiarioEmocionesEntry.CONTENT_URI,           //Provider content URI to query
                 projection,                     //Columns to include in the resulting Cursor
                 null,                   //No selection clause
                 null,               //No selection arguments
