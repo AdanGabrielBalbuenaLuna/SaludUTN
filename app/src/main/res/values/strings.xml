@@ -179,14 +179,7 @@
     <!-- Label for gender information in the editor [CHAR LIMIT=30] -->
     <string name="category_emotion">Emocion:</string>
 
-    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
-    <string name="emotion_unknow">Unknown</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
-    <string name="emotion_malo">Malo</string>
-
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
-    <string name="emotion_bueno">Bueno</string>
 
     <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_pet_failed">Error with deleting pet</string>
@@ -212,6 +205,64 @@
     <!-- Toast message in editor when current pet was successfully updated [CHAR LIMIT=NONE] -->
     <string name="editor_update_pet_successful">Pet updated</string>
 
+
+    <!-- Menu catalog                                                  ARREGLO DIARIO DE EMOCIONES -->
+    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <string name="emotion_apatia">Apatía</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="emotion_admiracion">Admiración</string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="emotion_alegria">Alegría</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="emotion_amor">Amor</string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="emotion_asco">Asco</string>
+
+    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <string name="emotion_culpabilidad">Culpabilidad</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="emotion_desesperacion">Desesperación</string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="emotion_diversion">Diversión</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="emotion_esperanza">Esperanza</string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="emotion_gratitud">Gratitud</string>
+
+    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <string name="emotion_indiferencia">Indiferencia</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="emotion_inspiracion">Inspiración</string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="emotion_interes">Interés</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="emotion_ira">Ira</string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="emotion_miedo">Miedo</string>
+
+    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <string name="emotion_orgullo">Orgullo</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="emotion_serenidad">Serenidad</string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="emotion_soledad">Soledad</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="emotion_tristeza">Tristeza</string>
 
 
 

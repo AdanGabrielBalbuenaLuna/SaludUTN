@@ -131,8 +131,16 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
         ContentValues values = new ContentValues();
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA, "24042021");
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION, DiarioEmocionesEntry.EMOCION_MALO);
-        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE, "Me siento estresado");
-        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO, 7);
+        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE,
+                "I used to rule the world\n" +
+                "Seas would rise when I gave the word\n" +
+                "Now in the morning I sleep alone\n" +
+                "Sweep the streets I used to own");
+        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO,
+                "I used to roll the dice\n" +
+                "Feel the fear in my enemy's eyes\n" +
+                "Listen as the crowd would sing\n" +
+                "Now the old king is dead! Long live the king");
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
         // The first argument for db.insert() is the pets table name.

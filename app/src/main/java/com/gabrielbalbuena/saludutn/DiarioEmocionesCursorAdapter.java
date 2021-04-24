@@ -82,12 +82,54 @@ public class DiarioEmocionesCursorAdapter extends CursorAdapter {
         // If the pet breed is empty string or null, then use some default text
         // that says "Unknown breed", so the TextView isn't blank.
         if (TextUtils.isEmpty(diarioEmocionesThought)) {
-            diarioEmocionesThought = context.getString(R.string.unknown_feel);
+            diarioEmocionesThought = context.getString(R.string.unknown_thought);
         }
 
         // Update the TextViews with the attributes for the current pet
         dateTextView.setText(diarioEmocionesDate);
-        emotionTextView.setText(diarioEmocionesEmotion);
+
+        if (diarioEmocionesEmotion.equals("0")) {
+            emotionTextView.setText("No hubo eleccion");
+        }  else if (diarioEmocionesEmotion.equals("1")){
+            emotionTextView.setText("Apatía");
+        }   else if (diarioEmocionesEmotion.equals("2")){
+            emotionTextView.setText("Admiración");
+        }   else if (diarioEmocionesEmotion.equals("3")){
+            emotionTextView.setText("Alegría");
+        }   else if (diarioEmocionesEmotion.equals("4")){
+            emotionTextView.setText("Amor");
+        }   else if (diarioEmocionesEmotion.equals("5")){
+            emotionTextView.setText("Asco");
+        }else if (diarioEmocionesEmotion.equals("6")){
+            emotionTextView.setText("Culpabilidad");
+        }   else if (diarioEmocionesEmotion.equals("7")){
+            emotionTextView.setText("Desesperación");
+        }   else if (diarioEmocionesEmotion.equals("8")){
+            emotionTextView.setText("Diversión");
+        }   else if (diarioEmocionesEmotion.equals("9")){
+            emotionTextView.setText("Esperanza");
+        }   else if (diarioEmocionesEmotion.equals("10")){
+            emotionTextView.setText("Gratitud");
+        }else if (diarioEmocionesEmotion.equals("11")){
+            emotionTextView.setText("Admiración");
+        }   else if (diarioEmocionesEmotion.equals("12")){
+            emotionTextView.setText("Inspiración");
+        }   else if (diarioEmocionesEmotion.equals("13")){
+            emotionTextView.setText("Interés");
+        }   else if (diarioEmocionesEmotion.equals("14")){
+            emotionTextView.setText("Ira");
+        }   else if (diarioEmocionesEmotion.equals("15")){
+            emotionTextView.setText("Miedo");
+        }else if (diarioEmocionesEmotion.equals("16")){
+            emotionTextView.setText("Orgullo");
+        }   else if (diarioEmocionesEmotion.equals("17")){
+            emotionTextView.setText("Serenidad");
+        }   else if (diarioEmocionesEmotion.equals("18")){
+            emotionTextView.setText("Soledad");
+        }   else if (diarioEmocionesEmotion.equals("19")){
+            emotionTextView.setText("Tristeza");
+        }
+
         feelTextView.setText(diarioEmocionesFeel);
         thoughtTextView.setText(diarioEmocionesThought);
     }

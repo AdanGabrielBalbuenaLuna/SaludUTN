@@ -35,9 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#2B3D4D"  />
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
     </LinearLayout>
 
 
@@ -104,7 +104,9 @@
             android:paddingLeft="5dp"
             android:fontFamily="sans-serif"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#AEB6BD"  />
+            android:textColor="#AEB6BD"
+            android:maxLength="25"/>
+
     </LinearLayout>
 
     <!-- Piensa category -->
@@ -137,9 +139,7 @@
             android:paddingLeft="5dp"
             android:fontFamily="sans-serif"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#AEB6BD"  />
+            android:textColor="#AEB6BD"
+            android:maxLength="25"/>
     </LinearLayout>
-
-
-
 </LinearLayout>
