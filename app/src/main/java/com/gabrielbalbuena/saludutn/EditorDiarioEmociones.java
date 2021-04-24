@@ -259,15 +259,26 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
+        String fecha  =  fechaEditText.getText().toString();
+
+        /*Spinner emocionEditText = (Spinner)findViewById(R.id.spinner_emotion);
+        String emocion  =  emocionEditText.getText().toString();*/
+
+
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                // Save pet to database
-                //insertPet();
-                saveDiarioEmociones();
-                // Exit activity
-                finish();
+                if (TextUtils.isEmpty(fecha)){
+                    Toast.makeText(this, "Necesitas añadir la fecha", Toast.LENGTH_LONG).show();
+                } else {
+                    // Save pet to database
+                    saveDiarioEmociones();
+                    // Exit activity
+                    finish();
+                    return true;
+                }
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:

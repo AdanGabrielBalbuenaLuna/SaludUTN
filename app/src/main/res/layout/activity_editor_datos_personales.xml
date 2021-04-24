@@ -75,7 +75,7 @@
                 android:inputType="textCapWords"
                 android:maxLength="20"
                 style="@style/EditorFieldStyle"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+                android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
         </LinearLayout>
     </LinearLayout>
 

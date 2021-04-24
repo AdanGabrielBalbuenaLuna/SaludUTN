@@ -43,14 +43,14 @@
             <EditText
                 android:id="@+id/edit_date"
                 android:hint="@string/hint_date"
-                android:inputType="textCapWords"
+                android:inputType="number"
+                android:maxLength="8"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
 
     <!-- Emotion category -->
     <LinearLayout
-        android:id="@+id/container_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
