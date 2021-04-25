@@ -181,90 +181,90 @@
 
 
 
-    <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
+    <!-- Toast message in editor when current diarioemocion has failed to be deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_diarioemocion_failed">Error al borrar el registro de emocion</string>
 
-    <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
+    <!-- Toast message in editor when current diarioemocion was successfully deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_diarioemocion_successful">Registro de emocion eliminado</string>
 
-    <!-- Title for the activity to add a new pet [CHAR LIMIT=20] -->
+    <!-- Title for the activity to add a new diarioemocion [CHAR LIMIT=20] -->
     <string name="editor_activity_title_new_emotion">Añade una emocion</string>
 
-    <!-- Title for the activity to add a new pet [CHAR LIMIT=20] -->
+    <!-- Title for the activity to add a new diarioemocion [CHAR LIMIT=20] -->
     <string name="editor_activity_title_edit_emotion">Edita una emocion</string>
 
-    <!-- Toast message in editor when new pet has failed to be inserted [CHAR LIMIT=NONE] -->
+    <!-- Toast message in editor when new diarioemocion has failed to be inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_diarioemocion_failed">Error al guardar el registro de emocion</string>
 
-    <!-- Toast message in editor when new pet has been successfully inserted [CHAR LIMIT=NONE] -->
+    <!-- Toast message in editor when new diarioemocion has been successfully inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_diarioemocion_successful">Registro de emocion guartdado</string>
 
-    <!-- Toast message in editor when current pet has failed to be updated [CHAR LIMIT=NONE] -->
+    <!-- Toast message in editor when current diarioemocion has failed to be updated [CHAR LIMIT=NONE] -->
     <string name="editor_update_diarioemocion_failed">Error al actualizar el registro de emocion</string>
 
-    <!-- Toast message in editor when current pet was successfully updated [CHAR LIMIT=NONE] -->
+    <!-- Toast message in editor when current diarioemocion was successfully updated [CHAR LIMIT=NONE] -->
     <string name="editor_update_diarioemocion_successful">Registro de emocion actualizado</string>
 
 
     <!-- Menu catalog                                                  ARREGLO DIARIO DE EMOCIONES -->
-    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
     <string name="emotion_unknow">Elige tu emocion</string>
 
-    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
     <string name="emotion_apatia">Apatía</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_admiracion">Admiración</string>
 
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is female [CHAR LIMIT=20] -->
     <string name="emotion_alegria">Alegría</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_amor">Amor</string>
 
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is female [CHAR LIMIT=20] -->
     <string name="emotion_asco">Asco</string>
 
-    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
     <string name="emotion_culpabilidad">Culpabilidad</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_desesperacion">Desesperación</string>
 
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is female [CHAR LIMIT=20] -->
     <string name="emotion_diversion">Diversión</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_esperanza">Esperanza</string>
 
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is female [CHAR LIMIT=20] -->
     <string name="emotion_gratitud">Gratitud</string>
 
-    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
     <string name="emotion_indiferencia">Indiferencia</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_inspiracion">Inspiración</string>
 
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is female [CHAR LIMIT=20] -->
     <string name="emotion_interes">Interés</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_ira">Ira</string>
 
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is female [CHAR LIMIT=20] -->
     <string name="emotion_miedo">Miedo</string>
 
-    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
     <string name="emotion_orgullo">Orgullo</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_serenidad">Serenidad</string>
 
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is female [CHAR LIMIT=20] -->
     <string name="emotion_soledad">Soledad</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_tristeza">Tristeza</string>
 
 
