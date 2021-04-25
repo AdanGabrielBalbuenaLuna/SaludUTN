@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout for a single list item in the list of Diario de emociones -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin">
+
+    <!-- Fecha category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_today_24"/>
+
+        <!-- Label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/category_date"
+            style="@style/CategoryStyle" />
+
+        <!-- TV -->
+        <TextView
+            android:id="@+id/fecha_alergia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD" />
+    </LinearLayout>
+
+
+    <!-- Emocion category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_mood_24"/>
+
+        <!-- Label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/category_emotion"
+            style="@style/CategoryStyle" />
+
+        <!-- TV -->
+        <TextView
+            android:id="@+id/alergia_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#2B3D4D"  />
+    </LinearLayout>
+
+    <!-- Siente category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_thumb_up_alt_24"/>
+
+        <!-- Label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/category_feel"
+            style="@style/CategoryStyle" />
+
+        <!-- TV -->
+        <TextView
+            android:id="@+id/tipo_alergia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD"
+            android:maxLength="25"/>
+
+    </LinearLayout>
+
+    <!-- Piensa category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_psychology_24"/>
+
+        <!-- Label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/category_tought"
+            style="@style/CategoryStyle" />
+
+        <!-- TV -->
+        <TextView
+            android:id="@+id/comentario_alergia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD"
+            android:maxLength="25"/>
+    </LinearLayout>
+</LinearLayout>

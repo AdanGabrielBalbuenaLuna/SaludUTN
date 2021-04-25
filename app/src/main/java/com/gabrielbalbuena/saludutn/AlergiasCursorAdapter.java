@@ -56,10 +56,10 @@ public class AlergiasCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
-        TextView dateTextView = (TextView) view.findViewById(R.id.fecha);
-        TextView emotionTextView = (TextView) view.findViewById(R.id.emocion);
-        TextView feelTextView = (TextView) view.findViewById(R.id.sentimiento);
-        TextView thoughtTextView = (TextView) view.findViewById(R.id.pensamiento);
+        TextView dateTextView = (TextView) view.findViewById(R.id.fecha_alergia);
+        TextView emotionTextView = (TextView) view.findViewById(R.id.alergia_nombre);
+        TextView feelTextView = (TextView) view.findViewById(R.id.tipo_alergia);
+        TextView thoughtTextView = (TextView) view.findViewById(R.id.comentario_alergia);
 
         // Find the columns of diarioemocion attributes that we're interested in
         int dateColumnIndex = cursor.getColumnIndex(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA);
@@ -91,10 +91,10 @@ public class AlergiasCursorAdapter extends CursorAdapter {
         if (diarioEmocionesEmotion.equals("0")) {
             emotionTextView.setText("No hubo eleccion");
         }  else if (diarioEmocionesEmotion.equals("1")){
-            emotionTextView.setText("Apatía");
+            emotionTextView.setText("Huevo");
         }   else if (diarioEmocionesEmotion.equals("2")){
-            emotionTextView.setText("Admiración");
-        }   else if (diarioEmocionesEmotion.equals("3")){
+            emotionTextView.setText("Pescado");
+        }   /*else if (diarioEmocionesEmotion.equals("3")){
             emotionTextView.setText("Alegría");
         }   else if (diarioEmocionesEmotion.equals("4")){
             emotionTextView.setText("Amor");
@@ -128,7 +128,7 @@ public class AlergiasCursorAdapter extends CursorAdapter {
             emotionTextView.setText("Soledad");
         }   else if (diarioEmocionesEmotion.equals("19")){
             emotionTextView.setText("Tristeza");
-        }
+        }*/
 
         feelTextView.setText(diarioEmocionesFeel);
         thoughtTextView.setText(diarioEmocionesThought);
