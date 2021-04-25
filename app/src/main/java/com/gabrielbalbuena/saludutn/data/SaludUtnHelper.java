@@ -43,6 +43,14 @@ public class SaludUtnHelper extends SQLiteOpenHelper {
                 SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE + "  TEXT, " +
                 SaludUtnContract.DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO + "  TEXT );";
         sqLiteDatabase.execSQL(SQL_CREATE_DIARIOEMOCIONES_TABLE);
+
+        String SQL_CREATE_ALERGIAS_TABLE = " CREATE TABLE " + SaludUtnContract.AlergiasEntry.TABLE_NAME + " (" +
+                SaludUtnContract.DiarioEmocionesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                SaludUtnContract.AlergiasEntry.COLUMN_ALERGIAS_FECHAHORA + " TEXT NOT NULL, " +
+                SaludUtnContract.AlergiasEntry.COLUMN_ALERGIAS_NOMBRE + " TEXT NOT NULL," +
+                SaludUtnContract.AlergiasEntry.COLUMN_TIPO_ALERGIA + "  TEXT, " +
+                SaludUtnContract.AlergiasEntry.COLUMN_COMENTARIO_ALERGIA + "  TEXT );";
+        sqLiteDatabase.execSQL(SQL_CREATE_ALERGIAS_TABLE);
     }
 
     /**

@@ -312,21 +312,21 @@ public class SaludUtnContract {
          *
          * Type: INTEGER
          */
-        public final static String COLUMN_ALERGIAS_EMOCION= "nombre_alergia";
+        public final static String COLUMN_ALERGIAS_NOMBRE= "nombre_alergia";
 
         /**
          * Tipo de alergia, alimentaria o farmacologica of the alergia.
          *
          * Type: TEXT
          */
-        public final static String COLUMN_TIPO_ALERGIA_SIENTE = "tipo_alergia";
+        public final static String COLUMN_TIPO_ALERGIA = "tipo_alergia";
 
         /**
          * Comment of the alergia.
          *
          * Type: TEXT
          */
-        public final static String COLUMN_COMENTARIO_PENSAMIENTO = "comentario";
+        public final static String COLUMN_COMENTARIO_ALERGIA = "comentario";
 
         /**
          * Possible values for the gender of the diarioemocion.
