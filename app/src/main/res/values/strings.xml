@@ -271,7 +271,19 @@
     <string name="alergia_huevo">Huevo</string>
 
     <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
-    <string name="alergia_unknown">Alergia</string>
+    <string name="alergia_unknown">Eliga una alergia</string>
+
+    <!-- Label for the pet's breed if the breed is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_comentary_unknown">Sin comentario</string>
+
+    <!-- Label for gender information in the editor [CHAR LIMIT=30] -->
+    <string name="category_alergy">Alergia:</string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="category_alergy_type">Tipo alergia:</string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="category_comment_alergy">Comentario:</string>
 
 
 

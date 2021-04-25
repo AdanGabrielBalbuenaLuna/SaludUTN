@@ -118,11 +118,11 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         }
 
         // Find all relevant views that we will need to read user input from
-        mDateEditText = (TextView) findViewById(R.id.edit_date);
+        mDateEditText = (TextView) findViewById(R.id.edit_date_alergia);
         //mDateEditText = (EditText) findViewById(R.id.edit_date);
-        mAlergiasNombreSpinner = (Spinner) findViewById(R.id.spinner_emotion);
-        mTipoAlergiaEditText = (EditText) findViewById(R.id.edit_feel);
-        mComentarioAlergiaEditText = (EditText) findViewById(R.id.edit_tought);
+        mAlergiasNombreSpinner = (Spinner) findViewById(R.id.spinner_alergia_nombre);
+        mTipoAlergiaEditText = (EditText) findViewById(R.id.edit_alergia_tipo);
+        mComentarioAlergiaEditText = (EditText) findViewById(R.id.edit_alergia_comentario);
 
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
@@ -135,7 +135,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
         setupSpinner();
 
-        tv = findViewById(R.id.edit_date);//Calendario
+        tv = findViewById(R.id.edit_date_alergia);//Calendario
     }
 
     public void abrirCalendario(View view) {//Calendario
@@ -327,13 +327,14 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
+        TextView fechaEditText = (TextView)findViewById(R.id.edit_date_alergia);
         //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
         //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
         String fecha  =  fechaEditText.getText().toString();
         Log.d("Numero", "La fecha es: " + fecha);
 
-        Spinner alergiaNombreEditText = (Spinner)findViewById(R.id.spinner_emotion);
+
+        Spinner alergiaNombreEditText = (Spinner)findViewById(R.id.spinner_alergia_nombre);
         String alergiaNombreString = alergiaNombreEditText.getSelectedItem().toString();
         //Object alergiaNombreString = alergiaNombreEditText.getSelectedItem();
         Log.d("Numero", "El spiner trae: " + alergiaNombreString);
@@ -345,8 +346,8 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
             case R.id.action_save:
                 if (fecha.equals("Dia/Mes/Año")){
                     Toast.makeText(this, "Necesitas añadir la fecha", Toast.LENGTH_LONG).show();
-                } else if (alergiaNombreString.equals("Selecciona una alergia")){
-                    Toast.makeText(this, "Debes elegir una alergia", Toast.LENGTH_LONG).show();
+                } else if (alergiaNombreString.equals("Eliga una alergia")){
+                    Toast.makeText(this, "Debes seleccionar una alergia", Toast.LENGTH_LONG).show();
                 } else {
                     // Save diarioemocion to database
                     saveAlergias();

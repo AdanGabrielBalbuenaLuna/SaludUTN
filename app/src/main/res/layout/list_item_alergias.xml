@@ -52,14 +52,14 @@
             android:layout_height="match_parent"
             android:layout_width="80dp"
             android:layout_weight="0"
-            android:src="@drawable/baseline_mood_24"/>
+            android:src="@drawable/baseline_restaurant_24"/>
 
         <!-- Label -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/category_emotion"
+            android:text="@string/category_alergy"
             style="@style/CategoryStyle" />
 
         <!-- TV -->
@@ -72,6 +72,12 @@
             android:fontFamily="sans-serif-medium"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="#2B3D4D"  />
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_medication_24"/>
     </LinearLayout>
 
     <!-- Siente category -->
@@ -92,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/category_feel"
+            android:text="@string/category_alergy_type"
             style="@style/CategoryStyle" />
 
         <!-- TV -->
@@ -120,14 +126,14 @@
             android:layout_height="match_parent"
             android:layout_width="80dp"
             android:layout_weight="0"
-            android:src="@drawable/baseline_psychology_24"/>
+            android:src="@drawable/baseline_text_snippet_24"/>
 
         <!-- Label -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="@string/category_tought"
+            android:text="@string/category_comment_alergy"
             style="@style/CategoryStyle" />
 
         <!-- TV -->
