@@ -30,9 +30,9 @@ public class SaludUtnProvider extends ContentProvider {
     private static final int DATOS_PERSONALES_ID = 101;
 
 
-    /** URI matcher code for the content URI for the pets table */
+    /** URI matcher code for the content URI for the diarioemociones table */
     private static final int DIARIO_EMOCIONES = 200;
-    /** URI matcher code for the content URI for a single pet in the pets table */
+    /** URI matcher code for the content URI for a single diarioemocion in the diarioemociones table */
     private static final int DIARIO_EMOCIONES_ID = 201;
 
         //s because is static
@@ -64,17 +64,18 @@ public class SaludUtnProvider extends ContentProvider {
         // The calls to addURI() go here, for all of the content URI patterns that the provider
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
-        // The content URI of the form "content://com.example.android.pets/pets" will map to the
-        // integer code {@link #PETS}. This URI is used to provide access to MULTIPLE rows
-        // of the pets table.
+        // The content URI of the form "com.gabrielbalbuena.saludutn/diarioemociones" will map to the
+        // integer code {@link #DIARIOEMOCIONES}. This URI is used to provide access to MULTIPLE rows
+        // of the diarioemociones table.
         sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DIARIO_EMOCIONES, DIARIO_EMOCIONES);
-        // The content URI of the form "content://com.example.android.pets/pets/#" will map to the
-        // integer code {@link #PET_ID}. This URI is used to provide access to ONE single row
-        // of the pets table.
+
+         // The content URI of the form "content://com.example.android.saludutn/diarioemociones/#" will map to the
+        // integer code {@link #DIARIOEMOCIONES_ID}. This URI is used to provide access to ONE single row
+        // of the diarioemociones table.
         //
         // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
-        // For example, "content://com.example.android.pets/pets/3" matches, but
-        // "content://com.example.android.pets/pets" (without a number at the end) doesn't match.
+        // For example, "content://com.example.android.saludutn/diarioemociones/3" matches, but
+        // "content://com.example.android.saludutn/diarioemociones" (without a number at the end) doesn't match.
         sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DIARIO_EMOCIONES + "/#", DIARIO_EMOCIONES_ID);
 
     }
@@ -138,16 +139,16 @@ public class SaludUtnProvider extends ContentProvider {
                 break;
 
             case DIARIO_EMOCIONES:
-                // For the PETS code, query the pets table directly with the given
+                // For the DIARIOEMOCIONES code, query the diarioemociones table directly with the given
                 // projection, selection, selection arguments, and sort order. The cursor
-                // could contain multiple rows of the pets table.
-                // TODO: Perform database query on pets table
+                // could contain multiple rows of the diarioemociones table.
+                // TODO: Perform database query on diarioemociones table
                 cursor = database.query(DiarioEmocionesEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case DIARIO_EMOCIONES_ID:
-                // For the PET_ID code, extract out the ID from the URI.
-                // For an example URI such as "content://com.example.android.pets/pets/3",
+                // For the DIARIOEMOCIONES_ID code, extract out the ID from the URI.
+                // For an example URI such as "content://com.example.android.saludutn/diarioemociones/3",
                 // the selection will be "_id=?" and the selection argument will be a
                 // String array containing the actual ID of 3 in this case.
                 //
@@ -157,7 +158,7 @@ public class SaludUtnProvider extends ContentProvider {
                 selection = DiarioEmocionesEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
 
-                // This will perform a query on the pets table where the _id equals 3 to return a
+                // This will perform a query on the diarioemociones table where the _id equals 3 to return a
                 // Cursor containing that row of the table.
                 cursor = database.query(DiarioEmocionesEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
@@ -320,7 +321,7 @@ public class SaludUtnProvider extends ContentProvider {
     }
 
     /**
-     * Insert a pet into the database with the given content values. Return the new content URI
+     * Insert a diarioemociones into the database with the given content values. Return the new content URI
      * for that specific row in the database.
      */
     private Uri insertDiarioEmociones(Uri uri, ContentValues values) {
@@ -331,13 +332,13 @@ public class SaludUtnProvider extends ContentProvider {
         String date = values.getAsString(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA);
         //name==null || name.isEmpty()
         if (date.equals("")) {
-            throw new IllegalArgumentException("Pet requires a name");
+            throw new IllegalArgumentException("Diarioemocion requires a date");
         }
 
         // Check that the gender is valid
         Integer emotion = values.getAsInteger(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION);
         if (emotion == null || !DiarioEmocionesEntry.isValidEmocion(emotion)) {
-            throw new IllegalArgumentException("Pet requires valid gender");
+            throw new IllegalArgumentException("Diarioemocion requires valid emotion");
         }
 
         /* No need to check the breed, any value is valid (including null).
@@ -345,20 +346,20 @@ public class SaludUtnProvider extends ContentProvider {
         String feel = values.getAsString(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE);
         //name==null || name.isEmpty()
         if (feel.equals("")) {
-            throw new IllegalArgumentException("Pet requires a name");
+            throw new IllegalArgumentException("Diarioemocion requires a name");
         }
 
         // Check that the name is not null
         String tought = values.getAsString(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO);
         //name==null || name.isEmpty()
         if (tought.equals("")) {
-            throw new IllegalArgumentException("Pet requires a name");
+            throw new IllegalArgumentException("Diarioemocion requires a name");
         }*/
 
 
         // No need to check the breed, any value is valid (including null).
 
-        // Insert the new pet with the given values
+        // Insert the new diarioemocion with the given values
         long id = database.insert(DiarioEmocionesEntry.TABLE_NAME, null, values);
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
@@ -366,27 +367,27 @@ public class SaludUtnProvider extends ContentProvider {
             return null;
         }
 
-        // Notify all listeners that the data has changed for the pet content URI
+        // Notify all listeners that the data has changed for the diarioemocion content URI
         getContext().getContentResolver().notifyChange(uri, null);
 
         // Return the new URI with the ID (of the newly inserted row) appended at the end
         return ContentUris.withAppendedId(uri, id);
 
 
-        /*// TODO: Insert a new pet into the pets database table with the given ContentValues
+        /*// TODO: Insert a new diarioemocion into the diarioemociones database table with the given ContentValues
 
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the pets table name.
+        // The first argument for db.insert() is the diarioemociones table name.
         // The second argument provides the name of a column in which the framework
         // can insert NULL in the event that the ContentValues is empty (if
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Toto
-        // Insert the new pet with the given values
-        long id = database.insert(PetEntry.TABLE_NAME, null, values);
+        // Insert the new diarioemocion with the given values
+        long id = database.insert(DiariEmocionesEntry.TABLE_NAME, null, values);
 
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
@@ -426,14 +427,14 @@ public class SaludUtnProvider extends ContentProvider {
 
             case DIARIO_EMOCIONES:
                 // Delete all rows that match the selection and selection args
-                //return database.delete(PetEntry.TABLE_NAME, selection, selectionArgs);
+                //return database.delete(DiariEmocionesEntry.TABLE_NAME, selection, selectionArgs);
                 rowsDeleted = database.delete(DiarioEmocionesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             case DIARIO_EMOCIONES_ID:
                 // Delete a single row given by the ID in the URI
                 selection = DiarioEmocionesEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
-                //return database.delete(PetEntry.TABLE_NAME, selection, selectionArgs);
+                //return database.delete(DiariEmocionesEntry.TABLE_NAME, selection, selectionArgs);
                 rowsDeleted = database.delete(DiarioEmocionesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             default:
@@ -469,7 +470,7 @@ public class SaludUtnProvider extends ContentProvider {
             case DIARIO_EMOCIONES:
                 return updateDiarioEmociones(uri, contentValues, selection, selectionArgs);
             case DIARIO_EMOCIONES_ID:
-                // For the PET_ID code, extract out the ID from the URI,
+                // For the DIARIO_EMOCIONES_ID code, extract out the ID from the URI,
                 // so we know which row to update. Selection will be "_id=?" and selection
                 // arguments will be a String array containing the actual ID.
                 selection = DiarioEmocionesEntry._ID + "=?";
@@ -586,45 +587,45 @@ public class SaludUtnProvider extends ContentProvider {
     }
 
     /**
-     * Update pets in the database with the given content values. Apply the changes to the rows
-     * specified in the selection and selection arguments (which could be 0 or 1 or more pets).
+     * Update diarioemociones in the database with the given content values. Apply the changes to the rows
+     * specified in the selection and selection arguments (which could be 0 or 1 or more diarioemociones).
      * Return the number of rows that were successfully updated.
      */
     private int updateDiarioEmociones(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        // If the {@link PetEntry#COLUMN_PET_NAME} key is present,
+        // If the {@link DiarioEmocionesEntry#COLUMN_DIARIOEMOCIONES_DATE} key is present,
         // check that the name value is not null.
         if (values.containsKey(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA)) {
             String date = values.getAsString(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA);
             if (date == null) {
-                throw new IllegalArgumentException("Pet requires a name");
+                throw new IllegalArgumentException("Diarioemocion requires a date");
             }
         }
 
-        // If the {@link PetEntry#COLUMN_PET_GENDER} key is present,
+        // If the {@link DiarioEmocionesEntry#COLUMN_DIARIOEMOCIONES_EMOCION} key is present,
         // check that the gender value is valid.
         if (values.containsKey(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION)) {
             Integer emotion = values.getAsInteger(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION);
             if (emotion == null || !DiarioEmocionesEntry.isValidEmocion(emotion)) {
-                throw new IllegalArgumentException("Pet requires valid gender");
+                throw new IllegalArgumentException("Diarioemocion requires valid emotion");
             }
         }
 
         /* No need to check the breed, any value is valid (including null).
-        // If the {@link PetEntry#COLUMN_PET_NAME} key is present,
+        // If the {@link DiarioEmocionesEntry#COLUMN_DIARIOEMOCIONES_DATE} key is present,
         // check that the name value is not null.
         if (values.containsKey(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE)) {
             String feel = values.getAsString(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE);
             if (feel == null) {
-                throw new IllegalArgumentException("Pet requires a name");
+                throw new IllegalArgumentException("Diarioemocion requires a date");
             }
         }
 
-        // If the {@link PetEntry#COLUMN_PET_NAME} key is present,
+        // If the {@link DiarioEmocionesEntry#COLUMN_DIARIOEMOCIONES_DATE} key is present,
         // check that the name value is not null.
         if (values.containsKey(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO)) {
             String tought = values.getAsString(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO);
             if (tought == null) {
-                throw new IllegalArgumentException("Pet requires a name");
+                throw new IllegalArgumentException("Diarioemocion requires a date");
             }
         }*/
 
@@ -640,7 +641,7 @@ public class SaludUtnProvider extends ContentProvider {
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Returns the number of database rows affected by the update statement
-        //return database.update(PetEntry.TABLE_NAME, values, selection, selectionArgs);
+        //return database.update(DiarioEmocionesEntry.TABLE_NAME, values, selection, selectionArgs);
 
         // Perform the update on the database and get the number of rows affected
         int rowsUpdated = database.update(DiarioEmocionesEntry.TABLE_NAME, values, selection, selectionArgs);
