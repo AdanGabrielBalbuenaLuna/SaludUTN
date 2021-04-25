@@ -38,7 +38,7 @@ import android.widget.Toast;
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.DiarioEmocionesEntry;
 
 /**
- * Displays list of pets that were entered and stored in the app.
+ * Displays list of diarioemociones that were entered and stored in the app.
  */
 public class DiarioEmociones extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -47,7 +47,7 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
     DiarioEmocionesCursorAdapter mCursorAdapter;
 
     /** Database helper that will provide us access to the database */
-    //private PetDbHelper mDbHelper; Finish
+    //private SaludUtnDbHelper mDbHelper; Finish
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,25 +64,25 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
             }
         });
 
-        // Find the ListView which will be populated with the pet data
+        // Find the ListView which will be populated with the diarioemocion data
         ListView diarioEmocionesListView = (ListView) findViewById(R.id.list_diario_emociones);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
         diarioEmocionesListView.setEmptyView(emptyView);
 
-        //Setup an Adapter to create a list item for each row of pet data in the Cursor.
-        //There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        //Setup an Adapter to create a list item for each row of diarioemocion data in the Cursor.
+        //There is no diarioemocion data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter= new DiarioEmocionesCursorAdapter(this,null);
         diarioEmocionesListView.setAdapter(mCursorAdapter);
 
         //Kick off the loader
-        //getLoaderManager().initLoader(PET_LOADER, null, this);
+        //getLoaderManager().initLoader(DIARIOEMOCIONES_LOADER, null, this);
         getSupportLoaderManager().initLoader(DIARIOEMOCIONES_LOADER, null, this);
 
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
-        //mDbHelper = new PetDbHelper(this);
+        //mDbHelper = new SaludUtnDbHelper(this);
 
         //displayDatabaseInfo();
 
@@ -93,17 +93,17 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
                 //Create new intent to go to {@link EditorActivity}
                 Intent intent = new Intent(DiarioEmociones.this, EditorDiarioEmociones.class);
 
-                //Form the content URI that represents the specific pet that was clicked on,
+                //Form the content URI that represents the specific diarioemocion that was clicked on,
                 //by appending the "id" (passed as input to this method) onto the
-                //{@link PetEntry#CONTENT_URI}.
-                //For example, the URI would be "content://com.example.android.pets/pets/2"
-                //if the pet with ID 2 was clicked on.
+                //{@link DiarioEmocionesEntry#CONTENT_URI}.
+                //For example, the URI would be "content://com.example.android.saludutn/diarioemociones/2"
+                //if the diarioemocion with ID 2 was clicked on.
                 Uri currentDiarioEmocionesUri = ContentUris.withAppendedId(DiarioEmocionesEntry.CONTENT_URI, id);
 
                 //Set the URI on the data field of the intent
                 intent.setData(currentDiarioEmocionesUri);
 
-                //Launch the{@link EditorActivity} to display the data for the current pet.
+                //Launch the{@link EditorActivity} to display the data for the current diarioemocion.
                 startActivity(intent);
             }
         });
@@ -120,14 +120,14 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
 
 
     /**
-     * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
+     * Helper method to insert hardcoded diarioemocion data into the database. For debugging purposes only.
      */
     private void insertDiarioEociones() {
         // Gets the database in write mode
         //SQLiteDatabase db = mDbHelper.getWritableDatabase(); //Code Comment BAD PRACTICE
 
         // Create a ContentValues object where column names are the keys,
-        // and Toto's pet attributes are the values.
+        // and Toto's diarioemocion attributes are the values.
         ContentValues values = new ContentValues();
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA, "24042021");
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION, DiarioEmocionesEntry.EMOCION_ORGULLO);
@@ -143,16 +143,16 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
                 "Now the old king is dead! Long live the king");
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the pets table name.
+        // The first argument for db.insert() is the diarioemociones table name.
         // The second argument provides the name of a column in which the framework
         // can insert NULL in the event that the ContentValues is empty (if
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Toto
-        //long newRowId = db.insert(PetEntry.TABLE_NAME, null, values); //Code Comment BAD PRACTICE
+        //long newRowId = db.insert(DiarioEmocionesEntry.TABLE_NAME, null, values); //Code Comment BAD PRACTICE
         // Insert a new row for Toto into the provider using the ContentResolver.
-        // Use the {@link PetEntry#CONTENT_URI} to indicate that we want to insert
-        // into the pets database table.
+        // Use the {@link DiarioEmocionesEntry#CONTENT_URI} to indicate that we want to insert
+        // into the diarioemociones database table.
         // Receive the new content URI that will allow us to access Toto's data in the future.
         Uri newUri = getContentResolver().insert(DiarioEmocionesEntry.CONTENT_URI, values);
 
@@ -160,11 +160,11 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
     }
 
     /**
-     * Helper method to delete all pets in the database.
+     * Helper method to delete all diarioemociones in the database.
      */
     private void deleteAllDiarioEmociones() {
         int rowsDeleted = getContentResolver().delete(DiarioEmocionesEntry.CONTENT_URI, null, null);
-        Log.v("CatalogActivity", rowsDeleted + " rows deleted from pet database");
+        Log.v("CatalogActivity", rowsDeleted + " rows deleted from diarioemociones database");
     }
 
     @Override
@@ -215,7 +215,7 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        //Update {@link PetCursorAdapter} with this new cursor containing updated pet data
+        //Update {@link DiarioEmocioenesCursorAdapter} with this new cursor containing updated diarioemocion data
         mCursorAdapter.swapCursor(data);
     }
 
