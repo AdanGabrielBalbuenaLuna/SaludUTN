@@ -312,9 +312,9 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
             case R.id.action_save:
                 if (TextUtils.isEmpty(fecha)){
                     Toast.makeText(this, "Necesitas añadir la fecha", Toast.LENGTH_LONG).show();
-                } else if (emocionEditText.equals("Serenidad")){
-                    Toast.makeText(this, "La serenidad no ayuda", Toast.LENGTH_LONG).show();
-                }else {
+                } else if (emocionString.equals("Elige tu emocion")){
+                    Toast.makeText(this, "Debes elegir una emocion", Toast.LENGTH_LONG).show();
+                } else {
                     // Save pet to database
                     saveDiarioEmociones();
                     // Exit activity
