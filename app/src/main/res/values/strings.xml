@@ -143,10 +143,6 @@
     <string name="action_delete">Eliminar</string>
 
 
-
-
-
-
     <!-- Menu catalog                                                          DIARIO DE EMOCIONES -->
     <!-- Label for the pet's breed if the breed is unknown [CHAR LIMIT=20] -->
     <string name="unknown_feel">Sentimiento no descrito</string>
@@ -178,7 +174,6 @@
 
     <!-- Label for gender information in the editor [CHAR LIMIT=30] -->
     <string name="category_emotion">Emocion:</string>
-
 
 
     <!-- Toast message in editor when current diarioemocion has failed to be deleted [CHAR LIMIT=NONE] -->
@@ -266,6 +261,17 @@
 
     <!-- Label for dropdown menu option if the diarioemocion is male [CHAR LIMIT=20] -->
     <string name="emotion_tristeza">Tristeza</string>
+
+
+    <!-- Menu catalog                                                                   ALERGIAS -->
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_pescado">Pescado</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_huevo">Huevo</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_unknown">Alergia</string>
 
 
 

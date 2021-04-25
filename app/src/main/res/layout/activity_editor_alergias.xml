@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<!-- Layout for the editor -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".EditorAlergias">
+
+    <!-- Date category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="abrirCalendario">
+
+        <!-- Label -->
+        <TextView
+            android:layout_height="match_parent"
+            android:text="@string/category_date"
+            android:onClick="abrirCalendario"
+            style="@style/CategoryStyle"/>
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Date field -->
+            <TextView
+                android:id="@+id/edit_date_alergia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:text="@string/hint_date"
+                android:fontFamily="sans-serif"
+                android:textColor="#AEB6BD"
+                style="@style/CategoryStyle"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Emotion category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:layout_height="match_parent"
+            android:text="@string/category_emotion"
+            style="@style/CategoryStyle" />
+
+        <!-- Input field -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <!-- Emotion drop-down spinner -->
+            <Spinner
+                android:id="@+id/spinner_alergia_nombre"
+                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:padding="5dp"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Feel category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Label -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/category_feel"
+            style="@style/CategoryStyle" />
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Feel field -->
+            <EditText
+                android:id="@+id/edit_alergia_tipo"
+                android:hint="@string/hint_feel"
+                android:inputType="textCapSentences|textMultiLine"
+                style="@style/EditorFieldStyle"
+                android:maxLength="200"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!-- Thought category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Label -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/category_tought"
+            style="@style/CategoryStyle" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+
+            <!-- Thought field -->
+            <EditText
+                android:id="@+id/edit_alergia_comentario"
+                android:hint="@string/hint_tought"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="200"
+                style="@style/EditorFieldStyle" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
