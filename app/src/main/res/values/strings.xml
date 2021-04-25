@@ -149,7 +149,7 @@
 
     <!-- Menu catalog                                                          DIARIO DE EMOCIONES -->
     <!-- Label for the pet's breed if the breed is unknown [CHAR LIMIT=20] -->
-    <string name="unknown_feel">Sentimineto no descrito</string>
+    <string name="unknown_feel">Sentimiento no descrito</string>
 
     <!-- Label for the pet's breed if the breed is unknown [CHAR LIMIT=20] -->
     <string name="unknown_thought">Pensamiento no descrito</string>
@@ -207,6 +207,9 @@
 
 
     <!-- Menu catalog                                                  ARREGLO DIARIO DE EMOCIONES -->
+    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <string name="emotion_unknow">Elige tu emocion</string>
+
     <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
     <string name="emotion_apatia">Apatía</string>
 

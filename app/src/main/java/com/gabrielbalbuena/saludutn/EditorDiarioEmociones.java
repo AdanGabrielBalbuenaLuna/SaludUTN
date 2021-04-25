@@ -17,6 +17,7 @@ import android.os.Bundle;
 import androidx.core.app.NavUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -59,8 +60,8 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
 
     /**
      * Gender of the pet. The possible valid values are in the PetContract.java file:
-     * {@link DiarioEmocionesEntry#EMOCION_UNKNOWN}, {@link DiarioEmocionesEntry#EMOCION_MALO}, or
-     * {@link DiarioEmocionesEntry#EMOCION_BUENO}.
+     * {@link DiarioEmocionesEntry#EMOCION_UNKNOWN}, {@link DiarioEmocionesEntry#EMOCION_APATIA}, or
+     * {@link DiarioEmocionesEntry#EMOCION_ADMIRACION}...
      */
     private int mEmotion = DiarioEmocionesEntry.EMOCION_UNKNOWN;
 
@@ -146,11 +147,48 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
-                    if (selection.equals(getString(R.string.emotion_malo))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_MALO;
-                    } else if (selection.equals(getString(R.string.emotion_bueno))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_BUENO;
-                    } else {
+                    if (selection.equals(getString(R.string.emotion_apatia))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_APATIA;
+                    } else if (selection.equals(getString(R.string.emotion_admiracion))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_ADMIRACION;
+                    } else if (selection.equals(getString(R.string.emotion_alegria))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_ALEGRIA;
+                    } else if (selection.equals(getString(R.string.emotion_amor))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_AMOR;
+                    } else if (selection.equals(getString(R.string.emotion_asco))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_ASCO;
+                        //------------------------------------------------>
+                    } else if (selection.equals(getString(R.string.emotion_culpabilidad))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_CULPABILIDAD;
+                    } else if (selection.equals(getString(R.string.emotion_desesperacion))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_DESESPERACION;
+                    } else if (selection.equals(getString(R.string.emotion_diversion))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_DIVERSION;
+                    } else if (selection.equals(getString(R.string.emotion_esperanza))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_ESPERANZA;
+                    } else if (selection.equals(getString(R.string.emotion_gratitud))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_GRATITUD;
+                        //------------------------------------------------->
+                    } else if (selection.equals(getString(R.string.emotion_indiferencia))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_INDIFERENCIA;
+                    } else if (selection.equals(getString(R.string.emotion_inspiracion))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_INSPIRACION;
+                    } else if (selection.equals(getString(R.string.emotion_interes))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_INTERES;
+                    } else if (selection.equals(getString(R.string.emotion_ira))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_IRA;
+                    } else if (selection.equals(getString(R.string.emotion_miedo))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_MIEDO;
+                        //------------------------------------------------>
+                    } else if (selection.equals(getString(R.string.emotion_orgullo))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_ORGULLO;
+                    } else if (selection.equals(getString(R.string.emotion_serenidad))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_SERENDIDAD;
+                    } else if (selection.equals(getString(R.string.emotion_soledad))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_SOLEDAD;
+                    } else if (selection.equals(getString(R.string.emotion_tristeza))) {
+                        mEmotion = DiarioEmocionesEntry.EMOCION_TRISTEZA;
+                    }else {
                         mEmotion = DiarioEmocionesEntry.EMOCION_UNKNOWN;
                     }
                 }
@@ -262,8 +300,10 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
         EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
         String fecha  =  fechaEditText.getText().toString();
 
-        /*Spinner emocionEditText = (Spinner)findViewById(R.id.spinner_emotion);
-        String emocion  =  emocionEditText.getText().toString();*/
+        Spinner emocionEditText = (Spinner)findViewById(R.id.spinner_emotion);
+        String emocionString = emocionEditText.getSelectedItem().toString();
+        //Object emocionString = emocionEditText.getSelectedItem();
+        Log.d("Numero", "El spiner trae: " + emocionString);
 
 
         // User clicked on a menu option in the app bar overflow menu
@@ -272,7 +312,9 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
             case R.id.action_save:
                 if (TextUtils.isEmpty(fecha)){
                     Toast.makeText(this, "Necesitas añadir la fecha", Toast.LENGTH_LONG).show();
-                } else {
+                } else if (emocionEditText.equals("Serenidad")){
+                    Toast.makeText(this, "La serenidad no ayuda", Toast.LENGTH_LONG).show();
+                }else {
                     // Save pet to database
                     saveDiarioEmociones();
                     // Exit activity
@@ -393,11 +435,65 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
             // into one of the dropdown options (0 is Unknown, 1 is Male, 2 is Female).
             // Then call setSelection() so that option is displayed on screen as the current selection.
             switch (emotion) {
-                case DiarioEmocionesEntry.EMOCION_MALO:
+                case DiarioEmocionesEntry.EMOCION_APATIA:
                     mEmotionSpinner.setSelection(1);
                     break;
-                case DiarioEmocionesEntry.EMOCION_BUENO:
+                case DiarioEmocionesEntry.EMOCION_ADMIRACION:
                     mEmotionSpinner.setSelection(2);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_ALEGRIA:
+                    mEmotionSpinner.setSelection(3);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_AMOR:
+                    mEmotionSpinner.setSelection(4);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_ASCO:
+                    mEmotionSpinner.setSelection(5);
+                    break;
+                    //------------------------------->
+                case DiarioEmocionesEntry.EMOCION_CULPABILIDAD:
+                    mEmotionSpinner.setSelection(6);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_DESESPERACION:
+                    mEmotionSpinner.setSelection(7);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_DIVERSION:
+                    mEmotionSpinner.setSelection(8);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_ESPERANZA:
+                    mEmotionSpinner.setSelection(9);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_GRATITUD:
+                    mEmotionSpinner.setSelection(10);
+                    break;
+                //------------------------------->
+                case DiarioEmocionesEntry.EMOCION_INDIFERENCIA:
+                    mEmotionSpinner.setSelection(11);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_INSPIRACION:
+                    mEmotionSpinner.setSelection(12);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_INTERES:
+                    mEmotionSpinner.setSelection(13);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_IRA:
+                    mEmotionSpinner.setSelection(14);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_MIEDO:
+                    mEmotionSpinner.setSelection(15);
+                    break;
+                //------------------------------->
+                case DiarioEmocionesEntry.EMOCION_ORGULLO:
+                    mEmotionSpinner.setSelection(16);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_SERENDIDAD:
+                    mEmotionSpinner.setSelection(17);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_SOLEDAD:
+                    mEmotionSpinner.setSelection(18);
+                    break;
+                case DiarioEmocionesEntry.EMOCION_TRISTEZA:
+                    mEmotionSpinner.setSelection(19);
                     break;
                 default:
                     mEmotionSpinner.setSelection(0);

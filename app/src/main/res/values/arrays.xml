@@ -13,6 +13,7 @@
 <resources>
     <!-- These are the options displayed in the gender drop-down Spinner -->
     <string-array name="array_emotion_options">
+        <item>@string/emotion_unknow</item>
         <item>@string/emotion_apatia</item>
         <item>@string/emotion_admiracion</item>
         <item>@string/emotion_alegria</item>
@@ -30,6 +31,7 @@
         <item>@string/emotion_ira</item>
         <item>@string/emotion_miedo</item>
         <item>@string/emotion_orgullo</item>
+        <item>@string/emotion_serenidad</item>
         <item>@string/emotion_soledad</item>
         <item>@string/emotion_tristeza</item>
     </string-array>

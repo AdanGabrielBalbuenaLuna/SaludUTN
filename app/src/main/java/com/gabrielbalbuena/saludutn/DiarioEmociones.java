@@ -130,7 +130,7 @@ public class DiarioEmociones extends AppCompatActivity implements LoaderManager.
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA, "24042021");
-        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION, DiarioEmocionesEntry.EMOCION_MALO);
+        values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION, DiarioEmocionesEntry.EMOCION_ORGULLO);
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE,
                 "I used to rule the world\n" +
                 "Seas would rise when I gave the word\n" +

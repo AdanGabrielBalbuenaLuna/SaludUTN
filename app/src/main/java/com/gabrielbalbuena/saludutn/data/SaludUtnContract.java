@@ -183,15 +183,79 @@ public class SaludUtnContract {
          * Possible values for the gender of the pet.
          */
         public static final int EMOCION_UNKNOWN = 0;
-        public static final int EMOCION_MALO = 1;
-        public static final int EMOCION_BUENO = 2;
+        public static final int EMOCION_APATIA = 1;
+        public static final int EMOCION_ADMIRACION = 2;
+        public static final int EMOCION_ALEGRIA = 3;
+        public static final int EMOCION_AMOR = 4;
+        public static final int EMOCION_ASCO = 5;
+
+        public static final int EMOCION_CULPABILIDAD = 6;
+        public static final int EMOCION_DESESPERACION = 7;
+        public static final int EMOCION_DIVERSION = 8;
+        public static final int EMOCION_ESPERANZA = 9;
+        public static final int EMOCION_GRATITUD = 10;
+
+        public static final int EMOCION_INDIFERENCIA = 11;
+        public static final int EMOCION_INSPIRACION = 12;
+        public static final int EMOCION_INTERES = 13;
+        public static final int EMOCION_IRA = 14;
+        public static final int EMOCION_MIEDO = 15;
+
+        public static final int EMOCION_ORGULLO = 16;
+        public static final int EMOCION_SERENDIDAD = 17;
+        public static final int EMOCION_SOLEDAD = 18;
+        public static final int EMOCION_TRISTEZA = 19;
 
         /**
-         * Returns whether or not the given gender is {@link #EMOCION_UNKNOWN}, {@link #EMOCION_MALO},
-         * or {@link #EMOCION_BUENO}.
+         * Returns whether or not the given gender is
+         * {@link #EMOCION_UNKNOWN},
+         * or {@link #EMOCION_APATIA},
+         * or {@link #EMOCION_ADMIRACION}
+         * or {@link #EMOCION_ALEGRIA}
+         * or {@link #EMOCION_AMOR}
+         * or {@link #EMOCION_ASCO}
+         *
+         * or {@link #EMOCION_CULPABILIDAD}
+         * or {@link #EMOCION_DESESPERACION}
+         * or {@link #EMOCION_DIVERSION}
+         * or {@link #EMOCION_ESPERANZA}
+         * or {@link #EMOCION_GRATITUD}
+         *
+         * or {@link #EMOCION_INDIFERENCIA}
+         * or {@link #EMOCION_INSPIRACION}
+         * or {@link #EMOCION_INTERES}
+         * or {@link #EMOCION_IRA}
+         * or {@link #EMOCION_MIEDO}
+         *
+         * or {@link #EMOCION_ORGULLO}
+         * or {@link #EMOCION_SERENDIDAD}
+         * or {@link #EMOCION_SOLEDAD}
+         * or {@link #EMOCION_TRISTEZA}
          */
         public static boolean isValidEmocion(int emocion) {
-            if (emocion == EMOCION_UNKNOWN || emocion == EMOCION_MALO || emocion == EMOCION_BUENO) {
+            if (emocion == EMOCION_UNKNOWN ||
+                    emocion == EMOCION_APATIA ||
+                    emocion == EMOCION_ADMIRACION ||
+                    emocion == EMOCION_ALEGRIA ||
+                    emocion == EMOCION_AMOR ||
+                    emocion == EMOCION_ASCO ||
+
+                    emocion == EMOCION_CULPABILIDAD ||
+                    emocion == EMOCION_DESESPERACION ||
+                    emocion == EMOCION_DIVERSION ||
+                    emocion == EMOCION_ESPERANZA ||
+                    emocion == EMOCION_GRATITUD ||
+
+                    emocion == EMOCION_INDIFERENCIA ||
+                    emocion == EMOCION_INSPIRACION ||
+                    emocion == EMOCION_INTERES ||
+                    emocion == EMOCION_IRA ||
+                    emocion == EMOCION_MIEDO ||
+
+                    emocion == EMOCION_ORGULLO ||
+                    emocion == EMOCION_SERENDIDAD ||
+                    emocion == EMOCION_SOLEDAD ||
+                    emocion == EMOCION_TRISTEZA) {
                 return true;
             }
             return false;
