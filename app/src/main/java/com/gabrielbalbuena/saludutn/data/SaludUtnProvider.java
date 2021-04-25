@@ -18,6 +18,8 @@ import com.gabrielbalbuena.saludutn.data.SaludUtnContract.DatosPersonalesEntry;/
 
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.DiarioEmocionesEntry;//
 
+import com.gabrielbalbuena.saludutn.data.SaludUtnContract.AlergiasEntry;//
+
 
 public class SaludUtnProvider extends ContentProvider {
 
@@ -34,6 +36,11 @@ public class SaludUtnProvider extends ContentProvider {
     private static final int DIARIO_EMOCIONES = 200;
     /** URI matcher code for the content URI for a single diarioemocion in the diarioemociones table */
     private static final int DIARIO_EMOCIONES_ID = 201;
+
+    /** URI matcher code for the content URI for the alergias table */
+    private static final int ALERGIAS = 300;
+    /** URI matcher code for the content URI for a single alergia in the alergias table */
+    private static final int ALERGIAS_ID = 301;
 
         //s because is static
     /**
@@ -61,7 +68,8 @@ public class SaludUtnProvider extends ContentProvider {
         // "content://com.gabrielbalbuena.saludutn/datospersonales" (without a number at the end) doesn't match.
         sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DATOS_PERSONALES + "/#", DATOS_PERSONALES_ID);
 
-        // The calls to addURI() go here, for all of the content URI patterns that the provider
+
+        // The calls to addURI() go here, for all of the content URI patterns that the provider________________________________________________
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
         // The content URI of the form "com.gabrielbalbuena.saludutn/diarioemociones" will map to the
@@ -77,6 +85,26 @@ public class SaludUtnProvider extends ContentProvider {
         // For example, "content://com.example.android.saludutn/diarioemociones/3" matches, but
         // "content://com.example.android.saludutn/diarioemociones" (without a number at the end) doesn't match.
         sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_DIARIO_EMOCIONES + "/#", DIARIO_EMOCIONES_ID);
+
+
+        // The calls to addURI() go here, for all of the content URI patterns that the provider________________________________________________
+        // should recognize. All paths added to the UriMatcher have a corresponding code to return
+        // when a match is found.
+        // The content URI of the form "com.gabrielbalbuena.saludutn/alergias" will map to the
+        // integer code {@link #ALERGIAS}. This URI is used to provide access to MULTIPLE rows
+        // of the alergias table.
+        sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_ALERGIAS, ALERGIAS);
+
+        // The content URI of the form "content://com.example.android.saludutn/alergias/#" will map to the
+        // integer code {@link #ALERGIAS_ID}. This URI is used to provide access to ONE single row
+        // of the alergias table.
+        //
+        // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
+        // For example, "content://com.example.android.saludutn/alergias/3" matches, but
+        // "content://com.example.android.saludutn/alergias" (without a number at the end) doesn't match.
+        sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_ALERGIAS + "/#", ALERGIAS_ID);
+
+
 
     }
 
@@ -163,6 +191,31 @@ public class SaludUtnProvider extends ContentProvider {
                 cursor = database.query(DiarioEmocionesEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
+            case ALERGIAS:
+                // For the ALERGIAS code, query the alergias table directly with the given
+                // projection, selection, selection arguments, and sort order. The cursor
+                // could contain multiple rows of the alergias table.
+                // TODO: Perform database query on alergias table
+                cursor = database.query(AlergiasEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
+            case ALERGIAS_ID:
+                // For the ALERGIAS_ID code, extract out the ID from the URI.
+                // For an example URI such as "content://com.example.android.saludutn/alergias/3",
+                // the selection will be "_id=?" and the selection argument will be a
+                // String array containing the actual ID of 3 in this case.
+                //
+                // For every "?" in the selection, we need to have an element in the selection
+                // arguments that will fill in the "?". Since we have 1 question mark in the
+                // selection, we have 1 String in the selection arguments' String array.
+                selection = AlergiasEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+
+                // This will perform a query on the alergias table where the _id equals 3 to return a
+                // Cursor containing that row of the table.
+                cursor = database.query(AlergiasEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
@@ -192,6 +245,10 @@ public class SaludUtnProvider extends ContentProvider {
                 return DiarioEmocionesEntry.CONTENT_LIST_TYPE;
             case DIARIO_EMOCIONES_ID:
                 return DiarioEmocionesEntry.CONTENT_ITEM_TYPE;
+            case ALERGIAS:
+                return AlergiasEntry.CONTENT_LIST_TYPE;
+            case ALERGIAS_ID:
+                return AlergiasEntry.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
         }
@@ -209,6 +266,8 @@ public class SaludUtnProvider extends ContentProvider {
                 return insertDatosPersonales(uri, contentValues);
             case DIARIO_EMOCIONES:
                 return insertDiarioEmociones(uri, contentValues);
+            case ALERGIAS:
+                return insertAlergias(uri, contentValues);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
         }
@@ -400,6 +459,86 @@ public class SaludUtnProvider extends ContentProvider {
     }
 
     /**
+     * Insert a alergia into the database with the given content values. Return the new content URI
+     * for that specific row in the database.
+     */
+    private Uri insertAlergias(Uri uri, ContentValues values) {
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Check that the name is not null
+        String date = values.getAsString(AlergiasEntry.COLUMN_ALERGIAS_FECHAHORA);
+        //name==null || name.isEmpty()
+        if (date.equals("")) {
+            throw new IllegalArgumentException("alergia requires a date");
+        }
+
+        // Check that the gender is valid
+        Integer alergia = values.getAsInteger(AlergiasEntry.COLUMN_ALERGIAS_NOMBRE);
+        if (alergia == null || !AlergiasEntry.isValidAlergia(alergia)) {
+            throw new IllegalArgumentException("alergia requires valid alergia");
+        }
+
+        /* No need to check the breed, any value is valid (including null).
+        // Check that the name is not null
+        String feel = values.getAsString(AlergiasEntry.COLUMN_ALERGIAS_FECHAHORA);
+        //name==null || name.isEmpty()
+        if (feel.equals("")) {
+            throw new IllegalArgumentException("alergias requires a name");
+        }
+
+        // Check that the name is not null
+        String tought = values.getAsString(AlergiasEntry.COLUMN_ALERGIAS_NOMBRE);
+        //name==null || name.isEmpty()
+        if (tought.equals("")) {
+            throw new IllegalArgumentException("alergia requires a name");
+        }*/
+
+
+        // No need to check the breed, any value is valid (including null).
+
+        // Insert the new alergias with the given values
+        long id = database.insert(AlergiasEntry.TABLE_NAME, null, values);
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Notify all listeners that the data has changed for the alergia content URI
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        // Return the new URI with the ID (of the newly inserted row) appended at the end
+        return ContentUris.withAppendedId(uri, id);
+
+
+        /*// TODO: Insert a new alergia into the alergia database table with the given ContentValues
+
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Insert a new row for Toto in the database, returning the ID of that new row.
+        // The first argument for db.insert() is the alergia table name.
+        // The second argument provides the name of a column in which the framework
+        // can insert NULL in the event that the ContentValues is empty (if
+        // this is set to "null", then the framework will not insert a row when
+        // there are no values).
+        // The third argument is the ContentValues object containing the info for Toto
+        // Insert the new alergia with the given values
+        long id = database.insert(AlergiasEntry.TABLE_NAME, null, values);
+
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Return the new URI with the ID (of the newly inserted row) appended at the end
+        return ContentUris.withAppendedId(uri, id);*/
+    }
+
+
+    /**
      * Delete the data at the given selection and selection arguments.
      */
     @Override
@@ -437,6 +576,19 @@ public class SaludUtnProvider extends ContentProvider {
                 //return database.delete(DiariEmocionesEntry.TABLE_NAME, selection, selectionArgs);
                 rowsDeleted = database.delete(DiarioEmocionesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
+
+            case ALERGIAS:
+                // Delete all rows that match the selection and selection args
+                //return database.delete(AlergiasEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(AlergiasEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            case ALERGIAS_ID:
+                // Delete a single row given by the ID in the URI
+                selection = AlergiasEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                //return database.delete(AlergiasEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(AlergiasEntry.TABLE_NAME, selection, selectionArgs);
+                break;
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
         }
@@ -445,7 +597,6 @@ public class SaludUtnProvider extends ContentProvider {
         if (rowsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
-
         // Return the number of rows deleted
         return rowsDeleted;
     }
@@ -476,6 +627,16 @@ public class SaludUtnProvider extends ContentProvider {
                 selection = DiarioEmocionesEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 return updateDiarioEmociones(uri, contentValues, selection, selectionArgs);
+
+            case ALERGIAS:
+                return updateAlergias(uri, contentValues, selection, selectionArgs);
+            case ALERGIAS_ID:
+                // For the ALERGIAS_ID code, extract out the ID from the URI,
+                // so we know which row to update. Selection will be "_id=?" and selection
+                // arguments will be a String array containing the actual ID.
+                selection = AlergiasEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                return updateAlergias(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
         }
@@ -654,4 +815,75 @@ public class SaludUtnProvider extends ContentProvider {
         // Return the number of rows updated
         return rowsUpdated;
     }
+
+
+    /**
+     * Update alergias in the database with the given content values. Apply the changes to the rows
+     * specified in the selection and selection arguments (which could be 0 or 1 or more alergias).
+     * Return the number of rows that were successfully updated.
+     */
+    private int updateAlergias(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        // If the {@link AlergiasEntry#COLUMN_ALERGIAS_FECHAHORA} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(AlergiasEntry.COLUMN_ALERGIAS_FECHAHORA)) {
+            String date = values.getAsString(AlergiasEntry.COLUMN_ALERGIAS_FECHAHORA);
+            if (date == null) {
+                throw new IllegalArgumentException("alergia requires a date");
+            }
+        }
+
+        // If the {@link AlergiasEntry#COLUMN_ALERGIAS_NOMBRE} key is present,
+        // check that the gender value is valid.
+        if (values.containsKey(AlergiasEntry.COLUMN_ALERGIAS_NOMBRE)) {
+            Integer alergia = values.getAsInteger(AlergiasEntry.COLUMN_ALERGIAS_NOMBRE);
+            if (alergia == null || !AlergiasEntry.isValidAlergia(+alergia)) {
+                throw new IllegalArgumentException("alergia requires valid alergia name");
+            }
+        }
+
+        /* No need to check the breed, any value is valid (including null).
+        // If the {@link AlergiasEntry#COLUMN_ALERGIAS_FECHAHORA} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(AlergiasEntry.COLUMN_ALERGIAS_NOMBRE)) {
+            String feel = values.getAsString(AlergiasEntry.COLUMN_ALERGIAS_NOMBRE);
+            if (feel == null) {
+                throw new IllegalArgumentException("alergia requires a date");
+            }
+        }
+
+        // If the {@link AlergiasEntry#COLUMN_ALERGIAS_FECHAHORA} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(AlergiasEntry.COLUMN_ALERGIAS_NOMBRE)) {
+            String tought = values.getAsString(AlergiasEntry.COLUMN_ALERGIAS_NOMBRE);
+            if (tought == null) {
+                throw new IllegalArgumentException("alergia requires a date");
+            }
+        }*/
+
+
+        // No need to check the breed, any value is valid (including null).
+
+        // If there are no values to update, then don't try to update the database
+        if (values.size() == 0) {
+            return 0;
+        }
+
+        // Otherwise, get writeable database to update the data
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Returns the number of database rows affected by the update statement
+        //return database.update(AlergiasEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        // Perform the update on the database and get the number of rows affected
+        int rowsUpdated = database.update(AlergiasEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        // If 1 or more rows were updated, then notify all listeners that the data at the
+        // given URI has changed
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        // Return the number of rows updated
+        return rowsUpdated;
+    }
+
 }

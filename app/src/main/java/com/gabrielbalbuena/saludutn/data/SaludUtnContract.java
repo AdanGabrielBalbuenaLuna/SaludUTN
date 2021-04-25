@@ -329,7 +329,7 @@ public class SaludUtnContract {
         public final static String COLUMN_COMENTARIO_ALERGIA = "comentario";
 
         /**
-         * Possible values for the gender of the diarioemocion.
+         * Possible values for the gender of the alergia.
          */
         public static final int ALERGIA_UNKNOWN = 0;
         public static final int ALERGIA_HUEVOS = 1;
