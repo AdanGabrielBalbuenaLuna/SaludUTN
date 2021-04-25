@@ -37,46 +37,46 @@ import com.gabrielbalbuena.saludutn.data.SaludUtnHelper;
 import java.util.Calendar;
 
 /**
- * Allows user to create a new pet or edit an existing one.
+ * Allows user to create a new diarioemocion or edit an existing one.
  */
 public class EditorDiarioEmociones extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
     //LoaderManager.LoaderCallbacks<Cursor> {
 
-    /** Identifier for the pet data loader */
+    /** Identifier for the diarioemocion data loader */
     private static final int EXISTING_DIARIOEMOCIONES_LOADER = 0;
 
-    /** Content URI for the existing pet (null if it's a new pet) */
+    /** Content URI for the existing diarioemocion (null if it's a new diarioemocion) */
     private Uri mCurrentDiarioEmocionesUri;
 
-    /** EditText field to enter the pet's name */
+    /** EditText field to enter the diarioemocion's date */
     private TextView mDateEditText;
     //private EditText mDateEditText;
 
-    /** EditText field to enter the pet's gender */
+    /** EditText field to enter the diarioemocion's emotion */
     private Spinner mEmotionSpinner;
 
-    /** EditText field to enter the pet's weight */
+    /** EditText field to enter the diarioemocion's feel */
     private EditText mFeelEditText;
 
-    /** EditText field to enter the pet's breed */
+    /** EditText field to enter the diarioemocion's thought */
     private EditText mToughtEditText;
 
 
 
 
     /**
-     * Gender of the pet. The possible valid values are in the PetContract.java file:
+     * Gender of the diarioemocion. The possible valid values are in the SaludUtnContract.java file:
      * {@link DiarioEmocionesEntry#EMOCION_UNKNOWN}, {@link DiarioEmocionesEntry#EMOCION_APATIA}, or
      * {@link DiarioEmocionesEntry#EMOCION_ADMIRACION}...
      */
     private int mEmotion = DiarioEmocionesEntry.EMOCION_UNKNOWN;
 
-    /** Boolean flag that keeps track of whether the pet has been edited (true) or not (false) */
+    /** Boolean flag that keeps track of whether the diarioemocion has been edited (true) or not (false) */
     private boolean mDiarioEmociomesHasChanged = false;
 
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
-     * the view, and we change the mPetHasChanged boolean to true.
+     * the view, and we change the mDiarioEmocionesHasChanged boolean to true.
      */
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -96,23 +96,23 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
         setContentView(R.layout.activity_editor_diario_emociones);
 
         // Examine the intent that was used to launch this activity,
-        // in order to figure out if we're creating a new pet or editing an existing one.
+        // in order to figure out if we're creating a new diarioemocion or editing an existing one.
         Intent intent = getIntent();
         mCurrentDiarioEmocionesUri = intent.getData();
 
-        // If the intent DOES NOT contain a pet content URI, then we know that we are
-        // creating a new pet.
+        // If the intent DOES NOT contain a diarioemocion content URI, then we know that we are
+        // creating a new diarioemocion.
         if (mCurrentDiarioEmocionesUri == null) {
-            // This is a new pet, so change the app bar to say "Add a Pet"
-            setTitle(getString(R.string.editor_activity_title_new_pet));
+            // This is a new diarioemocion, so change the app bar to say "Add a DiarioEmocion"
+            setTitle(getString(R.string.editor_activity_title_new_emotion));
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
-            // (It doesn't make sense to delete a pet that hasn't been created yet.)
+            // (It doesn't make sense to delete a diarioEmocion that hasn't been created yet.)
             invalidateOptionsMenu();
         } else {
-            // Otherwise this is an existing pet, so change app bar to say "Edit Pet"
-            setTitle(getString(R.string.editor_activity_title_edit_pet));
+            // Otherwise this is an existing diarioemocion, so change app bar to say "Edit DiarioEmocion"
+            setTitle(getString(R.string.editor_activity_title_edit_emotion));
 
-            // Initialize a loader to read the pet data from the database
+            // Initialize a loader to read the diarioemocion data from the database
             // and display the current values in the editor
             getLoaderManager().initLoader(EXISTING_DIARIOEMOCIONES_LOADER, null, this);
         }
@@ -157,7 +157,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
 
 
     /**
-     * Setup the dropdown spinner that allows the user to select the gender of the pet.
+     * Setup the dropdown spinner that allows the user to select the gender of the diarioemocion.
      */
     private void setupSpinner() {
         // Create adapter for spinner. The list options are from the String array it will use
@@ -233,10 +233,10 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
     }
 
     /**
-     * ------Get user input from editor and save new pet into database.
-     * Get user input from editor and save pet into database.
+     * ------Get user input from editor and save new diarioemocion into database.
+     * Get user input from editor and save diarioemocion into database.
      */
-    //private void insertPet()
+    //private void insertDiarioEmociones()
     private void saveDiarioEmociones() {
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
@@ -245,18 +245,18 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
         String toughtString = mToughtEditText.getText().toString().trim();
         //int weight = Integer.parseInt(weightString);
 
-        // Check if this is supposed to be a new pet
+        // Check if this is supposed to be a new diarioemociones
         // and check if all the fields in the editor are blank
         if (mCurrentDiarioEmocionesUri == null &&
                 TextUtils.isEmpty(dateString) && TextUtils.isEmpty(feelString) &&
                 TextUtils.isEmpty(toughtString) && mEmotion == DiarioEmocionesEntry.EMOCION_UNKNOWN) {
-            // Since no fields were modified, we can return early without creating a new pet.
+            // Since no fields were modified, we can return early without creating a new diarioemocion.
             // No need to create ContentValues and no need to do any ContentProvider operations.
             return;
         }
 
         // Create a ContentValues object where column names are the keys,
-        // and pet attributes from the editor are the values.
+        // and diarioemocion attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA, dateString);
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION, mEmotion);
@@ -264,38 +264,38 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
         values.put(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO, toughtString);
 
 
-        // Determine if this is a new or existing pet by checking if mCurrentPetUri is null or not
+        // Determine if this is a new or existing diarioemocion by checking if mCurrentDiarioEmocionesUri is null or not
         if (mCurrentDiarioEmocionesUri == null) {
-            // This is a NEW pet, so insert a new pet into the provider,
-            // returning the content URI for the new pet.
+            // This is a NEW diarioemocion, so insert a new diarioemocion into the provider,
+            // returning the content URI for the new diarioemocion.
             Uri newUri = getContentResolver().insert(DiarioEmocionesEntry.CONTENT_URI, values);
 
             // Show a toast message depending on whether or not the insertion was successful.
             if (newUri == null) {
                 // If the new content URI is null, then there was an error with insertion.
-                Toast.makeText(this, getString(R.string.editor_insert_pet_failed),
+                Toast.makeText(this, getString(R.string.editor_insert_diarioemocion_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the insertion was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_insert_pet_successful),
+                Toast.makeText(this, getString(R.string.editor_insert_diarioemocion_successful),
                         Toast.LENGTH_SHORT).show();
             }
 
         } else {
-            // Otherwise this is an EXISTING pet, so update the pet with content URI: mCurrentPetUri
+            // Otherwise this is an EXISTING diarioemocion, so update the diarioemocion with content URI: mCurrentDiarioEmocionesUri
             // and pass in the new ContentValues. Pass in null for the selection and selection args
-            // because mCurrentPetUri will already identify the correct row in the database that
+            // because mCurrentDiarioEmocionesUri will already identify the correct row in the database that
             // we want to modify.
             int rowsAffected = getContentResolver().update(mCurrentDiarioEmocionesUri, values, null, null);
 
             // Show a toast message depending on whether or not the update was successful.
             if (rowsAffected == 0) {
                 // If no rows were affected, then there was an error with the update.
-                Toast.makeText(this, getString(R.string.editor_update_pet_failed),
+                Toast.makeText(this, getString(R.string.editor_update_diarioemocion_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the update was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_update_pet_successful),
+                Toast.makeText(this, getString(R.string.editor_update_diarioemocion_successful),
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -317,7 +317,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        // If this is a new pet, hide the "Delete" menu item.
+        // If this is a new diarioemocion, hide the "Delete" menu item.
         if (mCurrentDiarioEmocionesUri == null) {
             MenuItem menuItem = menu.findItem(R.id.action_delete);
             menuItem.setVisible(false);
@@ -348,7 +348,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
                 } else if (emocionString.equals("Elige tu emocion")){
                     Toast.makeText(this, "Debes elegir una emocion", Toast.LENGTH_LONG).show();
                 } else {
-                    // Save pet to database
+                    // Save diarioemocion to database
                     saveDiarioEmociones();
                     // Exit activity
                     finish();
@@ -365,7 +365,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
                 // Navigate back to parent activity (CatalogActivity)
                 //NavUtils.navigateUpFromSameTask(this);
 
-                // If the pet hasn't changed, continue with navigating up to parent activity
+                // If the diarioemocion hasn't changed, continue with navigating up to parent activity
                 // which is the {@link CatalogActivity}.
                 if (!mDiarioEmociomesHasChanged) {
                     NavUtils.navigateUpFromSameTask(EditorDiarioEmociones.this);
@@ -396,7 +396,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
      */
     @Override
     public void onBackPressed() {
-        // If the pet hasn't changed, continue with handling back button press
+        // If the diarioemocion hasn't changed, continue with handling back button press
         if (!mDiarioEmociomesHasChanged) {
             super.onBackPressed();
             return;
@@ -419,8 +419,8 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        // Since the editor shows all pet attributes, define a projection that contains
-        // all columns from the pet table
+        // Since the editor shows all diarioemocion attributes, define a projection that contains
+        // all columns from the diarioemocion table
         String[] projection = {
                 DiarioEmocionesEntry._ID,
                 DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA,
@@ -430,7 +430,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                mCurrentDiarioEmocionesUri,         // Query the content URI for the current pet
+                mCurrentDiarioEmocionesUri,         // Query the content URI for the current diarioemocion
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
@@ -447,7 +447,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
         // Proceed with moving to the first row of the cursor and reading data from it
         // (This should be the only row in the cursor)
         if (cursor.moveToFirst()) {
-            // Find the columns of pet attributes that we're interested in
+            // Find the columns of diarioemocion attributes that we're interested in
             int dateColumnIndex = cursor.getColumnIndex(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA);
             int emotionColumnIndex = cursor.getColumnIndex(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION);
             int feelColumnIndex = cursor.getColumnIndex(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE);
@@ -562,7 +562,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
         builder.setNegativeButton(R.string.keep_editing, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Keep editing" button, so dismiss the dialog
-                // and continue editing the pet.
+                // and continue editing the diarioemocion.
                 if (dialog != null) {
                     dialog.dismiss();
                 }
@@ -581,14 +581,14 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Delete" button, so delete the pet.
+                // User clicked the "Delete" button, so delete the diarioemocion.
                 deleteDiarioEmociones();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Cancel" button, so dismiss the dialog
-                // and continue editing the pet.
+                // and continue editing the diarioemocion.
                 if (dialog != null) {
                     dialog.dismiss();
                 }
@@ -601,24 +601,24 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
     }
 
     /**
-     * Perform the deletion of the pet in the database.
+     * Perform the deletion of the diarioemocion in the database.
      */
     private void deleteDiarioEmociones() {
-        // Only perform the delete if this is an existing pet.
+        // Only perform the delete if this is an existing diarioemocion.
         if (mCurrentDiarioEmocionesUri != null) {
-            // Call the ContentResolver to delete the pet at the given content URI.
-            // Pass in null for the selection and selection args because the mCurrentPetUri
-            // content URI already identifies the pet that we want.
+            // Call the ContentResolver to delete the diarioemocion at the given content URI.
+            // Pass in null for the selection and selection args because the mCurrentDiarioEmocionesUri
+            // content URI already identifies the diarioemocion that we want.
             int rowsDeleted = getContentResolver().delete(mCurrentDiarioEmocionesUri, null, null);
 
             // Show a toast message depending on whether or not the delete was successful.
             if (rowsDeleted == 0) {
                 // If no rows were deleted, then there was an error with the delete.
-                Toast.makeText(this, getString(R.string.editor_delete_pet_failed),
+                Toast.makeText(this, getString(R.string.editor_delete_diarioemocion_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the delete was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_delete_pet_successful),
+                Toast.makeText(this, getString(R.string.editor_delete_diarioemocion_successful),
                         Toast.LENGTH_SHORT).show();
             }
         }

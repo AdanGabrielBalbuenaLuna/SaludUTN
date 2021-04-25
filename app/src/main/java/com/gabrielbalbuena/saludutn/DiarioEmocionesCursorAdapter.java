@@ -13,8 +13,8 @@ import com.gabrielbalbuena.saludutn.data.SaludUtnContract.DiarioEmocionesEntry;
 
 /**
  * {@link DiarioEmocionesCursorAdapter} is an adapter for a list or grid view
- * that uses a {@link Cursor} of pet data as its data source. This adapter knows
- * how to create list items for each row of pet data in the {@link Cursor}.
+ * that uses a {@link Cursor} of diarioemocion data as its data source. This adapter knows
+ * how to create list items for each row of diarioemocion data in the {@link Cursor}.
  */
 public class DiarioEmocionesCursorAdapter extends CursorAdapter {
 
@@ -44,8 +44,8 @@ public class DiarioEmocionesCursorAdapter extends CursorAdapter {
     }
 
     /**
-     * This method binds the pet data (in the current row pointed to by cursor) to the given
-     * list item layout. For example, the name for the current pet can be set on the name TextView
+     * This method binds the diarioemocion data (in the current row pointed to by cursor) to the given
+     * list item layout. For example, the name for the current diarioemocion can be set on the name TextView
      * in the list item layout.
      *
      * @param view    Existing view, returned earlier by newView() method
@@ -61,31 +61,31 @@ public class DiarioEmocionesCursorAdapter extends CursorAdapter {
         TextView feelTextView = (TextView) view.findViewById(R.id.sentimiento);
         TextView thoughtTextView = (TextView) view.findViewById(R.id.pensamiento);
 
-        // Find the columns of pet attributes that we're interested in
+        // Find the columns of diarioemocion attributes that we're interested in
         int dateColumnIndex = cursor.getColumnIndex(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_FECHAHORA);
         int emotionColumnIndex = cursor.getColumnIndex(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_EMOCION);
         int feelColumnIndex = cursor.getColumnIndex(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_SIENTE);
         int thoughtColumnIndex = cursor.getColumnIndex(DiarioEmocionesEntry.COLUMN_DIARIOEMOCIONES_PENSAMIENTO);
 
-        // Read the pet attributes from the Cursor for the current pet
+        // Read the diarioemocion attributes from the Cursor for the current diarioemocion
         String diarioEmocionesDate = cursor.getString(dateColumnIndex);
         String diarioEmocionesEmotion = cursor.getString(emotionColumnIndex);
         String diarioEmocionesFeel = cursor.getString(feelColumnIndex);
         String diarioEmocionesThought = cursor.getString(thoughtColumnIndex);
 
-        // If the pet breed is empty string or null, then use some default text
+        // If the diarioemocion breed is empty string or null, then use some default text
         // that says "Unknown breed", so the TextView isn't blank.
         if (TextUtils.isEmpty(diarioEmocionesFeel)) {
             diarioEmocionesFeel = context.getString(R.string.unknown_feel);
         }
 
-        // If the pet breed is empty string or null, then use some default text
+        // If the diarioemocion breed is empty string or null, then use some default text
         // that says "Unknown breed", so the TextView isn't blank.
         if (TextUtils.isEmpty(diarioEmocionesThought)) {
             diarioEmocionesThought = context.getString(R.string.unknown_thought);
         }
 
-        // Update the TextViews with the attributes for the current pet
+        // Update the TextViews with the attributes for the current diarioemocion
         dateTextView.setText(diarioEmocionesDate);
 
         if (diarioEmocionesEmotion.equals("0")) {
