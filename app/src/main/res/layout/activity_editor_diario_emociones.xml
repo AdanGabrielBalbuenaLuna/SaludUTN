@@ -24,28 +24,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:onClick="abrirCalendario">
 
         <!-- Label -->
         <TextView
+            android:layout_height="match_parent"
             android:text="@string/category_date"
-            style="@style/CategoryStyle" />
+            android:onClick="abrirCalendario"
+            style="@style/CategoryStyle"/>
 
         <!-- Input fields -->
         <LinearLayout
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
-            <!-- Name field -->
-            <EditText
+            <!-- Date field -->
+            <TextView
                 android:id="@+id/edit_date"
-                android:hint="@string/hint_date"
-                android:inputType="number"
-                android:maxLength="8"
-                style="@style/EditorFieldStyle" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:text="@string/hint_date"
+                android:fontFamily="sans-serif"
+                android:textColor="#AEB6BD"
+                style="@style/CategoryStyle"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -57,6 +63,7 @@
 
         <!-- Label -->
         <TextView
+            android:layout_height="match_parent"
             android:text="@string/category_emotion"
             style="@style/CategoryStyle" />
 
@@ -72,6 +79,7 @@
                 android:id="@+id/spinner_emotion"
                 android:layout_height="48dp"
                 android:layout_width="wrap_content"
+                android:padding="5dp"
                 android:paddingRight="16dp"
                 android:spinnerMode="dropdown"/>
         </LinearLayout>
@@ -85,6 +93,7 @@
 
         <!-- Label -->
         <TextView
+            android:layout_height="match_parent"
             android:text="@string/category_feel"
             style="@style/CategoryStyle" />
 
@@ -96,16 +105,16 @@
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
-            <!-- Name field -->
+            <!-- Feel field -->
             <EditText
                 android:id="@+id/edit_feel"
                 android:hint="@string/hint_feel"
-                android:inputType="textCapWords"
+                android:inputType="text"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Tought category -->
+    <!-- Thought category -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -113,6 +122,7 @@
 
         <!-- Label -->
         <TextView
+            android:layout_height="match_parent"
             android:text="@string/category_tought"
             style="@style/CategoryStyle" />
 
@@ -124,11 +134,11 @@
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
-            <!-- Name field -->
+            <!-- Thought field -->
             <EditText
                 android:id="@+id/edit_tought"
                 android:hint="@string/hint_tought"
-                android:inputType="textCapWords"
+                android:inputType="text"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>

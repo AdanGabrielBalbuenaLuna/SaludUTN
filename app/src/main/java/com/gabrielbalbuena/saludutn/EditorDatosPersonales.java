@@ -293,7 +293,7 @@ public class EditorDatosPersonales extends AppCompatActivity implements LoaderMa
         if(StringUtils.isNotBlank(height)){
             altura = Integer.parseInt(height);
         }
-        //Log.d("Numero", "altura "+ altura + " height: " );
+        //Log.d("Numero", "altura "+ altura + " height: " + altura.toString());
 
         EditText nssEditText = (EditText)findViewById(R.id.edit_nss_dp);
         String nss  =  nssEditText.getText().toString();
