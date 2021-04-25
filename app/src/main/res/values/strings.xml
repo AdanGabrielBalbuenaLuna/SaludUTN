@@ -188,10 +188,10 @@
     <string name="editor_delete_diarioemocion_successful">Registro de emocion eliminado</string>
 
     <!-- Title for the activity to add a new diarioemocion [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_new_emotion">Añade una emocion</string>
+    <string name="editor_activity_title_new_diarioemociones">Añade una emocion</string>
 
     <!-- Title for the activity to add a new diarioemocion [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_edit_emotion">Edita una emocion</string>
+    <string name="editor_activity_title_edit_diarioemociones">Edita una emocion</string>
 
     <!-- Toast message in editor when new diarioemocion has failed to be inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_diarioemocion_failed">Error al guardar el registro de emocion</string>

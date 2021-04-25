@@ -104,13 +104,13 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
         // creating a new diarioemocion.
         if (mCurrentDiarioEmocionesUri == null) {
             // This is a new diarioemocion, so change the app bar to say "Add a DiarioEmocion"
-            setTitle(getString(R.string.editor_activity_title_new_emotion));
+            setTitle(getString(R.string.editor_activity_title_new_diarioemociones));
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
             // (It doesn't make sense to delete a diarioEmocion that hasn't been created yet.)
             invalidateOptionsMenu();
         } else {
             // Otherwise this is an existing diarioemocion, so change app bar to say "Edit DiarioEmocion"
-            setTitle(getString(R.string.editor_activity_title_edit_emotion));
+            setTitle(getString(R.string.editor_activity_title_edit_diarioemociones));
 
             // Initialize a loader to read the diarioemocion data from the database
             // and display the current values in the editor
