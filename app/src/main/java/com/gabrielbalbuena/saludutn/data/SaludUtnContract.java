@@ -390,4 +390,176 @@ public class SaludUtnContract {
         }
     }
 
+
+    /**
+     * Possible path (appended to base content URI for possible URI's)
+     * For instance, content://com.gabrielbalbuena.saludutn/historialmedico/ is a valid path for
+     * looking at historialmedico data. content://com.gabrielbalbuena.saludutn/staff/ will fail,
+     * as the ContentProvider hasn't been given any information on what to do with "staff".
+     */
+    public static final String PATH_HISTORIAL_MEDICO = "historialmedico";
+
+    public static final class HistorialMedicoEntry implements BaseColumns{
+
+        /** The content URI to access the historialmedico data in the provider */
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_HISTORIAL_MEDICO);
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a list of historialmedico.
+         */
+        public static final String CONTENT_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_HISTORIAL_MEDICO;
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a single historialmedico.
+         */
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_HISTORIAL_MEDICO;
+
+        /** Name of database table for historialmedico */
+        public final static String TABLE_NAME = "historial_medico";
+
+        /**
+         * Unique ID number for the historialmedico (only for use in the database table).
+         *
+         * Type: INTEGER
+         */
+        public final static String _ID = BaseColumns._ID;
+
+        /**
+         * Fecha of the historialmedico.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_HISTORIAL_MEDICO_FECHA ="fecha";
+
+        /**
+         * Diagnostico of the historialmedico.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_HISTORIAL_MEDICO_DIAGNOSTICO ="diagnostico";
+
+        /**
+         * Fotografia 1 of the historialmedico.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_HISTORIAL_MEDICO_FOTOGRAFIA_UNO ="url_receta_uno";
+
+        /**
+         * Fotografia 2 of the historialmedico.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_HISTORIAL_MEDICO_FOTOGRAFIA_DOS ="url_receta_dos";
+
+        /**
+         * Costo of the historialmedico.
+         *
+         * Type: INTEGER
+         */
+        public final static String COLUMN_HISTORIAL_MEDICO_PRECIO_CONSULTA = "consulta";
+
+        /**
+         * Nombre Medico of the historialmedico.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_HISTORIAL_MEDICO_NOMBRE_MEDICO ="nombre_medico";
+
+
+        /**
+         * Especialidad of the doctor historialmedico.
+         *
+         * The only possible values are {@link #ESPECIALIDAD_UNKNOWN}, {@link #ESPECIALIDAD_ANESTESIOLOGIA},
+         * or {@link #ESPECIALIDAD_ANGIOLOGIA}...
+         *
+         * Type: INTEGER
+         */
+        public final static String COLUMN_HISTORIAL_MEDICO_ESPECIALIDAD_MEDICO= "especialidad";
+
+
+        /**
+         * Possible values for the gender of the historialmedico.
+         */
+        public static final int ESPECIALIDAD_UNKNOWN = 0;
+        public static final int ESPECIALIDAD_ANESTESIOLOGIA = 1;
+        public static final int ESPECIALIDAD_ANGIOLOGIA = 2;
+        /*public static final int EMOCION_ALEGRIA = 3;
+        public static final int EMOCION_AMOR = 4;
+        public static final int EMOCION_ASCO = 5;
+
+        public static final int EMOCION_CULPABILIDAD = 6;
+        public static final int EMOCION_DESESPERACION = 7;
+        public static final int EMOCION_DIVERSION = 8;
+        public static final int EMOCION_ESPERANZA = 9;
+        public static final int EMOCION_GRATITUD = 10;
+
+        public static final int EMOCION_INDIFERENCIA = 11;
+        public static final int EMOCION_INSPIRACION = 12;
+        public static final int EMOCION_INTERES = 13;
+        public static final int EMOCION_IRA = 14;
+        public static final int EMOCION_MIEDO = 15;
+
+        public static final int EMOCION_ORGULLO = 16;
+        public static final int EMOCION_SERENDIDAD = 17;
+        public static final int EMOCION_SOLEDAD = 18;
+        public static final int EMOCION_TRISTEZA = 19;*/
+
+        /**
+         * Returns whether or not the given gender is
+         * {@link #ESPECIALIDAD_UNKNOWN},
+         * or {@link #ESPECIALIDAD_ANESTESIOLOGIA},
+         * or {@link #ESPECIALIDAD_ANGIOLOGIA}
+         * or {@link #EMOCION_ALEGRIA}
+         * or {@link #EMOCION_AMOR}
+         * or {@link #EMOCION_ASCO}
+         *
+         * or {@link #EMOCION_CULPABILIDAD}
+         * or {@link #EMOCION_DESESPERACION}
+         * or {@link #EMOCION_DIVERSION}
+         * or {@link #EMOCION_ESPERANZA}
+         * or {@link #EMOCION_GRATITUD}
+         *
+         * or {@link #EMOCION_INDIFERENCIA}
+         * or {@link #EMOCION_INSPIRACION}
+         * or {@link #EMOCION_INTERES}
+         * or {@link #EMOCION_IRA}
+         * or {@link #EMOCION_MIEDO}
+         *
+         * or {@link #EMOCION_ORGULLO}
+         * or {@link #EMOCION_SERENDIDAD}
+         * or {@link #EMOCION_SOLEDAD}
+         * or {@link #EMOCION_TRISTEZA}
+         */
+        public static boolean isValidEmocion(int emocion) {
+            if (emocion == ESPECIALIDAD_UNKNOWN ||
+                    emocion == ESPECIALIDAD_ANESTESIOLOGIA ||
+                    emocion == ESPECIALIDAD_ANGIOLOGIA /*||
+                    emocion == EMOCION_ALEGRIA ||
+                    emocion == EMOCION_AMOR ||
+                    emocion == EMOCION_ASCO ||
+
+                    emocion == EMOCION_CULPABILIDAD ||
+                    emocion == EMOCION_DESESPERACION ||
+                    emocion == EMOCION_DIVERSION ||
+                    emocion == EMOCION_ESPERANZA ||
+                    emocion == EMOCION_GRATITUD ||
+
+                    emocion == EMOCION_INDIFERENCIA ||
+                    emocion == EMOCION_INSPIRACION ||
+                    emocion == EMOCION_INTERES ||
+                    emocion == EMOCION_IRA ||
+                    emocion == EMOCION_MIEDO ||
+
+                    emocion == EMOCION_ORGULLO ||
+                    emocion == EMOCION_SERENDIDAD ||
+                    emocion == EMOCION_SOLEDAD ||
+                    emocion == EMOCION_TRISTEZA*/) {
+                return true;
+            }
+            return false;
+        }
+    }
 }

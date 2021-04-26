@@ -51,7 +51,8 @@ public class SaludUtnHelper extends SQLiteOpenHelper {
                 SaludUtnContract.AlergiasEntry.COLUMN_TIPO_ALERGIA + "  TEXT, " +
                 SaludUtnContract.AlergiasEntry.COLUMN_COMENTARIO_ALERGIA + "  TEXT );";
         sqLiteDatabase.execSQL(SQL_CREATE_ALERGIAS_TABLE);
-    }
+
+        }
 
     /**
      * This is called when the database needs to be upgraded.
