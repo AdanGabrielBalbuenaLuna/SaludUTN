@@ -41,5 +41,16 @@
         <item>@string/alergia_unknown</item>
         <item>@string/alergia_huevo</item>
         <item>@string/alergia_pescado</item>
+        <item>@string/alergia_lacteos</item>
+        <item>@string/alergia_manies</item>
+        <item>@string/alergia_mariscos</item>
+        <item>@string/alergia_soya</item>
+        <item>@string/alergia_nueces</item>
+        <item>@string/alergia_trigo</item>
+        <item>@string/alergia_anticonvulsivos</item>
+        <item>@string/alergia_insulina</item>
+        <item>@string/alergia_yodo</item>
+        <item>@string/alergia_penicilina</item>
+        <item>@string/alergia_sulfamidas</item>
     </string-array>
 </resources>

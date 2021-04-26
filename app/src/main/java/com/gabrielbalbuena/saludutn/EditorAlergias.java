@@ -76,7 +76,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
-     * the view, and we change the mDiarioEmocionesHasChanged boolean to true.
+     * the view, and we change the mAlergiasHasChanged boolean to true.
      */
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -104,13 +104,13 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         // creating a new alergia.
         if (mCurrentAlergiasUri == null) {
             // This is a new alergia, so change the app bar to say "Add a Alergia"
-            setTitle(getString(R.string.editor_activity_title_new_diarioemociones));
+            setTitle(getString(R.string.editor_activity_title_new_alergias));
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
             // (It doesn't make sense to delete a alergia that hasn't been created yet.)
             invalidateOptionsMenu();
         } else {
             // Otherwise this is an existing alergia, so change app bar to say "Edit alergia"
-            setTitle(getString(R.string.editor_activity_title_edit_diarioemociones));
+            setTitle(getString(R.string.editor_activity_title_edit_alergias));
 
             // Initialize a loader to read the alergia data from the database
             // and display the current values in the editor
@@ -177,48 +177,35 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
-                    if (selection.equals(getString(R.string.alergia_pescado))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_PESCADO;
-                    } else if (selection.equals(getString(R.string.alergia_huevo))) {
+                    if (selection.equals(getString(R.string.alergia_huevo))) {
                         mAlergiaName = AlergiasEntry.ALERGIA_HUEVOS;
-                    } /*else if (selection.equals(getString(R.string.emotion_alegria))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_UNKNOWN;
-                    }/* else if (selection.equals(getString(R.string.emotion_amor))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_AMOR;
-                    } else if (selection.equals(getString(R.string.emotion_asco))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_ASCO;
+                    } else if (selection.equals(getString(R.string.alergia_pescado))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_PESCADO;
+                    } else if (selection.equals(getString(R.string.alergia_lacteos))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_LACTEOS;
+                    } else if (selection.equals(getString(R.string.alergia_manies))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_MANIES;
+                    } else if (selection.equals(getString(R.string.alergia_mariscos))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_MARSICOS;
                         //------------------------------------------------>
-                    } else if (selection.equals(getString(R.string.emotion_culpabilidad))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_CULPABILIDAD;
-                    } else if (selection.equals(getString(R.string.emotion_desesperacion))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_DESESPERACION;
-                    } else if (selection.equals(getString(R.string.emotion_diversion))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_DIVERSION;
-                    } else if (selection.equals(getString(R.string.emotion_esperanza))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_ESPERANZA;
-                    } else if (selection.equals(getString(R.string.emotion_gratitud))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_GRATITUD;
+                    } else if (selection.equals(getString(R.string.alergia_soya))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_SOYA;
+                    } else if (selection.equals(getString(R.string.alergia_nueces))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_NUECES;
+                    } else if (selection.equals(getString(R.string.alergia_trigo))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_TRIGO;
+                    } else if (selection.equals(getString(R.string.alergia_anticonvulsivos))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_ANTICONVULSIVOS;
+                    } else if (selection.equals(getString(R.string.alergia_insulina))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_INSULINA;
                         //------------------------------------------------->
-                    } else if (selection.equals(getString(R.string.emotion_indiferencia))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_INDIFERENCIA;
-                    } else if (selection.equals(getString(R.string.emotion_inspiracion))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_INSPIRACION;
-                    } else if (selection.equals(getString(R.string.emotion_interes))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_INTERES;
-                    } else if (selection.equals(getString(R.string.emotion_ira))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_IRA;
-                    } else if (selection.equals(getString(R.string.emotion_miedo))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_MIEDO;
-                        //------------------------------------------------>
-                    } else if (selection.equals(getString(R.string.emotion_orgullo))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_ORGULLO;
-                    } else if (selection.equals(getString(R.string.emotion_serenidad))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_SERENDIDAD;
-                    } else if (selection.equals(getString(R.string.emotion_soledad))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_SOLEDAD;
-                    } else if (selection.equals(getString(R.string.emotion_tristeza))) {
-                        mEmotion = DiarioEmocionesEntry.EMOCION_TRISTEZA;
-                    }*/else {
+                    } else if (selection.equals(getString(R.string.alergia_yodo))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_YODO;
+                    } else if (selection.equals(getString(R.string.alergia_penicilina))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_PENICILINA;
+                    } else if (selection.equals(getString(R.string.alergia_sulfamidas))) {
+                        mAlergiaName = AlergiasEntry.ALERGIA_SULFAMIDAS;
+                    } else {
                         mAlergiaName = AlergiasEntry.ALERGIA_UNKNOWN;
                     }
                 }
@@ -236,7 +223,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
      * ------Get user input from editor and save new alergia into database.
      * Get user input from editor and save alergia into database.
      */
-    //private void insertDiarioEmociones()
+    //private void insertAlergias()
     private void saveAlergias() {
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
@@ -273,11 +260,11 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
             // Show a toast message depending on whether or not the insertion was successful.
             if (newUri == null) {
                 // If the new content URI is null, then there was an error with insertion.
-                Toast.makeText(this, getString(R.string.editor_insert_diarioemocion_failed),
+                Toast.makeText(this, getString(R.string.editor_insert_alergias_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the insertion was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_insert_diarioemocion_successful),
+                Toast.makeText(this, getString(R.string.editor_insert_alergias_successful),
                         Toast.LENGTH_SHORT).show();
             }
 
@@ -291,11 +278,11 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
             // Show a toast message depending on whether or not the update was successful.
             if (rowsAffected == 0) {
                 // If no rows were affected, then there was an error with the update.
-                Toast.makeText(this, getString(R.string.editor_update_diarioemocion_failed),
+                Toast.makeText(this, getString(R.string.editor_update_alergia_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the update was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_update_diarioemocion_successful),
+                Toast.makeText(this, getString(R.string.editor_update_alergia_successful),
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -349,7 +336,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
                 } else if (alergiaNombreString.equals("Eliga una alergia")){
                     Toast.makeText(this, "Debes seleccionar una alergia", Toast.LENGTH_LONG).show();
                 } else {
-                    // Save diarioemocion to database
+                    // Save alergia to database
                     saveAlergias();
                     // Exit activity
                     finish();
@@ -431,7 +418,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                mCurrentAlergiasUri,         // Query the content URI for the current diarioemocion
+                mCurrentAlergiasUri,         // Query the content URI for the current alergia
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
@@ -475,60 +462,41 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
                 case AlergiasEntry.ALERGIA_HUEVOS:
                     mAlergiasNombreSpinner.setSelection(2);
                     break;
-                /*case DiarioEmocionesEntry.EMOCION_ALEGRIA:
-                    mEmotionSpinner.setSelection(3);
+                case AlergiasEntry.ALERGIA_LACTEOS:
+                    mAlergiasNombreSpinner.setSelection(3);
                     break;
-                case DiarioEmocionesEntry.EMOCION_AMOR:
-                    mEmotionSpinner.setSelection(4);
+                case AlergiasEntry.ALERGIA_MANIES:
+                    mAlergiasNombreSpinner.setSelection(4);
                     break;
-                case DiarioEmocionesEntry.EMOCION_ASCO:
-                    mEmotionSpinner.setSelection(5);
-                    break;
-                //------------------------------->
-                case DiarioEmocionesEntry.EMOCION_CULPABILIDAD:
-                    mEmotionSpinner.setSelection(6);
-                    break;
-                case DiarioEmocionesEntry.EMOCION_DESESPERACION:
-                    mEmotionSpinner.setSelection(7);
-                    break;
-                case DiarioEmocionesEntry.EMOCION_DIVERSION:
-                    mEmotionSpinner.setSelection(8);
-                    break;
-                case DiarioEmocionesEntry.EMOCION_ESPERANZA:
-                    mEmotionSpinner.setSelection(9);
-                    break;
-                case DiarioEmocionesEntry.EMOCION_GRATITUD:
-                    mEmotionSpinner.setSelection(10);
+                case AlergiasEntry.ALERGIA_MARSICOS:
+                    mAlergiasNombreSpinner.setSelection(5);
                     break;
                 //------------------------------->
-                case DiarioEmocionesEntry.EMOCION_INDIFERENCIA:
-                    mEmotionSpinner.setSelection(11);
+                case AlergiasEntry.ALERGIA_SOYA:
+                    mAlergiasNombreSpinner.setSelection(6);
                     break;
-                case DiarioEmocionesEntry.EMOCION_INSPIRACION:
-                    mEmotionSpinner.setSelection(12);
+                case AlergiasEntry.ALERGIA_NUECES:
+                    mAlergiasNombreSpinner.setSelection(7);
                     break;
-                case DiarioEmocionesEntry.EMOCION_INTERES:
-                    mEmotionSpinner.setSelection(13);
+                case AlergiasEntry.ALERGIA_TRIGO:
+                    mAlergiasNombreSpinner.setSelection(8);
                     break;
-                case DiarioEmocionesEntry.EMOCION_IRA:
-                    mEmotionSpinner.setSelection(14);
+                case AlergiasEntry.ALERGIA_ANTICONVULSIVOS:
+                    mAlergiasNombreSpinner.setSelection(9);
                     break;
-                case DiarioEmocionesEntry.EMOCION_MIEDO:
-                    mEmotionSpinner.setSelection(15);
+                case AlergiasEntry.ALERGIA_INSULINA:
+                    mAlergiasNombreSpinner.setSelection(10);
                     break;
                 //------------------------------->
-                case DiarioEmocionesEntry.EMOCION_ORGULLO:
-                    mEmotionSpinner.setSelection(16);
+                case AlergiasEntry.ALERGIA_YODO:
+                    mAlergiasNombreSpinner.setSelection(11);
                     break;
-                case DiarioEmocionesEntry.EMOCION_SERENDIDAD:
-                    mEmotionSpinner.setSelection(17);
+                case AlergiasEntry.ALERGIA_PENICILINA:
+                    mAlergiasNombreSpinner.setSelection(12);
                     break;
-                case DiarioEmocionesEntry.EMOCION_SOLEDAD:
-                    mEmotionSpinner.setSelection(18);
+                case AlergiasEntry.ALERGIA_SULFAMIDAS:
+                    mAlergiasNombreSpinner.setSelection(13);
                     break;
-                case DiarioEmocionesEntry.EMOCION_TRISTEZA:
-                    mEmotionSpinner.setSelection(19);
-                    break;*/
                 default:
                     mAlergiasNombreSpinner.setSelection(0);
                     break;
@@ -615,11 +583,11 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
             // Show a toast message depending on whether or not the delete was successful.
             if (rowsDeleted == 0) {
                 // If no rows were deleted, then there was an error with the delete.
-                Toast.makeText(this, getString(R.string.editor_delete_diarioemocion_failed),
+                Toast.makeText(this, getString(R.string.editor_delete_alergias_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the delete was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_delete_diarioemocion_successful),
+                Toast.makeText(this, getString(R.string.editor_delete_alergias_successful),
                         Toast.LENGTH_SHORT).show();
             }
         }

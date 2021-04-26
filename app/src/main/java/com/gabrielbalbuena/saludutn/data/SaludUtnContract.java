@@ -334,77 +334,56 @@ public class SaludUtnContract {
         public static final int ALERGIA_UNKNOWN = 0;
         public static final int ALERGIA_HUEVOS = 1;
         public static final int ALERGIA_PESCADO = 2;
-        /*public static final int EMOCION_ALEGRIA = 3;
-        public static final int EMOCION_AMOR = 4;
-        public static final int EMOCION_ASCO = 5;
+        public static final int ALERGIA_LACTEOS = 3;
+        public static final int ALERGIA_MANIES = 4;
+        public static final int ALERGIA_MARSICOS = 5;
 
-        public static final int EMOCION_CULPABILIDAD = 6;
-        public static final int EMOCION_DESESPERACION = 7;
-        public static final int EMOCION_DIVERSION = 8;
-        public static final int EMOCION_ESPERANZA = 9;
-        public static final int EMOCION_GRATITUD = 10;
+        public static final int ALERGIA_SOYA = 6;
+        public static final int ALERGIA_NUECES = 7;
+        public static final int ALERGIA_TRIGO = 8;
+        public static final int ALERGIA_ANTICONVULSIVOS = 9;
+        public static final int ALERGIA_INSULINA = 10;
 
-        public static final int EMOCION_INDIFERENCIA = 11;
-        public static final int EMOCION_INSPIRACION = 12;
-        public static final int EMOCION_INTERES = 13;
-        public static final int EMOCION_IRA = 14;
-        public static final int EMOCION_MIEDO = 15;
-
-        public static final int EMOCION_ORGULLO = 16;
-        public static final int EMOCION_SERENDIDAD = 17;
-        public static final int EMOCION_SOLEDAD = 18;
-        public static final int EMOCION_TRISTEZA = 19;*/
+        public static final int ALERGIA_YODO = 11;
+        public static final int ALERGIA_PENICILINA = 12;
+        public static final int ALERGIA_SULFAMIDAS = 13;
 
         /**
          * Returns whether or not the given gender is
          * {@link #ALERGIA_UNKNOWN},
          * or {@link #ALERGIA_HUEVOS},
          * or {@link #ALERGIA_PESCADO}
-         * or {@link #EMOCION_ALEGRIA}
-         * or {@link #EMOCION_AMOR}
-         * or {@link #EMOCION_ASCO}
+         * or {@link #ALERGIA_LACTEOS}
+         * or {@link #ALERGIA_MANIES}
+         * or {@link #ALERGIA_MARSICOS}
          *
-         * or {@link #EMOCION_CULPABILIDAD}
-         * or {@link #EMOCION_DESESPERACION}
-         * or {@link #EMOCION_DIVERSION}
-         * or {@link #EMOCION_ESPERANZA}
-         * or {@link #EMOCION_GRATITUD}
+         * or {@link #ALERGIA_SOYA}
+         * or {@link #ALERGIA_NUECES}
+         * or {@link #ALERGIA_TRIGO}
+         * or {@link #ALERGIA_ANTICONVULSIVOS}
+         * or {@link #ALERGIA_INSULINA}
          *
-         * or {@link #EMOCION_INDIFERENCIA}
-         * or {@link #EMOCION_INSPIRACION}
-         * or {@link #EMOCION_INTERES}
-         * or {@link #EMOCION_IRA}
-         * or {@link #EMOCION_MIEDO}
-         *
-         * or {@link #EMOCION_ORGULLO}
-         * or {@link #EMOCION_SERENDIDAD}
-         * or {@link #EMOCION_SOLEDAD}
-         * or {@link #EMOCION_TRISTEZA}
+         * or {@link #ALERGIA_YODO}
+         * or {@link #ALERGIA_PENICILINA}
+         * or {@link #ALERGIA_SULFAMIDAS}
          */
         public static boolean isValidAlergia(int alergia) {
             if (alergia == ALERGIA_UNKNOWN ||
                     alergia == ALERGIA_HUEVOS ||
-                    alergia == ALERGIA_PESCADO /*||
-                    emocion == EMOCION_ALEGRIA ||
-                    emocion == EMOCION_AMOR ||
-                    emocion == EMOCION_ASCO ||
+                    alergia == ALERGIA_PESCADO ||
+                    alergia == ALERGIA_LACTEOS ||
+                    alergia == ALERGIA_MANIES ||
+                    alergia == ALERGIA_MARSICOS ||
 
-                    emocion == EMOCION_CULPABILIDAD ||
-                    emocion == EMOCION_DESESPERACION ||
-                    emocion == EMOCION_DIVERSION ||
-                    emocion == EMOCION_ESPERANZA ||
-                    emocion == EMOCION_GRATITUD ||
+                    alergia == ALERGIA_SOYA ||
+                    alergia == ALERGIA_NUECES ||
+                    alergia == ALERGIA_TRIGO ||
+                    alergia == ALERGIA_ANTICONVULSIVOS ||
+                    alergia == ALERGIA_INSULINA ||
 
-                    emocion == EMOCION_INDIFERENCIA ||
-                    emocion == EMOCION_INSPIRACION ||
-                    emocion == EMOCION_INTERES ||
-                    emocion == EMOCION_IRA ||
-                    emocion == EMOCION_MIEDO ||
-
-                    emocion == EMOCION_ORGULLO ||
-                    emocion == EMOCION_SERENDIDAD ||
-                    emocion == EMOCION_SOLEDAD ||
-                    emocion == EMOCION_TRISTEZA*/) {
+                    alergia == ALERGIA_YODO ||
+                    alergia == ALERGIA_PENICILINA ||
+                    alergia == ALERGIA_SULFAMIDAS) {
                 return true;
             }
             return false;

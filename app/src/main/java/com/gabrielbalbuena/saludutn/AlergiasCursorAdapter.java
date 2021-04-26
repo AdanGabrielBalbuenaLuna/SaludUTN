@@ -90,47 +90,48 @@ public class AlergiasCursorAdapter extends CursorAdapter {
 
         if (alergiasNameAlergy.equals("0")) {
             alergyNameTextView.setText("No hubo eleccion");
-        }  else if (alergyNameTextView.equals("1")){
+        }  else if (alergiasNameAlergy.equals("1")){
             alergyNameTextView.setText("Huevo");
-        }   else if (alergyNameTextView.equals("2")){
+            typeAlergyTextView.setText("ali");
+        }   else if (alergiasNameAlergy.equals("2")){
             alergyNameTextView.setText("Pescado");
-        }   /*else if (diarioEmocionesEmotion.equals("3")){
-            emotionTextView.setText("Alegría");
-        }   else if (diarioEmocionesEmotion.equals("4")){
-            emotionTextView.setText("Amor");
-        }   else if (diarioEmocionesEmotion.equals("5")){
-            emotionTextView.setText("Asco");
-        }else if (diarioEmocionesEmotion.equals("6")){
-            emotionTextView.setText("Culpabilidad");
-        }   else if (diarioEmocionesEmotion.equals("7")){
-            emotionTextView.setText("Desesperación");
-        }   else if (diarioEmocionesEmotion.equals("8")){
-            emotionTextView.setText("Diversión");
-        }   else if (diarioEmocionesEmotion.equals("9")){
-            emotionTextView.setText("Esperanza");
-        }   else if (diarioEmocionesEmotion.equals("10")){
-            emotionTextView.setText("Gratitud");
-        }else if (diarioEmocionesEmotion.equals("11")){
-            emotionTextView.setText("Admiración");
-        }   else if (diarioEmocionesEmotion.equals("12")){
-            emotionTextView.setText("Inspiración");
-        }   else if (diarioEmocionesEmotion.equals("13")){
-            emotionTextView.setText("Interés");
-        }   else if (diarioEmocionesEmotion.equals("14")){
-            emotionTextView.setText("Ira");
-        }   else if (diarioEmocionesEmotion.equals("15")){
-            emotionTextView.setText("Miedo");
-        }else if (diarioEmocionesEmotion.equals("16")){
-            emotionTextView.setText("Orgullo");
-        }   else if (diarioEmocionesEmotion.equals("17")){
-            emotionTextView.setText("Serenidad");
-        }   else if (diarioEmocionesEmotion.equals("18")){
-            emotionTextView.setText("Soledad");
-        }   else if (diarioEmocionesEmotion.equals("19")){
-            emotionTextView.setText("Tristeza");
-        }*/
+            typeAlergyTextView.setText("ali");
+        }   else if (alergiasNameAlergy.equals("3")){
+            alergyNameTextView.setText("Lacteos");
+            typeAlergyTextView.setText("ali");
+        }   else if (alergiasNameAlergy.equals("4")){
+            alergyNameTextView.setText("Manies");
+            typeAlergyTextView.setText("ali");
+        }   else if (alergiasNameAlergy.equals("5")){
+            alergyNameTextView.setText("Mariscos");
+            typeAlergyTextView.setText("ali");
+        }else if (alergiasNameAlergy.equals("6")){
+            alergyNameTextView.setText("Soya");
+            typeAlergyTextView.setText("ali");
+        }   else if (alergiasNameAlergy.equals("7")){
+            alergyNameTextView.setText("Nueces");
+            typeAlergyTextView.setText("ali");
+        }   else if (alergiasNameAlergy.equals("8")){
+            alergyNameTextView.setText("Trigo");
+            typeAlergyTextView.setText("ali");
+        }   else if (alergiasNameAlergy.equals("9")){
+            alergyNameTextView.setText("Anticonvulsivos");
+            typeAlergyTextView.setText("far");
+        }   else if (alergiasNameAlergy.equals("10")){
+            alergyNameTextView.setText("Insulina");
+            typeAlergyTextView.setText("far");
+        }else if (alergiasNameAlergy.equals("11")){
+            alergyNameTextView.setText("Yodo");
+            typeAlergyTextView.setText("far");
+        }   else if (alergiasNameAlergy.equals("12")){
+            alergyNameTextView.setText("Penicilina");
+            typeAlergyTextView.setText("far");
+        }   else if (alergiasNameAlergy.equals("13")){
+            alergyNameTextView.setText("Sulfamidas");
+            typeAlergyTextView.setText("far");
+        }
 
-        typeAlergyTextView.setText(alergiasTypeAlergy);
+        //typeAlergyTextView.setText(alergiasTypeAlergy);
         commentAlergyTextView.setText(alergiasComentary);
     }
 }

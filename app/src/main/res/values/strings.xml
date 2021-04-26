@@ -192,7 +192,7 @@
     <string name="editor_insert_diarioemocion_failed">Error al guardar el registro de emocion</string>
 
     <!-- Toast message in editor when new diarioemocion has been successfully inserted [CHAR LIMIT=NONE] -->
-    <string name="editor_insert_diarioemocion_successful">Registro de emocion guartdado</string>
+    <string name="editor_insert_diarioemocion_successful">Registro de emocion guardado</string>
 
     <!-- Toast message in editor when current diarioemocion has failed to be updated [CHAR LIMIT=NONE] -->
     <string name="editor_update_diarioemocion_failed">Error al actualizar el registro de emocion</string>
@@ -264,15 +264,6 @@
 
 
     <!-- Menu catalog                                                                   ALERGIAS -->
-    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
-    <string name="alergia_pescado">Pescado</string>
-
-    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
-    <string name="alergia_huevo">Huevo</string>
-
-    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
-    <string name="alergia_unknown">Eliga una alergia</string>
-
     <!-- Label for the pet's breed if the breed is unknown [CHAR LIMIT=20] -->
     <string name="alergia_comentary_unknown">Sin comentario</string>
 
@@ -285,6 +276,74 @@
     <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="category_comment_alergy">Comentario:</string>
 
+
+    <!-- Menu catalog                                                           ARREGLO ALERGIAS -->
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_unknown">Eliga una alergia</string>
+
+    +<!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_huevo">Huevo</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_pescado">Pescado</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_lacteos">Lacteos</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_manies">Manies (Cacahuates)</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_mariscos">Mariscos</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_soya">Soya</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_nueces">Nueces</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_trigo">Trigo</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_anticonvulsivos">Anticonvulsivos</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_insulina">Insulina</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_yodo">Yodo</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_penicilina">Penicilina</string>
+
+    <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
+    <string name="alergia_sulfamidas">Sulfamidas</string>
+
+
+    <!-- Title for the activity to add a new diarioemocion [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_new_alergias">Añade una alergia</string>
+
+    <!-- Title for the activity to add a new diarioemocion [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_edit_alergias">Edita una alergia</string>
+
+    <!-- Toast message in editor when new diarioemocion has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_alergias_failed">Error al guardar el registro de alergia</string>
+
+    <!-- Toast message in editor when new diarioemocion has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_alergias_successful">Registro de alergia guardado</string>
+
+    <!-- Toast message in editor when current diarioemocion has failed to be updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_alergia_failed">Error al actualizar el registro de alergia</string>
+
+    <!-- Toast message in editor when current diarioemocion was successfully updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_alergia_successful">Registro de alergia actualizado</string>
+
+    <!-- Toast message in editor when current diarioemocion has failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_alergias_failed">Error al borrar el registro de alergia</string>
+
+    <!-- Toast message in editor when current diarioemocion was successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_alergias_successful">Registro de alergia eliminado</string>
 
 
 </resources>
