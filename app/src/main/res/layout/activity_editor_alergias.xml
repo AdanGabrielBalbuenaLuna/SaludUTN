@@ -64,7 +64,7 @@
         <!-- Label -->
         <TextView
             android:layout_height="match_parent"
-            android:text="@string/category_emotion"
+            android:text="@string/category_alergy"
             style="@style/CategoryStyle" />
 
         <!-- Input field -->
@@ -89,7 +89,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <!-- Label -->
         <TextView
@@ -126,7 +127,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/category_tought"
+            android:text="@string/category_comment_alergy"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -139,9 +140,9 @@
             <!-- Thought field -->
             <EditText
                 android:id="@+id/edit_alergia_comentario"
-                android:hint="@string/hint_tought"
+                android:hint="@string/hint_comment"
                 android:inputType="textCapSentences|textMultiLine"
-                android:maxLength="200"
+                android:maxLength="100"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>

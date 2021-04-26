@@ -276,6 +276,9 @@
     <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="category_comment_alergy">Comentario:</string>
 
+    <!-- Text hint for matricula field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_comment">Haz un comentario de la alergia</string>
+
 
     <!-- Menu catalog                                                           ARREGLO ALERGIAS -->
     <!-- Label for dropdown menu option if the diarioemocion's gender is unknown [CHAR LIMIT=20] -->
@@ -344,6 +347,9 @@
 
     <!-- Toast message in editor when current diarioemocion was successfully deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_alergias_successful">Registro de alergia eliminado</string>
+
+
+
 
 
 </resources>
