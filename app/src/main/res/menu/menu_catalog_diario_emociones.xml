@@ -24,8 +24,9 @@
         app:showAsAction="never" />-->
 
 
+    <!--
     <item
         android:id="@+id/action_delete_all_entries"
-        android:title="@string/action_delete_all_entries"
-        app:showAsAction="never" />
+        android:title="@string/action_delete_all_diarioemociones"
+        app:showAsAction="never" />-->
 </menu>

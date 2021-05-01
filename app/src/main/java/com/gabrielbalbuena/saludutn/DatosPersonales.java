@@ -177,10 +177,10 @@ public class DatosPersonales extends AppCompatActivity implements LoaderManager.
                 //displayDatabaseInfo();
                 return true;*/
             // Respond to a click on the "Delete all entries" menu option
-            case R.id.action_delete_all_entries:
+            //case R.id.action_delete_all_entries:
                 // Do nothing for now
-                deleteAllDatosPersonales();
-                return true;
+                //deleteAllDatosPersonales();
+                //return true;
         }
         return super.onOptionsItemSelected(item);
     }

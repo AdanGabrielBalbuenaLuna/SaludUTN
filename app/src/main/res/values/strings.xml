@@ -107,7 +107,7 @@
     <string name="keep_editing">Seguir Editando</string>
 
     <!-- Dialog message to ask the user to confirm deleting the current datopersonal [CHAR LIMIT=NONE] -->
-    <string name="delete_dialog_msg">Eliminar este Usuario?</string>
+    <string name="delete_dialog_msg">Eliminar este registro?</string>
 
     <!-- Dialog button text for the option to confirm deleting the current datopersonal [CHAR LIMIT=20] -->
     <string name="delete">Eliminar</string>
@@ -176,6 +176,8 @@
     <string name="category_emotion">Emocion:</string>
 
 
+
+
     <!-- Toast message in editor when current diarioemocion has failed to be deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_diarioemocion_failed">Error al borrar el registro de emocion</string>
 
@@ -199,6 +201,9 @@
 
     <!-- Toast message in editor when current diarioemocion was successfully updated [CHAR LIMIT=NONE] -->
     <string name="editor_update_diarioemocion_successful">Registro de emocion actualizado</string>
+
+    <!-- Label for overflow menu option that deletes all datopersonal data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_diarioemociones">Borrar datos Diario de emociones</string>
 
 
     <!-- Menu catalog                                                  ARREGLO DIARIO DE EMOCIONES -->
