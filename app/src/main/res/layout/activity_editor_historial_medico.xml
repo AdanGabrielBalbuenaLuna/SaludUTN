@@ -24,11 +24,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:onClick="abrirCalendario">
 
         <!-- Label -->
         <TextView
-            android:text="Fecha"
+            android:text="Fecha:"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
@@ -39,13 +40,16 @@
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
-            <!-- Matricula field -->
-            <EditText
+            <!-- Date field -->
+            <TextView
                 android:id="@+id/et_historial_medico_date"
-                android:hint="Escribe la fecha"
-                android:inputType="date"
-                android:maxLength="8"
-                style="@style/EditorFieldStyle" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:text="@string/hint_date"
+                android:fontFamily="sans-serif"
+                android:textColor="#AEB6BD"
+                style="@style/CategoryStyle"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -53,23 +57,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <!-- Label -->
         <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:text="Diagnostico"
             style="@style/CategoryStyle" />
 
         <!-- Input fields -->
         <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_weight="2"
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
             <!-- Matricula field -->
             <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:id="@+id/et_historial_medico_diagnostic"
                 android:hint="Escribe diagnostico"
                 android:inputType="textMultiLine"
@@ -153,15 +161,23 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:paddingLeft="4dp"
-            android:orientation="vertical">
-
+            android:orientation="horizontal">
+            <!-- Units for weight (kg) -->
+            <TextView
+                android:text="$"
+                style="@style/EditorUnitsStyle"/>
             <!-- Matricula field -->
             <EditText
+                android:layout_width="wrap_content"
                 android:id="@+id/et_historial_medico_price"
-                android:hint="Precio"
+                android:hint="Precio, sin decimales"
                 android:inputType="number"
                 android:maxLength="4"
                 style="@style/EditorFieldStyle" />
+            <!-- Units for weight (kg) -->
+            <TextView
+                android:text="MXN"
+                style="@style/EditorUnitsStyle"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -188,7 +204,7 @@
             <EditText
                 android:id="@+id/et_historial_medico_doctor_name"
                 android:hint="Nombre del doctor"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:maxLength="20"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>

@@ -1,6 +1,7 @@
 package com.gabrielbalbuena.saludutn;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
@@ -20,11 +21,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.HistorialMedicoEntry;
+
+import java.util.Calendar;
 
 /**
  * Allows user to create a new pet or edit an existing one.
@@ -39,7 +44,8 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
     private Uri mCurrentHistorialMedicoUri;
 
     /** EditText field to enter the pet's name */
-    private EditText mDateEditText;
+    private TextView mDateEditText;
+    //private EditText mDateEditText;
 
     /** EditText field to enter the pet's name */
     private EditText mDiagnosticEditText;
@@ -82,6 +88,8 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
     };
 
 
+    //Refrencias TextView //Calendario
+    TextView tv; //Calendario
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +118,9 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         }
 
         // Find all relevant views that we will need to read user input from
-        mDateEditText = (EditText) findViewById(R.id.et_historial_medico_date);
+        mDateEditText = (TextView) findViewById(R.id.et_historial_medico_date);
+        //mDateEditText = (EditText) findViewById(R.id.et_historial_medico_date);
+
         mDiagnosticEditText = (EditText) findViewById(R.id.et_historial_medico_diagnostic);
         mUrlPhotoOneEditText = (EditText) findViewById(R.id.et_historial_medico_photo_one);
         mUrlPhotoTwoEditText = (EditText) findViewById(R.id.et_historial_medico_photo_two);
@@ -131,7 +141,26 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
 
 
         setupSpinner();
+
+        tv = findViewById(R.id.et_historial_medico_date);//Calendario
     }
+
+    public void abrirCalendario(View view) {//Calendario
+        Calendar cal = Calendar.getInstance();//Obtener un calendario
+        int anio = cal.get(Calendar.YEAR);//Calendario
+        int mes = cal.get(Calendar.MONTH);//Calendario
+        int dia = cal.get(Calendar.DAY_OF_MONTH);//Calendario
+
+        //Inicializar el day picker dialog//Calendario
+        DatePickerDialog dpd = new DatePickerDialog(EditorHistorialMedico.this, new DatePickerDialog.OnDateSetListener() {//Calendario
+            @Override//Calendario
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {//Calendario
+                String fecha = dayOfMonth + "/" + month + "/" + year;//Calendario
+                tv.setText(fecha);//Calendario
+            }//Calendario
+        },anio, mes, dia);//Calendario
+        dpd.show();//Calendario
+    }//Calendario
 
     /**
      * Setup the dropdown spinner that allows the user to select the gender of the pet.
