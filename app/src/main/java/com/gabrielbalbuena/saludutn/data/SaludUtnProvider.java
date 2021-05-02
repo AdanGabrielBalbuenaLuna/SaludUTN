@@ -20,6 +20,7 @@ import com.gabrielbalbuena.saludutn.data.SaludUtnContract.DiarioEmocionesEntry;/
 
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.AlergiasEntry;//
 
+import com.gabrielbalbuena.saludutn.data.SaludUtnContract.HistorialMedicoEntry;//
 
 public class SaludUtnProvider extends ContentProvider {
 
@@ -41,6 +42,11 @@ public class SaludUtnProvider extends ContentProvider {
     private static final int ALERGIAS = 300;
     /** URI matcher code for the content URI for a single alergia in the alergias table */
     private static final int ALERGIAS_ID = 301;
+
+    /** URI matcher code for the content URI for the pets table */
+    private static final int HISTORIAL_MEDICO = 400;
+    /** URI matcher code for the content URI for a single pet in the pets table */
+    private static final int HISTORIAL_MEDICO_ID = 401;
 
         //s because is static
     /**
@@ -104,8 +110,21 @@ public class SaludUtnProvider extends ContentProvider {
         // "content://com.example.android.saludutn/alergias" (without a number at the end) doesn't match.
         sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_ALERGIAS + "/#", ALERGIAS_ID);
 
-
-
+        // The calls to addURI() go here, for all of the content URI patterns that the provider
+        // should recognize. All paths added to the UriMatcher have a corresponding code to return
+        // when a match is found.
+        // The content URI of the form "content://com.example.android.pets/pets" will map to the
+        // integer code {@link #PETS}. This URI is used to provide access to MULTIPLE rows
+        // of the pets table.
+        sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_HISTORIAL_MEDICO, HISTORIAL_MEDICO);
+        // The content URI of the form "content://com.example.android.pets/pets/#" will map to the
+        // integer code {@link #PET_ID}. This URI is used to provide access to ONE single row
+        // of the pets table.
+        //
+        // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
+        // For example, "content://com.example.android.pets/pets/3" matches, but
+        // "content://com.example.android.pets/pets" (without a number at the end) doesn't match.
+        sUriMatcher.addURI(SaludUtnContract.CONTENT_AUTHORITY, SaludUtnContract.PATH_HISTORIAL_MEDICO + "/#", HISTORIAL_MEDICO_ID);
     }
 
 
@@ -216,6 +235,32 @@ public class SaludUtnProvider extends ContentProvider {
                 cursor = database.query(AlergiasEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
+
+            case HISTORIAL_MEDICO:
+                // For the PETS code, query the pets table directly with the given
+                // projection, selection, selection arguments, and sort order. The cursor
+                // could contain multiple rows of the pets table.
+                // TODO: Perform database query on pets table
+                cursor = database.query(HistorialMedicoEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
+            case HISTORIAL_MEDICO_ID:
+                // For the PET_ID code, extract out the ID from the URI.
+                // For an example URI such as "content://com.example.android.pets/pets/3",
+                // the selection will be "_id=?" and the selection argument will be a
+                // String array containing the actual ID of 3 in this case.
+                //
+                // For every "?" in the selection, we need to have an element in the selection
+                // arguments that will fill in the "?". Since we have 1 question mark in the
+                // selection, we have 1 String in the selection arguments' String array.
+                selection = HistorialMedicoEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+
+                // This will perform a query on the pets table where the _id equals 3 to return a
+                // Cursor containing that row of the table.
+                cursor = database.query(HistorialMedicoEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
@@ -249,6 +294,12 @@ public class SaludUtnProvider extends ContentProvider {
                 return AlergiasEntry.CONTENT_LIST_TYPE;
             case ALERGIAS_ID:
                 return AlergiasEntry.CONTENT_ITEM_TYPE;
+
+            case HISTORIAL_MEDICO:
+                return HistorialMedicoEntry.CONTENT_LIST_TYPE;
+            case HISTORIAL_MEDICO_ID:
+                return HistorialMedicoEntry.CONTENT_ITEM_TYPE;
+
             default:
                 throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
         }
@@ -268,6 +319,10 @@ public class SaludUtnProvider extends ContentProvider {
                 return insertDiarioEmociones(uri, contentValues);
             case ALERGIAS:
                 return insertAlergias(uri, contentValues);
+
+            case HISTORIAL_MEDICO:
+                return insertHistorialMedico(uri, contentValues);
+
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
         }
@@ -539,6 +594,76 @@ public class SaludUtnProvider extends ContentProvider {
 
 
     /**
+     * Insert a pet into the database with the given content values. Return the new content URI
+     * for that specific row in the database.
+     */
+    private Uri insertHistorialMedico(Uri uri, ContentValues values) {
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Check that the name is not null
+        String date = values.getAsString(HistorialMedicoEntry.COLUMN_FECHA_HM);
+        //name==null || name.isEmpty()
+        if (date.equals("")) {
+            throw new IllegalArgumentException("Registro requires a date");
+        }
+
+        // Check that the name is not null
+        String diagnostic = values.getAsString(HistorialMedicoEntry.COLUMN_DIAGNOSTICO);
+        //name==null || name.isEmpty()
+        if (diagnostic.equals("")) {
+            throw new IllegalArgumentException("Registro requires a diagnostic");
+        }
+        // No need to check the foto 1, any value is valid (including null).
+        // No need to check the foto 2, any value is valid (including null).
+        // No need to check the precio consulta 1, any value is valid (including null).
+        // No need to check the nombre doctor 1, any value is valid (including null).
+
+
+
+        // No need to check the breed, any value is valid (including null).
+
+        // Insert the new pet with the given values
+        long id = database.insert(HistorialMedicoEntry.TABLE_NAME, null, values);
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Notify all listeners that the data has changed for the pet content URI
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        // Return the new URI with the ID (of the newly inserted row) appended at the end
+        return ContentUris.withAppendedId(uri, id);
+
+
+        /*// TODO: Insert a new pet into the pets database table with the given ContentValues
+
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Insert a new row for Toto in the database, returning the ID of that new row.
+        // The first argument for db.insert() is the pets table name.
+        // The second argument provides the name of a column in which the framework
+        // can insert NULL in the event that the ContentValues is empty (if
+        // this is set to "null", then the framework will not insert a row when
+        // there are no values).
+        // The third argument is the ContentValues object containing the info for Toto
+        // Insert the new pet with the given values
+        long id = database.insert(PetEntry.TABLE_NAME, null, values);
+
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Return the new URI with the ID (of the newly inserted row) appended at the end
+        return ContentUris.withAppendedId(uri, id);*/
+    }
+
+    /**
      * Delete the data at the given selection and selection arguments.
      */
     @Override
@@ -589,6 +714,20 @@ public class SaludUtnProvider extends ContentProvider {
                 //return database.delete(AlergiasEntry.TABLE_NAME, selection, selectionArgs);
                 rowsDeleted = database.delete(AlergiasEntry.TABLE_NAME, selection, selectionArgs);
                 break;
+
+            case HISTORIAL_MEDICO:
+                // Delete all rows that match the selection and selection args
+                //return database.delete(PetEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(HistorialMedicoEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            case HISTORIAL_MEDICO_ID:
+                // Delete a single row given by the ID in the URI
+                selection = HistorialMedicoEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                //return database.delete(PetEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(HistorialMedicoEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
         }
@@ -637,6 +776,16 @@ public class SaludUtnProvider extends ContentProvider {
                 selection = AlergiasEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 return updateAlergias(uri, contentValues, selection, selectionArgs);
+
+            case HISTORIAL_MEDICO:
+                return updateHistorialMedico(uri, contentValues, selection, selectionArgs);
+            case HISTORIAL_MEDICO_ID:
+                // For the PET_ID code, extract out the ID from the URI,
+                // so we know which row to update. Selection will be "_id=?" and selection
+                // arguments will be a String array containing the actual ID.
+                selection = HistorialMedicoEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                return updateHistorialMedico(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
         }
@@ -876,6 +1025,76 @@ public class SaludUtnProvider extends ContentProvider {
 
         // Perform the update on the database and get the number of rows affected
         int rowsUpdated = database.update(AlergiasEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        // If 1 or more rows were updated, then notify all listeners that the data at the
+        // given URI has changed
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        // Return the number of rows updated
+        return rowsUpdated;
+    }
+
+    /**
+     * Update pets in the database with the given content values. Apply the changes to the rows
+     * specified in the selection and selection arguments (which could be 0 or 1 or more pets).
+     * Return the number of rows that were successfully updated.
+     */
+    private int updateHistorialMedico(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        // If the {@link PetEntry#COLUMN_PET_NAME} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(HistorialMedicoEntry.COLUMN_FECHA_HM)) {
+            String date = values.getAsString(HistorialMedicoEntry.COLUMN_FECHA_HM);
+            if (date == null) {
+                throw new IllegalArgumentException("Register requires a date");
+            }
+        }
+
+        // If the {@link PetEntry#COLUMN_PET_NAME} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(HistorialMedicoEntry.COLUMN_DIAGNOSTICO)) {
+            String diagnostic = values.getAsString(HistorialMedicoEntry.COLUMN_DIAGNOSTICO);
+            if (diagnostic == null) {
+                throw new IllegalArgumentException("Register requires a diagnostic");
+            }
+        }
+
+
+            /*
+        // If the {@link PetEntry#COLUMN_PET_GENDER} key is present,
+        // check that the gender value is valid.
+        if (values.containsKey(PetEntry.COLUMN_PET_GENDER)) {
+            Integer gender = values.getAsInteger(PetEntry.COLUMN_PET_GENDER);
+            if (gender == null || !PetEntry.isValidGender(gender)) {
+                throw new IllegalArgumentException("Pet requires valid gender");
+            }
+        }
+
+        // If the {@link PetEntry#COLUMN_PET_WEIGHT} key is present,
+        // check that the weight value is valid.
+        if (values.containsKey(PetEntry.COLUMN_PET_WEIGHT)) {
+            // Check that the weight is greater than or equal to 0 kg
+            Integer weight = values.getAsInteger(PetEntry.COLUMN_PET_WEIGHT);
+            if (weight != null && weight < 0) {
+                throw new IllegalArgumentException("Pet requires valid weight");
+            }
+        }*/
+
+        // No need to check the breed, any value is valid (including null).
+
+        // If there are no values to update, then don't try to update the database
+        if (values.size() == 0) {
+            return 0;
+        }
+
+        // Otherwise, get writeable database to update the data
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Returns the number of database rows affected by the update statement
+        //return database.update(PetEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        // Perform the update on the database and get the number of rows affected
+        int rowsUpdated = database.update(HistorialMedicoEntry.TABLE_NAME, values, selection, selectionArgs);
 
         // If 1 or more rows were updated, then notify all listeners that the data at the
         // given URI has changed

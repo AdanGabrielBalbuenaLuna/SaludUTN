@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+import com.gabrielbalbuena.saludutn.data.SaludUtnContract.HistorialMedicoEntry;
+
 public class SaludUtnHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "saludutn.db";
@@ -52,6 +54,16 @@ public class SaludUtnHelper extends SQLiteOpenHelper {
                 SaludUtnContract.AlergiasEntry.COLUMN_COMENTARIO_ALERGIA + "  TEXT );";
         sqLiteDatabase.execSQL(SQL_CREATE_ALERGIAS_TABLE);
 
+        String SQL_CREATE_HISTORIALMEDICO_TABLE = " CREATE TABLE " + SaludUtnContract.HistorialMedicoEntry.TABLE_NAME + " (" +
+                HistorialMedicoEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                HistorialMedicoEntry.COLUMN_FECHA_HM + " TEXT NOT NULL, " +
+                HistorialMedicoEntry.COLUMN_DIAGNOSTICO + "  TEXT, " +
+                HistorialMedicoEntry.COLUMN_FOTO_UNO_URL + "  TEXT, " +
+                HistorialMedicoEntry.COLUMN_FOTO_DOS_URL + "  TEXT, " +
+                HistorialMedicoEntry.COLUMN_PRECIO_CONSULTA + " INTEGER, " +
+                HistorialMedicoEntry.COLUMN_NOMBRE_DOCTOR + "  TEXT, " +
+                HistorialMedicoEntry.COLUMN_ESPECIALIDAD + " TEXT NOT NULL);";
+        sqLiteDatabase.execSQL(SQL_CREATE_HISTORIALMEDICO_TABLE);
         }
 
     /**

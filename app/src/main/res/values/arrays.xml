@@ -53,4 +53,11 @@
         <item>@string/alergia_penicilina</item>
         <item>@string/alergia_sulfamidas</item>
     </string-array>
+
+    <!-- These are the options displayed in the gender drop-down Spinner -->
+    <string-array name="array_speciality_options">
+        <item>@string/speciality_unknown</item>
+        <item>@string/speciality_anestesiologia</item>
+        <item>@string/speciality_angiologia</item>
+    </string-array>
 </resources>

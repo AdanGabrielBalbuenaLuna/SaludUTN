@@ -176,8 +176,6 @@
     <string name="category_emotion">Emocion:</string>
 
 
-
-
     <!-- Toast message in editor when current diarioemocion has failed to be deleted [CHAR LIMIT=NONE] -->
     <string name="editor_delete_diarioemocion_failed">Error al borrar el registro de emocion</string>
 
@@ -356,5 +354,43 @@
 
 
 
+
+
+    <!-- HISTORIAL MEDICO -->
+
+
+
+    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
+    <string name="speciality_unknown">Unknown</string>
+
+    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
+    <string name="speciality_anestesiologia">Anestesiología </string>
+
+    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
+    <string name="speciality_angiologia">Angiología cirujano vascular</string>
+
+    <!-- Title for the activity to add a new pet [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_new_historial_medico">Añade un evento Medico</string>
+
+    <!-- Title for the activity to add a new pet [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_edit_historial_medico">Edita un evento Medico</string>
+
+    <!-- Toast message in editor when new pet has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_historialmedico_failed">Error with saving pet</string>
+
+    <!-- Toast message in editor when new pet has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_historiamedico_successful">Pet saved</string>
+
+    <!-- Toast message in editor when current pet has failed to be updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_historialmedico_failed">Error con la actualizacion del evento</string>
+
+    <!-- Toast message in editor when current pet was successfully updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_historialmedico_successful">Evento actualizado</string>
+
+    <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_historialmedico_failed">Error al eliminar evento</string>
+
+    <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_historialmedico_successful">Evento eliminado</string>
 
 </resources>

@@ -41,5 +41,19 @@ public class SaludFisica extends AppCompatActivity {
                 startActivity(alergiasIntent);
             }
         });
+
+        //Find the TextView HistorialMedico
+        TextView historialMedicoTV = (TextView)findViewById(R.id.textView_historial_medico);
+
+        historialMedicoTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //create an explicit intent
+                Intent historialMedicoIntent = new Intent(SaludFisica.this, HistorialMedico.class);
+
+                //Use intent method
+                startActivity(historialMedicoIntent);
+            }
+        });
     }
 }
