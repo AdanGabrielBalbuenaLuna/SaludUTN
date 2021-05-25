@@ -67,11 +67,11 @@ public class HistorialMedicoCursorAdapter extends CursorAdapter {
         // Find the columns of pet attributes that we're interested in
         int dateColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_FECHA_HM);
         int diagnosticColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_DIAGNOSTICO);
-        int urlUnoColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_FECHA_HM);
-        int urlTwoColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_DIAGNOSTICO);
-        int priceConsultColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_FECHA_HM);
-        int doctorNameColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_DIAGNOSTICO);
-        int specialityColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_FECHA_HM);
+        int urlUnoColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_FOTO_UNO_URL);
+        int urlTwoColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_FOTO_DOS_URL);
+        int priceConsultColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_PRECIO_CONSULTA);
+        int doctorNameColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_NOMBRE_DOCTOR);
+        int specialityColumnIndex = cursor.getColumnIndex(HistorialMedicoEntry.COLUMN_ESPECIALIDAD);
 
         // Read the pet attributes from the Cursor for the current pet
         String historialMedicoDate = cursor.getString(dateColumnIndex);

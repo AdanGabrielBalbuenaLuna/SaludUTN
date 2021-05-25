@@ -25,6 +25,7 @@ import androidx.core.content.FileProvider;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -140,6 +141,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
 
         mDiagnosticEditText = (EditText) findViewById(R.id.et_historial_medico_diagnostic);
         mUrlPhotoOneEditText = (EditText) findViewById(R.id.et_historial_medico_photo_one);
+        //setmUrlPhotoOneEditText(mUrlPhotoOneEditText);
         mUrlPhotoTwoEditText = (EditText) findViewById(R.id.et_historial_medico_photo_two);
         mPriceConsultEditText = (EditText) findViewById(R.id.et_historial_medico_price);
         mDoctorNameEditText = (EditText) findViewById(R.id.et_historial_medico_doctor_name);
@@ -206,6 +208,9 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         return image;
     }
 
+    //public String urlFotoUno = currentPhotoPath;
+
+
     //Method to take pictures and create the file
     static final int REQUEST_TAKE_PHOTO = 1;
     private void dispatchTakePictureIntent() {
@@ -247,6 +252,13 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         dispatchTakePictureIntent();
     }
 
+    /*public void setmUrlPhotoOneEditText(EditText mUrlPhotoOneEditText) {
+        this.mUrlPhotoOneEditText = mUrlPhotoOneEditText;
+        mUrlPhotoOneEditText = currentPhotoPath;
+        Log.v("URL", "Url foto 1: " + mUrlPhotoOneEditText);
+    }*/
+
+    //_______________________________________________________________________________
 
     /**
      * Setup the dropdown spinner that allows the user to select the gender of the pet.
@@ -402,15 +414,51 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        TextView fechaEditText = (TextView)findViewById(R.id.et_historial_medico_date);
+        //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
+        //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
+        String fecha  =  fechaEditText.getText().toString();
+        Log.d("Numero", "La fecha es: " + fecha);
+
+        TextView diagnosticoEditText = (TextView)findViewById(R.id.et_historial_medico_diagnostic);
+        //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
+        //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
+        String diagnostico  =  diagnosticoEditText.getText().toString();
+        Log.d("Diagnostico", "El diagnostico es: " + diagnostico);
+
+
+        TextView fotoEditText = (TextView)findViewById(R.id.et_historial_medico_photo_one);
+        //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
+        //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
+        String foto  =  fotoEditText.getText().toString();
+        Log.d("Foto", "La foto es del edit : " + foto);
+        Log.d("Foto", "La foto de la URL es: " + currentPhotoPath);
+        fotoEditText.setText(currentPhotoPath);
+
+
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                // Save pet to database
-                //insertPet();
-                saveHistorialMedico();
-                // Exit activity
-                finish();
+                if (fecha.equals("Dia/Mes/Año")){
+                    Toast.makeText(this, "Necesitas añadir la fecha", Toast.LENGTH_LONG).show();
+                } else if (diagnostico.equals("")){
+                    Toast.makeText(this, "Debes de colocar un diagnostico", Toast.LENGTH_LONG).show();
+                }  else if (foto.equals(null)){
+                    foto = currentPhotoPath;
+                    // Save diarioemocion to database
+                    saveHistorialMedico();
+                    // Exit activity
+                    finish();
+                    return true;
+                    //Toast.makeText(this, "Debes de colocar una URL", Toast.LENGTH_LONG).show();
+                } else {
+                    // Save diarioemocion to database
+                    saveHistorialMedico();
+                    // Exit activity
+                    finish();
+                    return true;
+                }
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:

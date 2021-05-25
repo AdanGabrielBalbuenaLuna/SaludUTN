@@ -118,7 +118,7 @@
                 android:id="@+id/et_historial_medico_photo_one"
                 android:hint="foto 1"
                 android:inputType="text"
-                android:maxLength="10"
+                android:maxLength="200"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
