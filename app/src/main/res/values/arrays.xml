@@ -59,5 +59,37 @@
         <item>@string/speciality_unknown</item>
         <item>@string/speciality_anestesiologia</item>
         <item>@string/speciality_angiologia</item>
+        <item>@string/speciality_unknown</item>
+        <item>@string/speciality_anestesiologia</item>
+        <item>@string/speciality_angiologia</item>
+
+        <item>@string/speciality_cirugia</item>
+        <item>@string/speciality_cirugia_oncologica</item>
+        <item>@string/speciality_cirugia_plastica</item>
+        <item>@string/speciality_dermatologia</item>
+        <item>@string/speciality_anestesiologia</item>
+
+        <item>@string/speciality_ginecologia_obstreticia</item>
+        <item>@string/speciality_hematologia</item>
+        <item>@string/speciality_infectologia</item>
+        <item>@string/speciality_medicina_rehabilitacion</item>
+        <item>@string/speciality_medicina_interna</item>
+
+        <item>@string/speciality_nefrologia</item>
+        <item>@string/speciality_neumologia</item>
+        <item>@string/speciality_neurologia</item>
+        <item>@string/speciality_oftalmologia</item>
+        <item>@string/speciality_oncologia_medica</item>
+
+        <item>@string/speciality_oncologia_pediatrica</item>
+        <item>@string/speciality_ortopedia</item>
+        <item>@string/speciality_patologia_clinica</item>
+        <item>@string/speciality_oncologia_medica</item>
+        <item>@string/speciality_pediatria</item>
+
+        <item>@string/speciality_psiquiatria</item>
+        <item>@string/speciality_radiologia_imagen</item>
+        <item>@string/speciality_radio_oncologia</item>
+        <item>@string/speciality_urologia</item>
     </string-array>
 </resources>

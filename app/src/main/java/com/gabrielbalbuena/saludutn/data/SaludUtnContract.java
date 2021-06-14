@@ -482,18 +482,86 @@ public class SaludUtnContract {
          * Possible values for the gender of the pet.
          */
         public static final int ESPECIALIDAD_UNKNOWN = 0;
+
         public static final int ESPECIALIDAD_ANESTESIOLOGIA = 1;
         public static final int ESPECIALIDAD_ANGIOLOGIA = 2;
+        public static final int ESPECIALIDAD_CARDIOLOGIA= 3;
+        public static final int ESPECIALIDAD_CARDIOLOGIA_INTERVENCIONISTA = 4;
+        public static final int ESPECIALIDAD_CIRUGIA = 5;
+
+        public static final int ESPECIALIDAD_CIRUGIA_ONCOLOGICA= 6;
+        public static final int ESPECIALIDAD_CIRUGIA_PLASTICA = 7;
+        public static final int ESPECIALIDAD_DERMATOLOGIA = 8;
+        public static final int ESPECIALIDAD_ENDOSCOPIA = 9;
+        public static final int ESPECIALIDAD_GASTROENTEROLOGIA = 10;
+
+        public static final int ESPECIALIDAD_GINECOLOGIA_OBSTRETICIA= 11;
+        public static final int ESPECIALIDAD_HEMATOLOGIA = 12;
+        public static final int ESPECIALIDAD_INFECTOLOGIA = 13;
+        public static final int ESPECIALIDAD_MEDICINA_DE_REHABILITACION = 14;
+        public static final int ESPECIALIDAD_MEDICINA_INTERNA = 15;
+
+        public static final int ESPECIALIDAD_NEFROLOGIA= 16;
+        public static final int ESPECIALIDAD_NEUMOLOGIA = 17;
+        public static final int ESPECIALIDAD_NEUROLOGIA = 18;
+        public static final int ESPECIALIDAD_OFTALMOLOGIA = 19;
+        public static final int ESPECIALIDAD_ONOCOLOGIA_MEDICA = 20;
+
+        public static final int ESPECIALIDAD_ONCOLOGIA_PEDIATRICA= 21;
+        public static final int ESPECIALIDAD_ORTOPEDIA = 22;
+        public static final int ESPECIALIDAD_OTORRINOLARINGOLOGIA = 23;
+        public static final int ESPECIALIDAD_PATOLOGIA_CLINICA = 24;
+        public static final int ESPECIALIDAD_PEDIATRIA = 25;
+
+        public static final int ESPECIALIDAD_PSIQUIATRIA= 26;
+        public static final int ESPECIALIDAD_RADIOLOGIA_IMAGEN = 27;
+        public static final int ESPECIALIDAD_RADIO_ONCOLOGICA = 28;
+        public static final int ESPECIALIDAD_UROLOGIA = 29;
 
         /**
          * Returns whether or not the given gender is {@link #ESPECIALIDAD_UNKNOWN}, {@link #ESPECIALIDAD_ANESTESIOLOGIA},
          * or {@link #ESPECIALIDAD_ANGIOLOGIA}.
          */
         public static boolean isValidSpeciality(int speciality) {
-            if (speciality == ESPECIALIDAD_UNKNOWN || speciality == ESPECIALIDAD_ANESTESIOLOGIA || speciality == ESPECIALIDAD_ANGIOLOGIA) {
+            if (speciality == ESPECIALIDAD_UNKNOWN ||
+                    speciality == ESPECIALIDAD_ANESTESIOLOGIA ||
+                    speciality == ESPECIALIDAD_ANGIOLOGIA ||
+                    speciality == ESPECIALIDAD_CARDIOLOGIA ||
+                    speciality == ESPECIALIDAD_CARDIOLOGIA_INTERVENCIONISTA ||
+                    speciality == ESPECIALIDAD_CIRUGIA ||
+
+                    speciality == ESPECIALIDAD_CIRUGIA_ONCOLOGICA ||
+                    speciality == ESPECIALIDAD_CIRUGIA_PLASTICA ||
+                    speciality == ESPECIALIDAD_DERMATOLOGIA ||
+                    speciality == ESPECIALIDAD_ENDOSCOPIA ||
+                    speciality == ESPECIALIDAD_GASTROENTEROLOGIA ||
+
+                    speciality == ESPECIALIDAD_GINECOLOGIA_OBSTRETICIA ||
+                    speciality == ESPECIALIDAD_HEMATOLOGIA ||
+                    speciality == ESPECIALIDAD_INFECTOLOGIA ||
+                    speciality == ESPECIALIDAD_MEDICINA_DE_REHABILITACION ||
+                    speciality == ESPECIALIDAD_MEDICINA_INTERNA ||
+
+                    speciality == ESPECIALIDAD_NEFROLOGIA ||
+                    speciality == ESPECIALIDAD_NEUMOLOGIA ||
+                    speciality == ESPECIALIDAD_NEUROLOGIA ||
+                    speciality == ESPECIALIDAD_OFTALMOLOGIA ||
+                    speciality == ESPECIALIDAD_ONOCOLOGIA_MEDICA ||
+
+                    speciality == ESPECIALIDAD_ONCOLOGIA_PEDIATRICA ||
+                    speciality == ESPECIALIDAD_ORTOPEDIA ||
+                    speciality == ESPECIALIDAD_OTORRINOLARINGOLOGIA ||
+                    speciality == ESPECIALIDAD_PATOLOGIA_CLINICA ||
+                    speciality == ESPECIALIDAD_PEDIATRIA ||
+
+                    speciality == ESPECIALIDAD_PSIQUIATRIA ||
+                    speciality == ESPECIALIDAD_RADIOLOGIA_IMAGEN ||
+                    speciality == ESPECIALIDAD_RADIO_ONCOLOGICA ||
+                    speciality == ESPECIALIDAD_UROLOGIA ) {
                 return true;
             }
             return false;
         }
     }
 }
+

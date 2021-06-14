@@ -422,7 +422,79 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                         mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_ANESTESIOLOGIA;
                     } else if (selection.equals(getString(R.string.speciality_angiologia))) {
                         mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_ANGIOLOGIA;
-                    } else {
+                    } else if (selection.equals(getString(R.string.speciality_cardiologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_CARDIOLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_cardiologia_intervensionista))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_CARDIOLOGIA_INTERVENCIONISTA;
+                    } else if (selection.equals(getString(R.string.speciality_cirugia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_CIRUGIA;
+                    }
+
+                    //__________________________________________________________________
+                    else if (selection.equals(getString(R.string.speciality_cirugia_oncologica))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_CIRUGIA_ONCOLOGICA;
+                    } else if (selection.equals(getString(R.string.speciality_cirugia_plastica))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_CIRUGIA_PLASTICA;
+                    } else if (selection.equals(getString(R.string.speciality_dermatologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_DERMATOLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_endoscopia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_ENDOSCOPIA;
+                    } else if (selection.equals(getString(R.string.speciality_gastroenterlogia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_GASTROENTEROLOGIA;
+                    }
+
+
+                    //__________________________________________________________________
+                    else if (selection.equals(getString(R.string.speciality_ginecologia_obstreticia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_GINECOLOGIA_OBSTRETICIA;
+                    } else if (selection.equals(getString(R.string.speciality_hematologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_HEMATOLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_infectologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_INFECTOLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_medicina_rehabilitacion))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_MEDICINA_DE_REHABILITACION;
+                    } else if (selection.equals(getString(R.string.speciality_medicina_interna))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_MEDICINA_INTERNA;
+                    }
+
+                    //__________________________________________________________________
+                    else if (selection.equals(getString(R.string.speciality_nefrologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_NEFROLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_neumologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_NEUMOLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_neurologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_NEUROLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_oftalmologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_OFTALMOLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_oncologia_medica))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_ONOCOLOGIA_MEDICA;
+                    }
+
+                    //__________________________________________________________________
+                    else if (selection.equals(getString(R.string.speciality_oncologia_pediatrica))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_ONCOLOGIA_PEDIATRICA;
+                    } else if (selection.equals(getString(R.string.speciality_ortopedia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_ORTOPEDIA;
+                    } else if (selection.equals(getString(R.string.speciality_otorrinolaringologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_OTORRINOLARINGOLOGIA;
+                    } else if (selection.equals(getString(R.string.speciality_patologia_clinica))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_PATOLOGIA_CLINICA;
+                    } else if (selection.equals(getString(R.string.speciality_pediatria))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_PEDIATRIA;
+                    }
+
+                    //__________________________________________________________________
+                    else if (selection.equals(getString(R.string.speciality_psiquiatria))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_PSIQUIATRIA;
+                    } else if (selection.equals(getString(R.string.speciality_radiologia_imagen))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_RADIOLOGIA_IMAGEN;
+                    } else if (selection.equals(getString(R.string.speciality_radio_oncologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_RADIO_ONCOLOGICA;
+                    } else if (selection.equals(getString(R.string.speciality_urologia))) {
+                        mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_UROLOGIA;
+                    }
+
+                    else {
                         mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_UNKNOWN;
                     }
                 }
@@ -749,6 +821,93 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                 case HistorialMedicoEntry.ESPECIALIDAD_ANGIOLOGIA:
                     mSpecialitySpinner.setSelection(2);
                     break;
+                case HistorialMedicoEntry.ESPECIALIDAD_CARDIOLOGIA:
+                    mSpecialitySpinner.setSelection(3);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_CARDIOLOGIA_INTERVENCIONISTA:
+                    mSpecialitySpinner.setSelection(4);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_CIRUGIA:
+                    mSpecialitySpinner.setSelection(5);
+                    break;
+                    //---------------------------------------------
+                case HistorialMedicoEntry.ESPECIALIDAD_CIRUGIA_ONCOLOGICA:
+                    mSpecialitySpinner.setSelection(6);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_CIRUGIA_PLASTICA:
+                    mSpecialitySpinner.setSelection(7);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_DERMATOLOGIA:
+                    mSpecialitySpinner.setSelection(8);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_ENDOSCOPIA:
+                    mSpecialitySpinner.setSelection(9);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_GASTROENTEROLOGIA:
+                    mSpecialitySpinner.setSelection(10);
+                    break;
+                    //---------------------------------------------
+                case HistorialMedicoEntry.ESPECIALIDAD_GINECOLOGIA_OBSTRETICIA:
+                    mSpecialitySpinner.setSelection(11);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_HEMATOLOGIA:
+                    mSpecialitySpinner.setSelection(12);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_INFECTOLOGIA:
+                    mSpecialitySpinner.setSelection(13);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_MEDICINA_DE_REHABILITACION:
+                    mSpecialitySpinner.setSelection(14);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_MEDICINA_INTERNA:
+                    mSpecialitySpinner.setSelection(15);
+                    break;
+                    //---------------------------------------------
+                case HistorialMedicoEntry.ESPECIALIDAD_NEFROLOGIA:
+                    mSpecialitySpinner.setSelection(16);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_NEUMOLOGIA:
+                    mSpecialitySpinner.setSelection(17);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_NEUROLOGIA:
+                    mSpecialitySpinner.setSelection(18);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_OFTALMOLOGIA:
+                    mSpecialitySpinner.setSelection(19);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_ONOCOLOGIA_MEDICA:
+                    mSpecialitySpinner.setSelection(20);
+                    break;
+                    //---------------------------------------------
+                case HistorialMedicoEntry.ESPECIALIDAD_ONCOLOGIA_PEDIATRICA:
+                    mSpecialitySpinner.setSelection(21);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_ORTOPEDIA:
+                    mSpecialitySpinner.setSelection(22);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_OTORRINOLARINGOLOGIA:
+                    mSpecialitySpinner.setSelection(23);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_PATOLOGIA_CLINICA:
+                    mSpecialitySpinner.setSelection(24);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_PEDIATRIA:
+                    mSpecialitySpinner.setSelection(25);
+                    break;
+                    //---------------------------------------------
+                case HistorialMedicoEntry.ESPECIALIDAD_PSIQUIATRIA:
+                    mSpecialitySpinner.setSelection(26);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_RADIOLOGIA_IMAGEN:
+                    mSpecialitySpinner.setSelection(27);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_RADIO_ONCOLOGICA:
+                    mSpecialitySpinner.setSelection(28);
+                    break;
+                case HistorialMedicoEntry.ESPECIALIDAD_UROLOGIA:
+                    mSpecialitySpinner.setSelection(29);
+                    break;
+                //---------------------------------------------
                 default:
                     mSpecialitySpinner.setSelection(0);
                     break;

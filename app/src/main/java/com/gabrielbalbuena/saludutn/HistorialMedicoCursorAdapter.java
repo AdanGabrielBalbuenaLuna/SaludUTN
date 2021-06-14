@@ -115,9 +115,74 @@ public class HistorialMedicoCursorAdapter extends CursorAdapter {
         diagnosticTextView.setText(historialMedicoDiagnostic);
         urlUnoTextView.setText(historialMedicoUrlUno);
         urlDosTextView.setText(historialMedicoUrlDos);
-        priceConsultTextView.setText(historialMedicoPriceConsult);
+        if (historialMedicoPriceConsult.equals("0")){
+            priceConsultTextView.setText("No especificado");
+        }
         doctorNameTextView.setText(historialMedicoDoctorName);
-        specialityTextView.setText(historialMedicoSpeciality);
+        //specialityTextView.setText(historialMedicoSpeciality);
+
+
+        if (historialMedicoSpeciality.equals("0")) {
+            specialityTextView.setText("No seleccionada ");
+        }  else if (historialMedicoSpeciality.equals("1")){
+            specialityTextView.setText("Anestesiología");
+        }   else if (historialMedicoSpeciality.equals("2")){
+            specialityTextView.setText("Angiología cirujano vascula");
+        }   else if (historialMedicoSpeciality.equals("3")){
+            specialityTextView.setText("Cardiología");
+        }   else if (historialMedicoSpeciality.equals("4")){
+            specialityTextView.setText("Cardiología intervencionista");
+        }   else if (historialMedicoSpeciality.equals("5")){
+            specialityTextView.setText("Cirugía");
+        }else if (historialMedicoSpeciality.equals("6")){
+            specialityTextView.setText("Cirugía Oncológica");
+        }   else if (historialMedicoSpeciality.equals("7")){
+            specialityTextView.setText("Cirugía plástica");
+        }   else if (historialMedicoSpeciality.equals("8")){
+            specialityTextView.setText("Dermatología");
+        }   else if (historialMedicoSpeciality.equals("9")){
+            specialityTextView.setText("Endoscopía");
+        }   else if (historialMedicoSpeciality.equals("10")){
+            specialityTextView.setText("Gastroenterología");
+        }else if (historialMedicoSpeciality.equals("11")){
+            specialityTextView.setText("Ginecología y Obstetricia");
+        }   else if (historialMedicoSpeciality.equals("12")){
+            specialityTextView.setText("Hematología");
+        }   else if (historialMedicoSpeciality.equals("13")){
+            specialityTextView.setText("Infectología");
+        }   else if (historialMedicoSpeciality.equals("14")){
+            specialityTextView.setText("Medicina de Rehabilitación");
+        }   else if (historialMedicoSpeciality.equals("15")){
+            specialityTextView.setText("Medicina Interna");
+        }else if (historialMedicoSpeciality.equals("16")){
+            specialityTextView.setText("Nefrología");
+        }   else if (historialMedicoSpeciality.equals("17")){
+            specialityTextView.setText("Neumología");
+        }   else if (historialMedicoSpeciality.equals("18")){
+            specialityTextView.setText("Neurología");
+        }   else if (historialMedicoSpeciality.equals("19")){
+            specialityTextView.setText("Oftalmología");
+        }   else if (historialMedicoSpeciality.equals("20")){
+            specialityTextView.setText("Oncología Médica");
+        }else if (historialMedicoSpeciality.equals("21")){
+            specialityTextView.setText("Oncología pediátrica");
+        }   else if (historialMedicoSpeciality.equals("22")){
+            specialityTextView.setText("Ortopedia");
+        }   else if (historialMedicoSpeciality.equals("23")){
+            specialityTextView.setText("Otorrinolaringología");
+        }   else if (historialMedicoSpeciality.equals("24")){
+            specialityTextView.setText("Patología Clínica");
+        }   else if (historialMedicoSpeciality.equals("25")){
+            specialityTextView.setText("Pediatría");
+        }else if (historialMedicoSpeciality.equals("26")){
+            specialityTextView.setText("Psiquiatría");
+        }   else if (historialMedicoSpeciality.equals("27")){
+            specialityTextView.setText("Radiología e imagen");
+        }   else if (historialMedicoSpeciality.equals("28")){
+            specialityTextView.setText("Radio-oncología");
+        }   else if (historialMedicoSpeciality.equals("29")){
+            specialityTextView.setText("Urología");
+        }
 
 
     }
