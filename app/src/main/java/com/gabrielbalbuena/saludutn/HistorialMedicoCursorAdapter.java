@@ -117,8 +117,16 @@ public class HistorialMedicoCursorAdapter extends CursorAdapter {
         urlDosTextView.setText(historialMedicoUrlDos);
         if (historialMedicoPriceConsult.equals("0")){
             priceConsultTextView.setText("No especificado");
+        } else {
+            priceConsultTextView.setText(historialMedicoPriceConsult);
         }
-        doctorNameTextView.setText(historialMedicoDoctorName);
+
+        if (historialMedicoDoctorName.equals("")){
+            doctorNameTextView.setText("No especificado");
+        } else {
+            doctorNameTextView.setText(historialMedicoDoctorName);
+        }
+
         //specialityTextView.setText(historialMedicoSpeciality);
 
 
@@ -127,7 +135,7 @@ public class HistorialMedicoCursorAdapter extends CursorAdapter {
         }  else if (historialMedicoSpeciality.equals("1")){
             specialityTextView.setText("Anestesiología");
         }   else if (historialMedicoSpeciality.equals("2")){
-            specialityTextView.setText("Angiología cirujano vascula");
+            specialityTextView.setText("Angiología cirujano vascular");
         }   else if (historialMedicoSpeciality.equals("3")){
             specialityTextView.setText("Cardiología");
         }   else if (historialMedicoSpeciality.equals("4")){

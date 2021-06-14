@@ -59,15 +59,15 @@
         <item>@string/speciality_unknown</item>
         <item>@string/speciality_anestesiologia</item>
         <item>@string/speciality_angiologia</item>
-        <item>@string/speciality_unknown</item>
         <item>@string/speciality_anestesiologia</item>
         <item>@string/speciality_angiologia</item>
-
         <item>@string/speciality_cirugia</item>
+
         <item>@string/speciality_cirugia_oncologica</item>
         <item>@string/speciality_cirugia_plastica</item>
         <item>@string/speciality_dermatologia</item>
         <item>@string/speciality_anestesiologia</item>
+        <item>@string/speciality_gastroenterlogia</item>
 
         <item>@string/speciality_ginecologia_obstreticia</item>
         <item>@string/speciality_hematologia</item>
