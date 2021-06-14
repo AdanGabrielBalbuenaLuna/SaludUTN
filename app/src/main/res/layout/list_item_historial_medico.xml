@@ -7,59 +7,152 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <View
-        android:id="@+id/divider1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="4dp"
-        android:background="@android:color/darker_gray" />
-
-    <TextView
-        android:id="@+id/tv_fecha_historial_medico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#2B3D4D"  />
-
-    <TextView
-        android:id="@+id/tv_diagnostico_historial_medico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD"  />
-
+    <!-- Fecha category -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="2"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Icon -->
         <ImageView
-            android:id="@+id/imageViewMini"
-            android:layout_width="wrap_content"
-            android:layout_height="160dp"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="2dp"
-            android:background="#00FFFFFF" />
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_today_24"/>
 
-        <ImageView
-            android:id="@+id/imageViewMini2"
+        <!-- Label Fecha -->
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="160dp"
-            android:layout_marginHorizontal="2dp"
-            android:layout_weight="1"
-            android:background="#00FFFFFF" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/category_date"
+            style="@style/CategoryStyle" />
 
+        <!-- Fecha -->
+        <TextView
+            android:id="@+id/tv_fecha_historial_medico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#2B3D4D"  />
     </LinearLayout>
 
+    <!-- Diagnostico category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_medication_24"/>
+
+        <!-- Label Diagnostico-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/editor_delete_historialmedico_diagnostic"
+            style="@style/CategoryStyle" />
+
+        <!-- Diagnostico -->
+        <TextView
+            android:id="@+id/tv_diagnostico_historial_medico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD"  />
+    </LinearLayout>
+
+    <!-- Diagnostico category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_paid_24"/>
+
+        <!-- Label Precio -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/editor_delete_historialmedico_price"
+            style="@style/CategoryStyle" />
+
+        <!-- Precio -->
+        <TextView
+            android:id="@+id/tv_precioconsulta_historial_medico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#AEB6BD"  />
+
+        <!-- Label Precio -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:layout_weight="0"
+            android:text="@string/editor_delete_historialmedico_price_mxn" />
+    </LinearLayout>
+
+    <!-- Fotografia category -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="2"
         android:orientation="horizontal">
 
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_weight="0"
+            android:paddingLeft="18dp"
+            android:src="@drawable/baseline_photo_camera_24"/>
+
+            <!-- Miniatura Foto 1 -->
+            <ImageView
+                android:id="@+id/imageViewMini"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="2dp"
+                android:background="#00FFFFFF" />
+
+            <!-- Miniatura Foto 2 -->
+            <ImageView
+                android:id="@+id/imageViewMini2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:background="#00FFFFFF" />
+    </LinearLayout>
+
+    <!-- URL´s category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <!-- URL 1 -->
         <TextView
             android:id="@+id/tv_urluno_historial_medico"
             android:layout_width="wrap_content"
@@ -70,6 +163,7 @@
             android:textStyle="italic"
             android:textColor="#A5CCED"  />
 
+        <!-- URL 2 -->
         <TextView
             android:id="@+id/tv_urldos_historial_medico"
             android:layout_width="wrap_content"
@@ -79,30 +173,75 @@
             android:textSize="8sp"
             android:textStyle="italic"
             android:textColor="#A5CCED"  />
-
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_precioconsulta_historial_medico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD"  />
 
-    <TextView
-        android:id="@+id/tv_nombredoctor_historial_medico"
-        android:layout_width="wrap_content"
+    <!-- Doctor Data category -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD"  />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_especialidad_historial_medico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="#AEB6BD"  />
+        <!-- Icon -->
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_weight="0"
+            android:src="@drawable/baseline_assignment_ind_24"/>
+
+        <!-- Label Doctor -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Label Doctor -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/editor_delete_historialmedico_doctor_name"
+                    style="@style/CategoryStyle" />
+
+                <!-- Doctor name -->
+                <TextView
+                    android:id="@+id/tv_nombredoctor_historial_medico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:fontFamily="sans-serif"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="#AEB6BD"  />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Label Especialidad -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/editor_delete_historialmedico_doctor_speciality"
+                    style="@style/CategoryStyle" />
+
+                <!-- Especialidad -->
+                <TextView
+                    android:id="@+id/tv_especialidad_historial_medico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:fontFamily="sans-serif"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:textColor="#AEB6BD"  />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -376,10 +376,10 @@
     <string name="editor_activity_title_edit_historial_medico">Edita un evento Medico</string>
 
     <!-- Toast message in editor when new pet has failed to be inserted [CHAR LIMIT=NONE] -->
-    <string name="editor_insert_historialmedico_failed">Error with saving pet</string>
+    <string name="editor_insert_historialmedico_failed">Error guardando registro médico</string>
 
     <!-- Toast message in editor when new pet has been successfully inserted [CHAR LIMIT=NONE] -->
-    <string name="editor_insert_historiamedico_successful">Pet saved</string>
+    <string name="editor_insert_historiamedico_successful">Registro Médico Guardado</string>
 
     <!-- Toast message in editor when current pet has failed to be updated [CHAR LIMIT=NONE] -->
     <string name="editor_update_historialmedico_failed">Error con la actualizacion del evento</string>
@@ -388,9 +388,25 @@
     <string name="editor_update_historialmedico_successful">Evento actualizado</string>
 
     <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
-    <string name="editor_delete_historialmedico_failed">Error al eliminar evento</string>
+    <string name="editor_delete_historialmedico_failed">Error al eliminar registro médico</string>
 
     <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
-    <string name="editor_delete_historialmedico_successful">Evento eliminado</string>
+    <string name="editor_delete_historialmedico_successful">Registro médico eliminado</string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="editor_delete_historialmedico_diagnostic">Diagnostico: </string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="editor_delete_historialmedico_price">Precio: </string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="editor_delete_historialmedico_price_mxn">MXN</string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="editor_delete_historialmedico_doctor_name">Doctor: </string>
+
+    <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="editor_delete_historialmedico_doctor_speciality">Especialidad: </string>
+
 
 </resources>

@@ -16,6 +16,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".CatalogActivity">
 
+    <!--
     <item
         android:id="@+id/action_insert_dummy_data_historial_medico"
         android:title="@string/action_insert_dummy_data"
@@ -25,4 +26,5 @@
         android:id="@+id/action_delete_all_entries"
         android:title="@string/action_delete_all_entries"
         app:showAsAction="never" />
+        -->
 </menu>

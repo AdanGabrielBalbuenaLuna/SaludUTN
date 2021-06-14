@@ -169,15 +169,15 @@ public class HistorialMedico extends AppCompatActivity implements LoaderManager.
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
-            case R.id.action_insert_dummy_data_historial_medico:
-                insertHistorialMedico();
+            //case R.id.action_insert_dummy_data_historial_medico:
+                //insertHistorialMedico();
                 //displayDatabaseInfo();
-                return true;
+                //return true;
             // Respond to a click on the "Delete all entries" menu option
-            case R.id.action_delete_all_entries:
+            //case R.id.action_delete_all_entries:
                 // Do nothing for now
-                deleteAllHistorialMedico();
-                return true;
+                //deleteAllHistorialMedico();
+                //return true;
         }
         return super.onOptionsItemSelected(item);
     }
