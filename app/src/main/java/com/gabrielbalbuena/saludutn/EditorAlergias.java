@@ -12,11 +12,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.core.app.NavUtils;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -32,9 +31,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.AlergiasEntry;
-import com.gabrielbalbuena.saludutn.data.SaludUtnHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Allows user to create a new alergia or edit an existing one.
@@ -51,6 +52,8 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
     /** EditText field to enter the alergia's date */
     private TextView mDateEditText;
     //private EditText mDateEditText;
+
+    List<Integer> alergiasYa = new ArrayList<Integer>();
 
     /** EditText field to enter the alergias's alergia */
     private Spinner mAlergiasNombreSpinner;
@@ -86,8 +89,6 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         }
     };
 
-
-
     //Refrencias TextView //Calendario
     TextView tv; //Calendario
     @Override
@@ -97,8 +98,14 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new alergias or editing an existing one.
+
+
+
         Intent intent = getIntent();
         mCurrentAlergiasUri = intent.getData();
+        if(intent.hasExtra("alergiasIngresada")){
+            alergiasYa = (List<Integer>) intent.getSerializableExtra("alergiasIngresada");
+        }
 
         // If the intent DOES NOT contain a alergia content URI, then we know that we are
         // creating a new alergia.
@@ -123,7 +130,6 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         mAlergiasNombreSpinner = (Spinner) findViewById(R.id.spinner_alergia_nombre);
         mTipoAlergiaEditText = (EditText) findViewById(R.id.edit_alergia_tipo);
         mComentarioAlergiaEditText = (EditText) findViewById(R.id.edit_alergia_comentario);
-
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -163,17 +169,49 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
     private void setupSpinner() {
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
+
+        List<String> paraArrayAdapter = new ArrayList<String>();
+        String[] fromArray = getResources().getStringArray(R.array.array_alergias_options);
+
+        List<Integer> numerosDesdeArray = new ArrayList<Integer>();
+            for (int i = 0; i < fromArray.length; i++) {
+                numerosDesdeArray.add(i);
+            }
+
+        List<Integer> numerosParaArray = new ArrayList<Integer>();
+
+        for(int i = 0; i < numerosDesdeArray.size(); i++) {
+            if(alergiasYa.indexOf(numerosDesdeArray.get(i)) < 0){
+                numerosParaArray.add(numerosDesdeArray.get(i));
+            }
+        }
+
+        for(int i = 0; i < numerosParaArray.size(); i++) {
+            paraArrayAdapter.add(fromArray[numerosParaArray.get(i)]);
+        }
+
+        String[] paraAdapter = new String[paraArrayAdapter.size()];
+        paraArrayAdapter.toArray(paraAdapter);
+
+/*
         ArrayAdapter alergiaSpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.array_alergias_options, android.R.layout.simple_spinner_item);
 
         // Specify dropdown layout style - simple list view with 1 item per line
         alergiaSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
-        // Apply the adapter to the spinner
-        mAlergiasNombreSpinner.setAdapter(alergiaSpinnerAdapter);
+ */
+        // Apply the adapter to the spinner -> pero ahora creando el adaptador
+
+        mAlergiasNombreSpinner.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                paraArrayAdapter));
+
+
 
         // Set the integer mSelected to the constant values
         mAlergiasNombreSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);

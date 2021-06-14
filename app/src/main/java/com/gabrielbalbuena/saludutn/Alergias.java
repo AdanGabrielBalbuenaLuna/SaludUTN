@@ -8,19 +8,12 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;//4
-import android.database.sqlite.SQLiteDatabase;//2
 import android.net.Uri;
-import android.os.Bundle;
 
-import com.gabrielbalbuena.saludutn.data.SaludUtnContract;
-import com.gabrielbalbuena.saludutn.data.SaludUtnHelper;
-
-import com.gabrielbalbuena.saludutn.data.SaludUtnProvider;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
@@ -31,11 +24,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;//5
-import android.widget.Toast;
 
 
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.AlergiasEntry;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Displays list of alergias that were entered and stored in the app.
@@ -43,7 +38,7 @@ import com.gabrielbalbuena.saludutn.data.SaludUtnContract.AlergiasEntry;
 public class Alergias extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int ALERGIAS_LOADER = 0;
-
+    List<Integer> labels;
     AlergiasCursorAdapter mCursorAdapter;
 
     /** Database helper that will provide us access to the database */
@@ -60,6 +55,9 @@ public class Alergias extends AppCompatActivity implements LoaderManager.LoaderC
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Alergias.this, EditorAlergias.class);
+                if(labels.size() > 0) {
+                    intent.putExtra("alergiasIngresada", (Serializable) labels);
+                }
                 startActivity(intent);
             }
         });
@@ -74,6 +72,9 @@ public class Alergias extends AppCompatActivity implements LoaderManager.LoaderC
         //Setup an Adapter to create a list item for each row of alergia data in the Cursor.
         //There is no alergia data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter= new AlergiasCursorAdapter(this,null);
+
+        labels = new ArrayList<Integer>();
+
         alergiasListView.setAdapter(mCursorAdapter);
 
         //Kick off the loader
@@ -214,6 +215,14 @@ public class Alergias extends AppCompatActivity implements LoaderManager.LoaderC
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         //Update {@link AlergiasCursorAdapter} with this new cursor containing updated alergia data
         mCursorAdapter.swapCursor(data);
+
+        if(data.getCount()>0){
+            for(int i=0; i<data.getCount(); i++) {
+                data.moveToPosition(i);
+                Integer addData = data.getInt(data.getColumnIndex("nombre_alergia"));
+                labels.add(addData);
+            }
+        }
     }
 
     @Override
