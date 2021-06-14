@@ -63,7 +63,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
     static final int REQUEST_TAKE_PHOTO = 100;
     public final String APP_TAG = "SaludUTN";
 
-    String currentPhotoPath;
+    String currentPhotoPath, previousPhotoPath;
     File photoFile;
     Uri photoURI;
     Context context;
@@ -130,6 +130,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         setContentView(R.layout.activity_editor_historial_medico);
 
         context = getApplicationContext();
+        previousPhotoPath = "";
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new pet or editing an existing one.
@@ -176,7 +177,6 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         mDoctorNameEditText.setOnTouchListener(mTouchListener);
         mSpecialitySpinner.setOnTouchListener(mTouchListener);
 
-
         setupSpinner();
 
         tv = findViewById(R.id.et_historial_medico_date);//Calendario
@@ -184,6 +184,23 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
 
         //Foto
         img = (ImageView)findViewById(R.id.imageView);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!previousPhotoPath.isEmpty()) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    Uri photoF = FileProvider.getUriForFile(
+                            getApplicationContext(),
+                            getApplicationContext().getPackageName().concat(".fileprovider"),
+                            new File(previousPhotoPath));
+                    intent.setDataAndType(photoF, "image/*");
+                    startActivity(intent);
+                }
+            }
+        });
+
         if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
@@ -632,6 +649,16 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
             mDoctorNameEditText.setText(doctorName);
 
             mPriceConsultEditText.setText(Integer.toString(priceConsult));
+
+            try {
+                img.setImageBitmap(getThumbnail(Uri.fromFile(new File(urlPhotoOne))));
+                if(new File(urlPhotoOne).exists()){
+                    previousPhotoPath = urlPhotoOne;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             // Gender is a dropdown spinner, so map the constant value from the database
             // into one of the dropdown options (0 is Unknown, 1 is Male, 2 is Female).

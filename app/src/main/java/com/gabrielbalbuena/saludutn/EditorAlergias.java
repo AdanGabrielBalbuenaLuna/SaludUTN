@@ -152,6 +152,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
                 tv.setText(fecha);//Calendario
             }//Calendario
         },anio, mes, dia);//Calendario
+        dpd.getDatePicker().setMaxDate(cal.getTimeInMillis());
         dpd.show();//Calendario
     }//Calendario
 

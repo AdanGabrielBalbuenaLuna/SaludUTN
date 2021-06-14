@@ -152,6 +152,7 @@ public class EditorDiarioEmociones extends AppCompatActivity implements LoaderMa
                 tv.setText(fecha);//Calendario
             }//Calendario
         },anio, mes, dia);//Calendario
+        dpd.getDatePicker().setMaxDate(cal.getTimeInMillis());
         dpd.show();//Calendario
     }//Calendario
 
