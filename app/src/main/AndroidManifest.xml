@@ -71,8 +71,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-
-
     </application>
 
 </manifest>

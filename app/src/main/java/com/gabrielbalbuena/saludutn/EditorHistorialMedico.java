@@ -61,6 +61,10 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
     static final int REQUEST_TAKE_PHOTO_TWO = 102;
     public final String APP_TAG = "SaludUTN";
 
+    // Las variables currentPhotPathOne y currentPhotPath, se utilizaran para almacenar la ruta de las fotos tomadas
+    // durante la sesion activa (Modo Crear)
+    // Las variables previousPhotoPathOne y previousPhotoPathTwo, se utilizarn para almacenar la ruta de las fotos que vienen
+    // almacenadas en la base de datos cuando la actividad carga un contenido previo (Modo Editar)
     String currentPhotoPathOne, currentPhotoPathTwo, previousPhotoPathOne, previousPhotoPathTwo;
     File photoFile;
     Uri photoURI_ONE, photoURI_TWO;
@@ -265,7 +269,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                 tv.setText(fecha);//Calendario
             }//Calendario
         }, anio, mes, dia);//Calendario
-        dpd.getDatePicker().setMaxDate(cal.getTimeInMillis());
+        dpd.getDatePicker().setMaxDate(cal.getTimeInMillis());  // Establezco la fecha maxima permitida -> getTimeInMillis me devuelve la fecha actual en formato Long
         dpd.show();//Calendario
     }//Calendario
 
@@ -312,6 +316,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
             photoFile = null;
+
             try {
                 if(selector == 1) {
                     photoFile = createImageFile(1);
@@ -565,6 +570,8 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         String foto = mUrlPhotoOneEditText.getText().toString();
         Log.d("Foto", "La foto es del edit : " + foto);
         Log.d("Foto", "La foto de la URL es: " + currentPhotoPathOne);
+
+        // Si la variable currentPhotoPathOne != null significa que se ha tomado una foto
         if(currentPhotoPathOne != null){
             mUrlPhotoOneEditText.setText(currentPhotoPathOne);
         }
