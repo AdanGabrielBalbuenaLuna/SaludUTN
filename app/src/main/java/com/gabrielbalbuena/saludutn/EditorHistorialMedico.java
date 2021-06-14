@@ -1,19 +1,22 @@
 package com.gabrielbalbuena.saludutn;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
@@ -42,16 +45,29 @@ import android.widget.Toast;
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.HistorialMedicoEntry;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static androidx.core.content.FileProvider.getUriForFile;
 
 /**
  * Allows user to create a new pet or edit an existing one.
  */
 public class EditorHistorialMedico extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
-    //LoaderManager.LoaderCallbacks<Cursor> {
+
+    static final int REQUEST_TAKE_PHOTO = 100;
+    public final String APP_TAG = "SaludUTN";
+
+    String currentPhotoPath;
+    File photoFile;
+    Uri photoURI;
+    Context context;
+
 
     /** Identifier for the pet data loader */
     private static final int EXISTING_HISTORIALMEDICO_LOADER = 0;
@@ -113,6 +129,8 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_historial_medico);
 
+        context = getApplicationContext();
+
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new pet or editing an existing one.
         Intent intent = getIntent();
@@ -166,8 +184,14 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
 
         //Foto
         img = (ImageView)findViewById(R.id.imageView);
-        if (ContextCompat.checkSelfPermission(EditorHistorialMedico.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(EditorHistorialMedico.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(EditorHistorialMedico.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1000);
+        if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    EditorHistorialMedico.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
+                    1000);
         }
     }
 
@@ -185,40 +209,49 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                 tv.setText(fecha);//Calendario
             }//Calendario
         },anio, mes, dia);//Calendario
+        dpd.getDatePicker().setMaxDate(cal.getTimeInMillis());
         dpd.show();//Calendario
     }//Calendario
 
 
     //___________________________________________________________________________________PHOTOGRAPHY
     //Method to create a name unique per photograph
-    String currentPhotoPath;
+
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        // File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
+                imageFileName,
+                ".jpg",
+                //getApplicationContext().getExternalFilesDir(null)
+                getApplicationContext().getFilesDir()
         );
+
+        if(image.exists()){
+            image.delete();
+        }
 
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
 
-    //public String urlFotoUno = currentPhotoPath;
-
-
     //Method to take pictures and create the file
-    static final int REQUEST_TAKE_PHOTO = 1;
-    private void dispatchTakePictureIntent() {
+    private void dispatchTakePictureIntent() throws IOException {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        }
+
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
+            photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
@@ -227,29 +260,36 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.gabrielbalbuena.saludutn",
+                photoURI = getUriForFile(getApplicationContext(),
+                        getApplicationContext().getPackageName().concat(".fileprovider"),
                         photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI.toString());
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
     }
-
     //Method to show tumbnail in an ImageView
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            img.setImageBitmap(imageBitmap);
+
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+            try {
+                img.setImageBitmap(getThumbnail(photoURI));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public void tomarFoto(View view) {
-        dispatchTakePictureIntent();
+        try {
+            dispatchTakePictureIntent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /*public void setmUrlPhotoOneEditText(EditText mUrlPhotoOneEditText) {
@@ -455,7 +495,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                     Toast.makeText(this, "Necesitas añadir la fecha", Toast.LENGTH_LONG).show();
                 } else if (diagnostico.equals("")){
                     Toast.makeText(this, "Debes de colocar un diagnostico", Toast.LENGTH_LONG).show();
-                }  else if (foto.equals(null)){
+                }  else if (foto == null){
                     foto = currentPhotoPath;
                     // Save diarioemocion to database
                     saveHistorialMedico();
@@ -703,4 +743,43 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         // Close the activity
         finish();
     }
+
+
+    public Bitmap getThumbnail(Uri uri) throws FileNotFoundException, IOException{
+        int THUMBNAIL_SIZE = 160;
+        InputStream input = this.getContentResolver().openInputStream(uri);
+
+        BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
+        onlyBoundsOptions.inJustDecodeBounds = true;
+        onlyBoundsOptions.inDither=true;//optional
+        onlyBoundsOptions.inPreferredConfig=Bitmap.Config.ARGB_8888;//optional
+        BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+        input.close();
+
+        if ((onlyBoundsOptions.outWidth == -1) || (onlyBoundsOptions.outHeight == -1)) {
+            return null;
+        }
+
+        int originalSize = (onlyBoundsOptions.outHeight > onlyBoundsOptions.outWidth) ?
+                onlyBoundsOptions.outHeight : onlyBoundsOptions.outWidth;
+
+        double ratio = (originalSize > THUMBNAIL_SIZE) ? (originalSize / THUMBNAIL_SIZE) : 1.0;
+
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inSampleSize = getPowerOfTwoForSampleRatio(ratio);
+        bitmapOptions.inDither = true; //optional
+        bitmapOptions.inPreferredConfig=Bitmap.Config.ARGB_8888;//
+        input = this.getContentResolver().openInputStream(uri);
+        Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
+        input.close();
+        return bitmap;
+    }
+
+    private static int getPowerOfTwoForSampleRatio(double ratio){
+        int k = Integer.highestOneBit((int)Math.floor(ratio));
+        if(k==0) return 1;
+        else return k;
+    }
+
 }
+
