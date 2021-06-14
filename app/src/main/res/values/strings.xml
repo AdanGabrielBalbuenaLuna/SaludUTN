@@ -2,11 +2,11 @@
     <string name="app_name">Salud UTN</string>
 
     <!-- Activity Titulos -->
-    <string name="title_salud_fisica">Salud Fisica</string>
-    <string name="title_salud_mental">Salud Mental</string>
+    <string name="title_salud_fisica">Cuerpo</string>
+    <string name="title_salud_mental">Mente</string>
 
     <!-- Activity MainActivity Salud  -->
-    <string name="txt_app_name">Mí salud</string>
+    <string name="txt_app_name">Mí perfil</string>
     <string name="txt_salud_fisica">Cuerpo</string>
     <string name="txt_salud_mental">Mente</string>
 
@@ -37,7 +37,7 @@
     <string name="contact_phone_dp">Telefono:</string>
 
     <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
-    <string name="characteristics_dp">Metricas:</string>
+    <string name="characteristics_dp">Métricas:</string>
 
     <!-- Label for contact category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="characteristics_peso_dp">Peso:</string>
@@ -68,7 +68,7 @@
     <string name="hint_contact_name_dp">Nombre contacto</string>
 
     <!-- Text hint for contact last name field in the editor [CHAR LIMIT=30] -->
-    <string name="hint_contact_phone_dp">Telefono contacto</string>
+    <string name="hint_contact_phone_dp">Télefono contacto</string>
 
     <!-- Text hint for contact last name field in the editor [CHAR LIMIT=30] -->
     <string name="hint_weight_dp">Peso</string>
@@ -125,7 +125,7 @@
     <string name="empty_view_title_text">Nada registrado aun...</string>
 
     <!-- Subtitle text for the empty view that prompts the user to add a datopersonal [CHAR LIMIT=50] -->
-    <string name="empty_view_subtitle_text">Empieza por ingresar tu informacion</string>
+    <string name="empty_view_subtitle_text">Empieza por ingresar tu información</string>
 
 
     <!-- Menu catalog                                                          Datos Personales -->
@@ -183,7 +183,7 @@
     <string name="editor_delete_diarioemocion_successful">Registro de emocion eliminado</string>
 
     <!-- Title for the activity to add a new diarioemocion [CHAR LIMIT=20] -->
-    <string name="editor_activity_title_new_diarioemociones">Añade una emocion</string>
+    <string name="editor_activity_title_new_diarioemociones">Añade una emoción</string>
 
     <!-- Title for the activity to add a new diarioemocion [CHAR LIMIT=20] -->
     <string name="editor_activity_title_edit_diarioemociones">Edita una emocion</string>
