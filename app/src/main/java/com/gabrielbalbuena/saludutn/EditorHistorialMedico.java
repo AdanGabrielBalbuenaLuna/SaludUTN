@@ -1,7 +1,6 @@
 package com.gabrielbalbuena.saludutn;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.LoaderManager;
@@ -25,7 +24,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -48,7 +46,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,43 +55,62 @@ import static androidx.core.content.FileProvider.getUriForFile;
 /**
  * Allows user to create a new pet or edit an existing one.
  */
-public class EditorHistorialMedico extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class EditorHistorialMedico extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    static final int REQUEST_TAKE_PHOTO = 100;
+    static final int REQUEST_TAKE_PHOTO_ONE = 101;
+    static final int REQUEST_TAKE_PHOTO_TWO = 102;
     public final String APP_TAG = "SaludUTN";
 
-    String currentPhotoPath, previousPhotoPath;
+    String currentPhotoPathOne, currentPhotoPathTwo, previousPhotoPathOne, previousPhotoPathTwo;
     File photoFile;
-    Uri photoURI;
+    Uri photoURI_ONE, photoURI_TWO;
     Context context;
 
 
-    /** Identifier for the pet data loader */
+    /**
+     * Identifier for the pet data loader
+     */
     private static final int EXISTING_HISTORIALMEDICO_LOADER = 0;
 
-    /** Content URI for the existing pet (null if it's a new pet) */
+    /**
+     * Content URI for the existing pet (null if it's a new pet)
+     */
     private Uri mCurrentHistorialMedicoUri;
 
-    /** EditText field to enter the pet's name */
+    /**
+     * EditText field to enter the pet's name
+     */
     private TextView mDateEditText;
     //private EditText mDateEditText;
 
-    /** EditText field to enter the pet's name */
+    /**
+     * EditText field to enter the pet's name
+     */
     private EditText mDiagnosticEditText;
 
-    /** EditText field to enter the pet's name */
+    /**
+     * EditText field to enter the pet's name
+     */
     private EditText mUrlPhotoOneEditText;
 
-    /** EditText field to enter the pet's name */
+    /**
+     * EditText field to enter the pet's name
+     */
     private EditText mUrlPhotoTwoEditText;
 
-    /** EditText field to enter the pet's name */
+    /**
+     * EditText field to enter the pet's name
+     */
     private EditText mPriceConsultEditText;
 
-    /** EditText field to enter the pet's name */
+    /**
+     * EditText field to enter the pet's name
+     */
     private EditText mDoctorNameEditText;
 
-    /** EditText field to enter the pet's gender */
+    /**
+     * EditText field to enter the pet's gender
+     */
     private Spinner mSpecialitySpinner;
 
     /**
@@ -104,7 +120,9 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
      */
     private int mSpeciality = HistorialMedicoEntry.ESPECIALIDAD_UNKNOWN;
 
-    /** Boolean flag that keeps track of whether the pet has been edited (true) or not (false) */
+    /**
+     * Boolean flag that keeps track of whether the pet has been edited (true) or not (false)
+     */
     private boolean mHistorialMedicoHasChanged = false;
 
     /**
@@ -123,14 +141,15 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
     //Refrencias TextView //Calendario
     TextView tv; //Calendario
 
-    private ImageView img; //Foto
+    private ImageView img, img2; //Foto
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_historial_medico);
 
         context = getApplicationContext();
-        previousPhotoPath = "";
+        previousPhotoPathOne = "";
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new pet or editing an existing one.
@@ -182,24 +201,44 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         tv = findViewById(R.id.et_historial_medico_date);//Calendario
 
 
-        //Foto
-        img = (ImageView)findViewById(R.id.imageView);
+        //Fotos
+        img = (ImageView) findViewById(R.id.imageView);
+        img2 = (ImageView) findViewById(R.id.imageView2);
+
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!previousPhotoPath.isEmpty()) {
+                if (!previousPhotoPathOne.isEmpty()) {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     Uri photoF = FileProvider.getUriForFile(
                             getApplicationContext(),
                             getApplicationContext().getPackageName().concat(".fileprovider"),
-                            new File(previousPhotoPath));
+                            new File(previousPhotoPathOne));
                     intent.setDataAndType(photoF, "image/*");
                     startActivity(intent);
                 }
             }
         });
+
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!previousPhotoPathTwo.isEmpty()) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    Uri photoF = FileProvider.getUriForFile(
+                            getApplicationContext(),
+                            getApplicationContext().getPackageName().concat(".fileprovider"),
+                            new File(previousPhotoPathTwo));
+                    intent.setDataAndType(photoF, "image/*");
+                    startActivity(intent);
+                }
+            }
+        });
+
 
         if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED
@@ -225,7 +264,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                 String fecha = dayOfMonth + "/" + month + "/" + year;//Calendario
                 tv.setText(fecha);//Calendario
             }//Calendario
-        },anio, mes, dia);//Calendario
+        }, anio, mes, dia);//Calendario
         dpd.getDatePicker().setMaxDate(cal.getTimeInMillis());
         dpd.show();//Calendario
     }//Calendario
@@ -234,7 +273,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
     //___________________________________________________________________________________PHOTOGRAPHY
     //Method to create a name unique per photograph
 
-    private File createImageFile() throws IOException {
+    private File createImageFile(int selector) throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -247,17 +286,21 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                 getApplicationContext().getFilesDir()
         );
 
-        if(image.exists()){
+        if (image.exists()) {
             image.delete();
         }
 
         // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
+        if(selector==1) {
+            currentPhotoPathOne = image.getAbsolutePath();
+        } else if (selector == 2){
+            currentPhotoPathTwo = image.getAbsolutePath();
+        }
         return image;
     }
 
     //Method to take pictures and create the file
-    private void dispatchTakePictureIntent() throws IOException {
+    private void dispatchTakePictureIntent(int selector) throws IOException {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -270,18 +313,30 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
             // Create the File where the photo should go
             photoFile = null;
             try {
-                photoFile = createImageFile();
+                if(selector == 1) {
+                    photoFile = createImageFile(1);
+                } else if (selector == 2) {
+                    photoFile = createImageFile(2);
+                }
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                Toast.makeText(this, "NO tomo la foto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error al crear archivo de imagen", Toast.LENGTH_SHORT).show();
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                photoURI = getUriForFile(getApplicationContext(),
-                        getApplicationContext().getPackageName().concat(".fileprovider"),
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                if (selector == 1) {
+                    photoURI_ONE = getUriForFile(getApplicationContext(),
+                            getApplicationContext().getPackageName().concat(".fileprovider"),
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_ONE);
+                    startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO_ONE);
+                } else if (selector == 2) {
+                    photoURI_TWO = getUriForFile(getApplicationContext(),
+                            getApplicationContext().getPackageName().concat(".fileprovider"),
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_TWO);
+                    startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO_TWO);
+                }
             }
         }
     }
@@ -291,9 +346,15 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_TAKE_PHOTO_ONE && resultCode == RESULT_OK) {
             try {
-                img.setImageBitmap(getThumbnail(photoURI));
+                img.setImageBitmap(getThumbnail(photoURI_ONE));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (requestCode == REQUEST_TAKE_PHOTO_TWO && resultCode == RESULT_OK) {
+            try {
+                img2.setImageBitmap(getThumbnail(photoURI_TWO));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -303,7 +364,11 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
 
     public void tomarFoto(View view) {
         try {
-            dispatchTakePictureIntent();
+            if (view == findViewById(R.id.camera1)) {
+                dispatchTakePictureIntent(1);
+            } else if (view == findViewById(R.id.camera2)) {
+                dispatchTakePictureIntent(2);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -323,7 +388,6 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
     }*/
-
 
 
     //_______________________________________________________________________________
@@ -418,7 +482,6 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         values.put(HistorialMedicoEntry.COLUMN_PRECIO_CONSULTA, price);
 
 
-
         // Determine if this is a new or existing pet by checking if mCurrentPetUri is null or not
         if (mCurrentHistorialMedicoUri == null) {
             // This is a NEW pet, so insert a new pet into the provider,
@@ -482,38 +545,46 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        TextView fechaEditText = (TextView)findViewById(R.id.et_historial_medico_date);
+        TextView fechaEditText = (TextView) findViewById(R.id.et_historial_medico_date);
         //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
         //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
-        String fecha  =  fechaEditText.getText().toString();
+        String fecha = fechaEditText.getText().toString();
         Log.d("Numero", "La fecha es: " + fecha);
 
-        TextView diagnosticoEditText = (TextView)findViewById(R.id.et_historial_medico_diagnostic);
+        TextView diagnosticoEditText = (TextView) findViewById(R.id.et_historial_medico_diagnostic);
         //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
         //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
-        String diagnostico  =  diagnosticoEditText.getText().toString();
+        String diagnostico = diagnosticoEditText.getText().toString();
         Log.d("Diagnostico", "El diagnostico es: " + diagnostico);
 
 
-        TextView fotoEditText = (TextView)findViewById(R.id.et_historial_medico_photo_one);
+        TextView fotoEditText = (TextView) findViewById(R.id.et_historial_medico_photo_one);
         //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
         //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
-        String foto  =  fotoEditText.getText().toString();
+        String foto = fotoEditText.getText().toString();
         Log.d("Foto", "La foto es del edit : " + foto);
-        Log.d("Foto", "La foto de la URL es: " + currentPhotoPath);
-        fotoEditText.setText(currentPhotoPath);
+        Log.d("Foto", "La foto de la URL es: " + currentPhotoPathOne);
+        fotoEditText.setText(currentPhotoPathOne);
+
+        TextView fotoEditText2 = (TextView) findViewById(R.id.et_historial_medico_photo_two);
+        //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
+        //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
+        String foto2 = fotoEditText2.getText().toString();
+        Log.d("Foto", "La foto es del edit : " + foto2);
+        Log.d("Foto", "La foto de la URL es: " + currentPhotoPathTwo);
+        fotoEditText2.setText(currentPhotoPathTwo);
 
 
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                if (fecha.equals("Dia/Mes/Año")){
+                if (fecha.equals("Dia/Mes/Año")) {
                     Toast.makeText(this, "Necesitas añadir la fecha", Toast.LENGTH_LONG).show();
-                } else if (diagnostico.equals("")){
+                } else if (diagnostico.equals("")) {
                     Toast.makeText(this, "Debes de colocar un diagnostico", Toast.LENGTH_LONG).show();
-                }  else if (foto == null){
-                    foto = currentPhotoPath;
+                } else if (foto == null) {
+                    foto = currentPhotoPathOne;
                     // Save diarioemocion to database
                     saveHistorialMedico();
                     // Exit activity
@@ -652,8 +723,18 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
 
             try {
                 img.setImageBitmap(getThumbnail(Uri.fromFile(new File(urlPhotoOne))));
-                if(new File(urlPhotoOne).exists()){
-                    previousPhotoPath = urlPhotoOne;
+                if (new File(urlPhotoOne).exists()) {
+                    previousPhotoPathOne = urlPhotoOne;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                img2.setImageBitmap(getThumbnail(Uri.fromFile(new File(urlPhotoTwo))));
+                if (new File(urlPhotoTwo).exists()) {
+                    previousPhotoPathTwo = urlPhotoTwo;
                 }
 
             } catch (IOException e) {
@@ -772,14 +853,14 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
     }
 
 
-    public Bitmap getThumbnail(Uri uri) throws FileNotFoundException, IOException{
+    public Bitmap getThumbnail(Uri uri) throws FileNotFoundException, IOException {
         int THUMBNAIL_SIZE = 160;
         InputStream input = this.getContentResolver().openInputStream(uri);
 
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
         onlyBoundsOptions.inJustDecodeBounds = true;
-        onlyBoundsOptions.inDither=true;//optional
-        onlyBoundsOptions.inPreferredConfig=Bitmap.Config.ARGB_8888;//optional
+        onlyBoundsOptions.inDither = true;//optional
+        onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
         BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
         input.close();
 
@@ -787,24 +868,23 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
             return null;
         }
 
-        int originalSize = (onlyBoundsOptions.outHeight > onlyBoundsOptions.outWidth) ?
-                onlyBoundsOptions.outHeight : onlyBoundsOptions.outWidth;
+        int originalSize = Math.max(onlyBoundsOptions.outHeight, onlyBoundsOptions.outWidth);
 
         double ratio = (originalSize > THUMBNAIL_SIZE) ? (originalSize / THUMBNAIL_SIZE) : 1.0;
 
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         bitmapOptions.inSampleSize = getPowerOfTwoForSampleRatio(ratio);
         bitmapOptions.inDither = true; //optional
-        bitmapOptions.inPreferredConfig=Bitmap.Config.ARGB_8888;//
+        bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//
         input = this.getContentResolver().openInputStream(uri);
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
         input.close();
         return bitmap;
     }
 
-    private static int getPowerOfTwoForSampleRatio(double ratio){
-        int k = Integer.highestOneBit((int)Math.floor(ratio));
-        if(k==0) return 1;
+    private static int getPowerOfTwoForSampleRatio(double ratio) {
+        int k = Integer.highestOneBit((int) Math.floor(ratio));
+        if (k == 0) return 1;
         else return k;
     }
 

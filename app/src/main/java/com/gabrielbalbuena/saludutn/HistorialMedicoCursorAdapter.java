@@ -98,6 +98,10 @@ public class HistorialMedicoCursorAdapter extends CursorAdapter {
         Bitmap bMap = BitmapFactory.decodeFile(historialMedicoUrlUno);
         miniatura.setImageBitmap(bMap);
 
+        ImageView miniatura2 = (ImageView) view.findViewById(R.id.imageViewMini2);
+        Bitmap bMap2 = BitmapFactory.decodeFile(historialMedicoUrlDos);
+        miniatura2.setImageBitmap(bMap2);
+
 
         /*
         // If the pet breed is empty string or null, then use some default text

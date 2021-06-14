@@ -86,6 +86,13 @@
         </LinearLayout>
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/holo_green_dark" />
+
     <!-- Photo One category -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,8 +101,9 @@
 
         <!-- Label -->
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/camera1"
+            android:layout_width="@dimen/camera_icon_size"
+            android:layout_height="@dimen/camera_icon_size"
             android:src="@drawable/baseline_photo_camera_24"
             android:onClick="tomarFoto"/>
 
@@ -117,12 +125,23 @@
             <!-- Matricula field -->
             <EditText
                 android:id="@+id/et_historial_medico_photo_one"
-                android:hint="foto 1"
-                android:inputType="text"
-                android:maxLength="200"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:focusableInTouchMode="false"
+                android:hint="Foto1"
+                android:inputType="textUri"
+                android:scrollHorizontally="true"
+                android:textColor="#0097A7"
+                android:textSize="14sp"
+                android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/holo_green_dark" />
 
     <!-- Photo Two category -->
     <LinearLayout
@@ -130,10 +149,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- Label -->
-        <TextView
-            android:text="URL 2"
-            style="@style/CategoryStyle" />
+        <ImageView
+            android:id="@+id/camera2"
+            android:layout_width="@dimen/camera_icon_size"
+            android:layout_height="@dimen/camera_icon_size"
+            android:src="@drawable/baseline_photo_camera_24"
+            android:onClick="tomarFoto"/>
 
         <!-- Input fields -->
         <LinearLayout
@@ -143,15 +164,33 @@
             android:paddingLeft="4dp"
             android:orientation="vertical">
 
-            <!-- Matricula field -->
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:scaleType="fitCenter"
+                tools:srcCompat="@tools:sample/avatars" />
+
             <EditText
                 android:id="@+id/et_historial_medico_photo_two"
-                android:hint="foto 2"
-                android:inputType="text"
-                android:maxLength="10"
-                style="@style/EditorFieldStyle" />
+                style="@style/EditorFieldStyle"
+                android:focusableInTouchMode="false"
+                android:hint="Foto2"
+                android:inputType="textUri"
+                android:scrollHorizontally="true"
+                android:textColor="#0097A7"
+                android:textSize="14sp"
+                android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/holo_green_dark" />
+
 
     <!-- Price category -->
     <LinearLayout
@@ -161,6 +200,7 @@
 
         <!-- Label -->
         <TextView
+            android:layout_width="wrap_content"
             android:text="Precio"
             style="@style/CategoryStyle" />
 
@@ -168,24 +208,28 @@
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_weight="20"
             android:paddingLeft="4dp"
             android:orientation="horizontal">
             <!-- Units for weight (kg) -->
             <TextView
                 android:text="$"
+                android:layout_weight="2"
                 style="@style/EditorUnitsStyle"/>
             <!-- Matricula field -->
             <EditText
-                android:layout_width="wrap_content"
                 android:id="@+id/et_historial_medico_price"
+                style="@style/EditorFieldStyle"
+                android:layout_width="wrap_content"
+                android:layout_weight="14"
                 android:hint="Precio, sin decimales"
                 android:inputType="number"
                 android:maxLength="4"
-                style="@style/EditorFieldStyle" />
+                android:textStyle="bold" />
             <!-- Units for weight (kg) -->
             <TextView
                 android:text="MXN"
+                android:layout_weight="4"
                 style="@style/EditorUnitsStyle"/>
         </LinearLayout>
     </LinearLayout>

@@ -108,8 +108,9 @@ public class Alergias extends AppCompatActivity implements LoaderManager.LoaderC
                     intent.putExtra("alergiasIngresada", (Serializable) labels);
                 }
 
-                intent.putExtra("currentValue", (int) id);
+                intent.putExtra("currentValue", (int) position);
 
+                Log.e("pos", String.valueOf(position));
 
                 //Launch the{@link EditorActivity} to display the data for the current alergia.
                 startActivity(intent);
@@ -224,6 +225,7 @@ public class Alergias extends AppCompatActivity implements LoaderManager.LoaderC
         mCursorAdapter.swapCursor(data);
 
         if(data.getCount()>0){
+            labels.clear();
             for(int i=0; i<data.getCount(); i++) {
                 data.moveToPosition(i);
                 Integer addData = data.getInt(data.getColumnIndex("nombre_alergia"));

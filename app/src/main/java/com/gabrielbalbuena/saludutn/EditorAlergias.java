@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.core.app.NavUtils;
 
@@ -55,7 +56,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
     List<Integer> alergiasYa = new ArrayList<Integer>();
     String[] paraAdapter, fromArray;
-    Integer currentValue = -1;
+    Integer currentValue = -1, newValue = -1;
 
     /** EditText field to enter the alergias's alergia */
     private Spinner mAlergiasNombreSpinner;
@@ -105,12 +106,17 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
         Intent intent = getIntent();
         mCurrentAlergiasUri = intent.getData();
-        if(intent.hasExtra("alergiasIngresada")){
-            alergiasYa = (List<Integer>) intent.getSerializableExtra("alergiasIngresada");
-        }
 
         if(intent.hasExtra("currentValue")){
             currentValue = intent.getIntExtra("currentValue", -1);
+            Log.e("currentValue", String.valueOf(currentValue));
+        }
+
+        if(intent.hasExtra("alergiasIngresada")){
+            alergiasYa.clear();
+            alergiasYa = (List<Integer>) intent.getSerializableExtra("alergiasIngresada");
+            if (mCurrentAlergiasUri != null) currentValue = alergiasYa.get(currentValue);
+            Log.e("currentValue", String.valueOf(currentValue));
         }
 
         // If the intent DOES NOT contain a alergia content URI, then we know that we are
@@ -145,9 +151,11 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         mTipoAlergiaEditText.setOnTouchListener(mTouchListener);
         mComentarioAlergiaEditText.setOnTouchListener(mTouchListener);
 
+        tv = findViewById(R.id.edit_date_alergia);//Calendario
+
         setupSpinner();
 
-        tv = findViewById(R.id.edit_date_alergia);//Calendario
+
     }
 
     public void abrirCalendario(View view) {//Calendario
@@ -176,10 +184,11 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
 
-        List<String> paraArrayAdapter = new ArrayList<String>();
         fromArray = getResources().getStringArray(R.array.array_alergias_options);
-
+/*
+        List<String> paraArrayAdapter = new ArrayList<String>();
         List<Integer> numerosDesdeArray = new ArrayList<Integer>();
+
             for (int i = 0; i < fromArray.length; i++) {
                 numerosDesdeArray.add(i);
             }
@@ -189,7 +198,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         for(int i = 0; i < numerosDesdeArray.size(); i++) {
             if(alergiasYa.indexOf(numerosDesdeArray.get(i)) < 0
                     || (currentValue >= 0
-                    && i == alergiasYa.get(currentValue - 1))) {
+                    && i == alergiasYa.get(currentValue))) {
                 numerosParaArray.add(numerosDesdeArray.get(i));
             }
         }
@@ -200,6 +209,8 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
         paraAdapter = new String[paraArrayAdapter.size()];
         paraArrayAdapter.toArray(paraAdapter);
+ */
+
 
 /*
         ArrayAdapter alergiaSpinnerAdapter = ArrayAdapter.createFromResource(this,
@@ -211,9 +222,13 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
  */
         // Apply the adapter to the spinner -> pero ahora creando el adaptador
 
+//        mAlergiasNombreSpinner.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+//                android.R.layout.simple_spinner_dropdown_item,
+//                paraArrayAdapter));
+
         mAlergiasNombreSpinner.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
-                paraArrayAdapter));
+                fromArray));
 
 
         // Set the integer mSelected to the constant values
@@ -221,42 +236,56 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selection = (String) parent.getItemAtPosition(position);
 
-                if (!TextUtils.isEmpty(selection) && currentValue < 0) {
-                    if (selection.equals(getString(R.string.alergia_huevo))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_HUEVOS;
-                    } else if (selection.equals(getString(R.string.alergia_pescado))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_PESCADO;
-                    } else if (selection.equals(getString(R.string.alergia_lacteos))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_LACTEOS;
-                    } else if (selection.equals(getString(R.string.alergia_manies))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_MANIES;
-                    } else if (selection.equals(getString(R.string.alergia_mariscos))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_MARSICOS;
-                        //------------------------------------------------>
-                    } else if (selection.equals(getString(R.string.alergia_soya))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_SOYA;
-                    } else if (selection.equals(getString(R.string.alergia_nueces))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_NUECES;
-                    } else if (selection.equals(getString(R.string.alergia_trigo))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_TRIGO;
-                    } else if (selection.equals(getString(R.string.alergia_anticonvulsivos))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_ANTICONVULSIVOS;
-                    } else if (selection.equals(getString(R.string.alergia_insulina))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_INSULINA;
-                        //------------------------------------------------->
-                    } else if (selection.equals(getString(R.string.alergia_yodo))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_YODO;
-                    } else if (selection.equals(getString(R.string.alergia_penicilina))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_PENICILINA;
-                    } else if (selection.equals(getString(R.string.alergia_sulfamidas))) {
-                        mAlergiaName = AlergiasEntry.ALERGIA_SULFAMIDAS;
-                    } else {
-                        mAlergiaName = AlergiasEntry.ALERGIA_UNKNOWN;
+                if  (alergiasYa.indexOf(position) < 0 ||
+                    (alergiasYa.indexOf(position) >= 0 && position == currentValue) ||
+                    (position == 0)) {
+
+                    String selection = (String) parent.getItemAtPosition(position);
+
+                    if (!TextUtils.isEmpty(selection)) {
+                        if (selection.equals(getString(R.string.alergia_huevo))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_HUEVOS;
+                        } else if (selection.equals(getString(R.string.alergia_pescado))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_PESCADO;
+                        } else if (selection.equals(getString(R.string.alergia_lacteos))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_LACTEOS;
+                        } else if (selection.equals(getString(R.string.alergia_manies))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_MANIES;
+                        } else if (selection.equals(getString(R.string.alergia_mariscos))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_MARSICOS;
+                            //------------------------------------------------>
+                        } else if (selection.equals(getString(R.string.alergia_soya))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_SOYA;
+                        } else if (selection.equals(getString(R.string.alergia_nueces))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_NUECES;
+                        } else if (selection.equals(getString(R.string.alergia_trigo))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_TRIGO;
+                        } else if (selection.equals(getString(R.string.alergia_anticonvulsivos))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_ANTICONVULSIVOS;
+                        } else if (selection.equals(getString(R.string.alergia_insulina))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_INSULINA;
+                            //------------------------------------------------->
+                        } else if (selection.equals(getString(R.string.alergia_yodo))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_YODO;
+                        } else if (selection.equals(getString(R.string.alergia_penicilina))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_PENICILINA;
+                        } else if (selection.equals(getString(R.string.alergia_sulfamidas))) {
+                            mAlergiaName = AlergiasEntry.ALERGIA_SULFAMIDAS;
+                        } else {
+                            mAlergiaName = AlergiasEntry.ALERGIA_UNKNOWN;
+                        }
+
+                        newValue = position;
+
                     }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Opción no válida, ya está registrada", Toast.LENGTH_SHORT).show();
+                    parent.setSelection(newValue);
                 }
+
             }
+
 
             // Because AdapterView is an abstract class, onNothingSelected must be defined
             @Override
@@ -503,56 +532,57 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
             // into one of the dropdown options (0 is Unknown, 1 is Male, 2 is Female).
             // Then call setSelection() so that option is displayed on screen as the current selection.
 
-            String strCurrent = fromArray[alergiasYa.get(currentValue - 1)];
-            mAlergiasNombreSpinner.setSelection(Arrays.asList(paraAdapter).indexOf(strCurrent.trim()));
+            String strCurrent = fromArray[currentValue];
+            mAlergiasNombreSpinner.setSelection(Arrays.asList(fromArray).indexOf(strCurrent.trim()));
 
-//            switch (alergyName) {
-//                case AlergiasEntry.ALERGIA_PESCADO:
-//                    mAlergiasNombreSpinner.setSelection(2);
-//                    break;
-//                case AlergiasEntry.ALERGIA_HUEVOS:
-//                    mAlergiasNombreSpinner.setSelection(1);
-//                    break;
-//                case AlergiasEntry.ALERGIA_LACTEOS:
-//                    mAlergiasNombreSpinner.setSelection(3);
-//                    break;
-//                case AlergiasEntry.ALERGIA_MANIES:
-//                    mAlergiasNombreSpinner.setSelection(4);
-//                    break;
-//                case AlergiasEntry.ALERGIA_MARSICOS:
-//                    mAlergiasNombreSpinner.setSelection(5);
-//                    break;
-//                //------------------------------->
-//                case AlergiasEntry.ALERGIA_SOYA:
-//                    mAlergiasNombreSpinner.setSelection(6);
-//                    break;
-//                case AlergiasEntry.ALERGIA_NUECES:
-//                    mAlergiasNombreSpinner.setSelection(7);
-//                    break;
-//                case AlergiasEntry.ALERGIA_TRIGO:
-//                    mAlergiasNombreSpinner.setSelection(8);
-//                    break;
-//                case AlergiasEntry.ALERGIA_ANTICONVULSIVOS:
-//                    mAlergiasNombreSpinner.setSelection(9);
-//                    break;
-//                case AlergiasEntry.ALERGIA_INSULINA:
-//                    mAlergiasNombreSpinner.setSelection(10);
-//                    break;
-//                //------------------------------->
-//                case AlergiasEntry.ALERGIA_YODO:
-//                    mAlergiasNombreSpinner.setSelection(11);
-//                    break;
-//                case AlergiasEntry.ALERGIA_PENICILINA:
-//                    mAlergiasNombreSpinner.setSelection(12);
-//                    break;
-//                case AlergiasEntry.ALERGIA_SULFAMIDAS:
-//                    mAlergiasNombreSpinner.setSelection(13);
-//                    break;
-//                default:
-//                    mAlergiasNombreSpinner.setSelection(0);
-//                    break;
-//            }
+            switch (alergyName) {
+                case AlergiasEntry.ALERGIA_PESCADO:
+                    mAlergiasNombreSpinner.setSelection(2);
+                    break;
+                case AlergiasEntry.ALERGIA_HUEVOS:
+                    mAlergiasNombreSpinner.setSelection(1);
+                    break;
+                case AlergiasEntry.ALERGIA_LACTEOS:
+                    mAlergiasNombreSpinner.setSelection(3);
+                    break;
+                case AlergiasEntry.ALERGIA_MANIES:
+                    mAlergiasNombreSpinner.setSelection(4);
+                    break;
+                case AlergiasEntry.ALERGIA_MARSICOS:
+                    mAlergiasNombreSpinner.setSelection(5);
+                    break;
+                //------------------------------->
+                case AlergiasEntry.ALERGIA_SOYA:
+                    mAlergiasNombreSpinner.setSelection(6);
+                    break;
+                case AlergiasEntry.ALERGIA_NUECES:
+                    mAlergiasNombreSpinner.setSelection(7);
+                    break;
+                case AlergiasEntry.ALERGIA_TRIGO:
+                    mAlergiasNombreSpinner.setSelection(8);
+                    break;
+                case AlergiasEntry.ALERGIA_ANTICONVULSIVOS:
+                    mAlergiasNombreSpinner.setSelection(9);
+                    break;
+                case AlergiasEntry.ALERGIA_INSULINA:
+                    mAlergiasNombreSpinner.setSelection(10);
+                    break;
+                //------------------------------->
+                case AlergiasEntry.ALERGIA_YODO:
+                    mAlergiasNombreSpinner.setSelection(11);
+                    break;
+                case AlergiasEntry.ALERGIA_PENICILINA:
+                    mAlergiasNombreSpinner.setSelection(12);
+                    break;
+                case AlergiasEntry.ALERGIA_SULFAMIDAS:
+                    mAlergiasNombreSpinner.setSelection(13);
+                    break;
+                default:
+                    mAlergiasNombreSpinner.setSelection(0);
+                    break;
+            }
         }
+
     }
 
 
