@@ -104,6 +104,13 @@ public class Alergias extends AppCompatActivity implements LoaderManager.LoaderC
                 //Set the URI on the data field of the intent
                 intent.setData(currentAlergiaUri);
 
+                if(labels.size() > 0) {
+                    intent.putExtra("alergiasIngresada", (Serializable) labels);
+                }
+
+                intent.putExtra("currentValue", (int) id);
+
+
                 //Launch the{@link EditorActivity} to display the data for the current alergia.
                 startActivity(intent);
             }

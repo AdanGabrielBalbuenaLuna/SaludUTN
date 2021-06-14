@@ -54,6 +54,8 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
     //private EditText mDateEditText;
 
     List<Integer> alergiasYa = new ArrayList<Integer>();
+    String[] paraAdapter, fromArray;
+    Integer currentValue = -1;
 
     /** EditText field to enter the alergias's alergia */
     private Spinner mAlergiasNombreSpinner;
@@ -105,6 +107,10 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         mCurrentAlergiasUri = intent.getData();
         if(intent.hasExtra("alergiasIngresada")){
             alergiasYa = (List<Integer>) intent.getSerializableExtra("alergiasIngresada");
+        }
+
+        if(intent.hasExtra("currentValue")){
+            currentValue = intent.getIntExtra("currentValue", -1);
         }
 
         // If the intent DOES NOT contain a alergia content URI, then we know that we are
@@ -171,7 +177,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         // the spinner will use the default layout
 
         List<String> paraArrayAdapter = new ArrayList<String>();
-        String[] fromArray = getResources().getStringArray(R.array.array_alergias_options);
+        fromArray = getResources().getStringArray(R.array.array_alergias_options);
 
         List<Integer> numerosDesdeArray = new ArrayList<Integer>();
             for (int i = 0; i < fromArray.length; i++) {
@@ -181,7 +187,9 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
         List<Integer> numerosParaArray = new ArrayList<Integer>();
 
         for(int i = 0; i < numerosDesdeArray.size(); i++) {
-            if(alergiasYa.indexOf(numerosDesdeArray.get(i)) < 0){
+            if(alergiasYa.indexOf(numerosDesdeArray.get(i)) < 0
+                    || (currentValue >= 0
+                    && i == alergiasYa.get(currentValue - 1))) {
                 numerosParaArray.add(numerosDesdeArray.get(i));
             }
         }
@@ -190,7 +198,7 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
             paraArrayAdapter.add(fromArray[numerosParaArray.get(i)]);
         }
 
-        String[] paraAdapter = new String[paraArrayAdapter.size()];
+        paraAdapter = new String[paraArrayAdapter.size()];
         paraArrayAdapter.toArray(paraAdapter);
 
 /*
@@ -208,14 +216,14 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
                 paraArrayAdapter));
 
 
-
         // Set the integer mSelected to the constant values
         mAlergiasNombreSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
-                if (!TextUtils.isEmpty(selection)) {
+
+                if (!TextUtils.isEmpty(selection) && currentValue < 0) {
                     if (selection.equals(getString(R.string.alergia_huevo))) {
                         mAlergiaName = AlergiasEntry.ALERGIA_HUEVOS;
                     } else if (selection.equals(getString(R.string.alergia_pescado))) {
@@ -494,52 +502,56 @@ public class EditorAlergias extends AppCompatActivity implements LoaderManager.L
             // Gender is a dropdown spinner, so map the constant value from the database
             // into one of the dropdown options (0 is Unknown, 1 is Male, 2 is Female).
             // Then call setSelection() so that option is displayed on screen as the current selection.
-            switch (alergyName) {
-                case AlergiasEntry.ALERGIA_PESCADO:
-                    mAlergiasNombreSpinner.setSelection(1);
-                    break;
-                case AlergiasEntry.ALERGIA_HUEVOS:
-                    mAlergiasNombreSpinner.setSelection(2);
-                    break;
-                case AlergiasEntry.ALERGIA_LACTEOS:
-                    mAlergiasNombreSpinner.setSelection(3);
-                    break;
-                case AlergiasEntry.ALERGIA_MANIES:
-                    mAlergiasNombreSpinner.setSelection(4);
-                    break;
-                case AlergiasEntry.ALERGIA_MARSICOS:
-                    mAlergiasNombreSpinner.setSelection(5);
-                    break;
-                //------------------------------->
-                case AlergiasEntry.ALERGIA_SOYA:
-                    mAlergiasNombreSpinner.setSelection(6);
-                    break;
-                case AlergiasEntry.ALERGIA_NUECES:
-                    mAlergiasNombreSpinner.setSelection(7);
-                    break;
-                case AlergiasEntry.ALERGIA_TRIGO:
-                    mAlergiasNombreSpinner.setSelection(8);
-                    break;
-                case AlergiasEntry.ALERGIA_ANTICONVULSIVOS:
-                    mAlergiasNombreSpinner.setSelection(9);
-                    break;
-                case AlergiasEntry.ALERGIA_INSULINA:
-                    mAlergiasNombreSpinner.setSelection(10);
-                    break;
-                //------------------------------->
-                case AlergiasEntry.ALERGIA_YODO:
-                    mAlergiasNombreSpinner.setSelection(11);
-                    break;
-                case AlergiasEntry.ALERGIA_PENICILINA:
-                    mAlergiasNombreSpinner.setSelection(12);
-                    break;
-                case AlergiasEntry.ALERGIA_SULFAMIDAS:
-                    mAlergiasNombreSpinner.setSelection(13);
-                    break;
-                default:
-                    mAlergiasNombreSpinner.setSelection(0);
-                    break;
-            }
+
+            String strCurrent = fromArray[alergiasYa.get(currentValue - 1)];
+            mAlergiasNombreSpinner.setSelection(Arrays.asList(paraAdapter).indexOf(strCurrent.trim()));
+
+//            switch (alergyName) {
+//                case AlergiasEntry.ALERGIA_PESCADO:
+//                    mAlergiasNombreSpinner.setSelection(2);
+//                    break;
+//                case AlergiasEntry.ALERGIA_HUEVOS:
+//                    mAlergiasNombreSpinner.setSelection(1);
+//                    break;
+//                case AlergiasEntry.ALERGIA_LACTEOS:
+//                    mAlergiasNombreSpinner.setSelection(3);
+//                    break;
+//                case AlergiasEntry.ALERGIA_MANIES:
+//                    mAlergiasNombreSpinner.setSelection(4);
+//                    break;
+//                case AlergiasEntry.ALERGIA_MARSICOS:
+//                    mAlergiasNombreSpinner.setSelection(5);
+//                    break;
+//                //------------------------------->
+//                case AlergiasEntry.ALERGIA_SOYA:
+//                    mAlergiasNombreSpinner.setSelection(6);
+//                    break;
+//                case AlergiasEntry.ALERGIA_NUECES:
+//                    mAlergiasNombreSpinner.setSelection(7);
+//                    break;
+//                case AlergiasEntry.ALERGIA_TRIGO:
+//                    mAlergiasNombreSpinner.setSelection(8);
+//                    break;
+//                case AlergiasEntry.ALERGIA_ANTICONVULSIVOS:
+//                    mAlergiasNombreSpinner.setSelection(9);
+//                    break;
+//                case AlergiasEntry.ALERGIA_INSULINA:
+//                    mAlergiasNombreSpinner.setSelection(10);
+//                    break;
+//                //------------------------------->
+//                case AlergiasEntry.ALERGIA_YODO:
+//                    mAlergiasNombreSpinner.setSelection(11);
+//                    break;
+//                case AlergiasEntry.ALERGIA_PENICILINA:
+//                    mAlergiasNombreSpinner.setSelection(12);
+//                    break;
+//                case AlergiasEntry.ALERGIA_SULFAMIDAS:
+//                    mAlergiasNombreSpinner.setSelection(13);
+//                    break;
+//                default:
+//                    mAlergiasNombreSpinner.setSelection(0);
+//                    break;
+//            }
         }
     }
 
