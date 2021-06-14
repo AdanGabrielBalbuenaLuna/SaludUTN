@@ -223,7 +223,7 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                //...
+                Toast.makeText(this, "NO tomo la foto", Toast.LENGTH_SHORT).show();
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -257,6 +257,17 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         mUrlPhotoOneEditText = currentPhotoPath;
         Log.v("URL", "Url foto 1: " + mUrlPhotoOneEditText);
     }*/
+
+    /*private void galleryAddPic() {
+        Toast.makeText(this, "Se ejecuto galleryAddPic", Toast.LENGTH_SHORT).show();
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }*/
+
+
 
     //_______________________________________________________________________________
 

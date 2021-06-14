@@ -1,12 +1,17 @@
 package com.gabrielbalbuena.saludutn;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gabrielbalbuena.saludutn.data.SaludUtnContract.HistorialMedicoEntry;
@@ -17,6 +22,8 @@ import com.gabrielbalbuena.saludutn.data.SaludUtnContract.HistorialMedicoEntry;
  * how to create list items for each row of pet data in the {@link Cursor}.
  */
 public class HistorialMedicoCursorAdapter extends CursorAdapter {
+
+    private ImageView image; //Foto
 
     /**
      * Constructs a new {@link HistorialMedicoCursorAdapter}.
@@ -82,6 +89,16 @@ public class HistorialMedicoCursorAdapter extends CursorAdapter {
         String historialMedicoDoctorName = cursor.getString(doctorNameColumnIndex);
         String historialMedicoSpeciality = cursor.getString(specialityColumnIndex);
 
+
+
+        //ImageView miniatura = (ImageView) view.findViewById(R.id.imageViewMini);
+        //Bitmap bMap = BitmapFactory.decodeFile(historialMedicoUrlUno);
+        //image.setImageBitmap(bMap);
+        ImageView miniatura = (ImageView) view.findViewById(R.id.imageViewMini);
+        Bitmap bMap = BitmapFactory.decodeFile(historialMedicoUrlUno);
+        miniatura.setImageBitmap(bMap);
+
+
         /*
         // If the pet breed is empty string or null, then use some default text
         // that says "Unknown breed", so the TextView isn't blank.
@@ -97,5 +114,7 @@ public class HistorialMedicoCursorAdapter extends CursorAdapter {
         priceConsultTextView.setText(historialMedicoPriceConsult);
         doctorNameTextView.setText(historialMedicoDoctorName);
         specialityTextView.setText(historialMedicoSpeciality);
+
+
     }
 }
