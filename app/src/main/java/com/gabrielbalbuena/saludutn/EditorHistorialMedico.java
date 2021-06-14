@@ -441,9 +441,12 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         // Use trim to eliminate leading or trailing white space
         String dateString = mDateEditText.getText().toString().trim();
         String diagnosticString = mDiagnosticEditText.getText().toString().trim();
-        String urlPhotoOneString = mUrlPhotoOneEditText.getText().toString().trim();
-        String urlPhotoTwoString = mUrlPhotoTwoEditText.getText().toString().trim();
-        String priceConsultString = mPriceConsultEditText.getText().toString().trim();
+        String urlPhotoOneString = mUrlPhotoOneEditText.getText().toString();
+
+        Log.e("TAG", urlPhotoOneString);
+
+        String urlPhotoTwoString = String.valueOf(mUrlPhotoTwoEditText.getText());
+        String priceConsultString = String.valueOf(mPriceConsultEditText.getText()).trim();
         String doctorNameString = mDoctorNameEditText.getText().toString().trim();
         //int weight = Integer.parseInt(weightString);
 
@@ -476,9 +479,11 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         // If the weight is not provided by the user, don't try to parse the string into an
         // integer value. Use 0 by default.
         int price = 0;
-        if (!TextUtils.isEmpty(priceConsultString)) {
+
+        if (!priceConsultString.isEmpty()) {
             price = Integer.parseInt(priceConsultString);
         }
+
         values.put(HistorialMedicoEntry.COLUMN_PRECIO_CONSULTA, price);
 
 
@@ -557,22 +562,16 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
         String diagnostico = diagnosticoEditText.getText().toString();
         Log.d("Diagnostico", "El diagnostico es: " + diagnostico);
 
-
-        TextView fotoEditText = (TextView) findViewById(R.id.et_historial_medico_photo_one);
-        //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
-        //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
-        String foto = fotoEditText.getText().toString();
+        String foto = mUrlPhotoOneEditText.getText().toString();
         Log.d("Foto", "La foto es del edit : " + foto);
         Log.d("Foto", "La foto de la URL es: " + currentPhotoPathOne);
-        fotoEditText.setText(currentPhotoPathOne);
+        if(currentPhotoPathOne != null){
+            mUrlPhotoOneEditText.setText(currentPhotoPathOne);
+        }
 
-        TextView fotoEditText2 = (TextView) findViewById(R.id.et_historial_medico_photo_two);
-        //TextView fechaEditText = (TextView)findViewById(R.id.edit_date);
-        //EditText fechaEditText = (EditText)findViewById(R.id.edit_date);
-        String foto2 = fotoEditText2.getText().toString();
-        Log.d("Foto", "La foto es del edit : " + foto2);
-        Log.d("Foto", "La foto de la URL es: " + currentPhotoPathTwo);
-        fotoEditText2.setText(currentPhotoPathTwo);
+        if(currentPhotoPathTwo != null) {
+            mUrlPhotoTwoEditText.setText(currentPhotoPathTwo);
+        }
 
 
         // User clicked on a menu option in the app bar overflow menu
@@ -583,14 +582,6 @@ public class EditorHistorialMedico extends AppCompatActivity implements LoaderMa
                     Toast.makeText(this, "Necesitas añadir la fecha", Toast.LENGTH_LONG).show();
                 } else if (diagnostico.equals("")) {
                     Toast.makeText(this, "Debes de colocar un diagnostico", Toast.LENGTH_LONG).show();
-                } else if (foto == null) {
-                    foto = currentPhotoPathOne;
-                    // Save diarioemocion to database
-                    saveHistorialMedico();
-                    // Exit activity
-                    finish();
-                    return true;
-                    //Toast.makeText(this, "Debes de colocar una URL", Toast.LENGTH_LONG).show();
                 } else {
                     // Save diarioemocion to database
                     saveHistorialMedico();
